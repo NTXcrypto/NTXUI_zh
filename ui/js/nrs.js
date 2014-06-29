@@ -1,4 +1,4 @@
-var NRS = (function(NRS, $, undefined) {
+﻿var NRS = (function(NRS, $, undefined) {
 	"use strict";
 
 	NRS.server = "";
@@ -370,14 +370,14 @@ var NRS = (function(NRS, $, undefined) {
 
 				if (NRS.accountInfo.errorCode == 5) {
 					if (NRS.downloadingBlockchain) {
-						$("#dashboard_message").addClass("alert-success").removeClass("alert-danger").html("The blockchain is currently downloading. Please wait until it is up to date." + (NRS.newlyCreatedAccount ? " Your account ID is: <strong>" + String(preferredAccountFormat).escapeHTML() + "</strong>" : "")).show();
+						$("#dashboard_message").addClass("alert-success").removeClass("alert-danger").html("块链正在下载中，来一杯甜甜的咖啡,请耐心稍等片刻." + (NRS.newlyCreatedAccount ? " 您的帐户ID是: <strong>" + String(preferredAccountFormat).escapeHTML() + "</strong>" : "")).show();
 					} else if (NRS.state && NRS.state.isScanning) {
-						$("#dashboard_message").addClass("alert-danger").removeClass("alert-success").html("The blockchain is currently rescanning. Please wait until that has completed.").show();
+						$("#dashboard_message").addClass("alert-danger").removeClass("alert-success").html("块链正在重新扫描，来一杯甜甜的咖啡,请耐心稍等片刻.").show();
 					} else {
-						$("#dashboard_message").addClass("alert-success").removeClass("alert-danger").html("Welcome to your brand new account. You should fund it with some coins. Your account ID is: <strong>" + String(preferredAccountFormat).escapeHTML() + "</strong>").show();
+						$("#dashboard_message").addClass("alert-success").removeClass("alert-danger").html("欢迎光临您的新帐户. 您现在可以存一些NTX进来咯. 您的帐户ID是: <strong>" + String(preferredAccountFormat).escapeHTML() + "</strong>").show();
 					}
 				} else {
-					$("#dashboard_message").addClass("alert-danger").removeClass("alert-success").html(NRS.accountInfo.errorDescription ? NRS.accountInfo.errorDescription.escapeHTML() : "An unknown error occured.").show();
+					$("#dashboard_message").addClass("alert-danger").removeClass("alert-success").html(NRS.accountInfo.errorDescription ? NRS.accountInfo.errorDescription.escapeHTML() : "发生未知错误.").show();
 				}
 			} else {
 				if (NRS.accountRS && NRS.accountInfo.accountRS != NRS.accountRS) {
@@ -388,11 +388,11 @@ var NRS = (function(NRS, $, undefined) {
 				}
 
 				if (NRS.downloadingBlockchain) {
-					$("#dashboard_message").addClass("alert-success").removeClass("alert-danger").html("The blockchain is currently downloading. Please wait until it is up to date." + (NRS.newlyCreatedAccount ? " Your account ID is: <strong>" + String(preferredAccountFormat).escapeHTML() + "</strong>" : "")).show();
+					$("#dashboard_message").addClass("alert-success").removeClass("alert-danger").html("块链正在下载中，来一杯甜甜的咖啡,请耐心稍等片刻." + (NRS.newlyCreatedAccount ? " 您的帐户ID是: <strong>" + String(preferredAccountFormat).escapeHTML() + "</strong>" : "")).show();
 				} else if (NRS.state && NRS.state.isScanning) {
-					$("#dashboard_message").addClass("alert-danger").removeClass("alert-success").html("The blockchain is currently rescanning. Please wait until that has completed.").show();
+					$("#dashboard_message").addClass("alert-danger").removeClass("alert-success").html("块链正在重新扫描，来一杯甜甜的咖啡,请耐心稍等片刻.").show();
 				} else if (!NRS.accountInfo.publicKey) {
-					$("#dashboard_message").addClass("alert-danger").removeClass("alert-success").html("<b>Warning!</b>: Your account does not have a public key! This means it's not as protected as other accounts. You must make an outgoing transaction to fix this issue. (<a href='#' data-toggle='modal' data-target='#send_message_modal'>send a message</a>, <a href='#' data-toggle='modal' data-target='#register_alias_modal'>buy an alias</a>, <a href='#' data-toggle='modal' data-target='#send_money_modal'>send NTX</a>, ...)").show();
+					$("#dashboard_message").addClass("alert-danger").removeClass("alert-success").html("<b>请注意!</b>: 您的帐号没有公钥哦! 酱紫的话就不能像其它帐号一样受保护了. 您只要发送一笔款项，或者发送一条信息到其它帐户，或者购买一个别名就可以解决这问题了哦. (<a href='#' data-toggle='modal' data-target='#send_message_modal'>发送信息</a>, <a href='#' data-toggle='modal' data-target='#register_alias_modal'>购买别名</a>, <a href='#' data-toggle='modal' data-target='#send_money_modal'>发送NTX</a>, ...)").show();
 				} else {
 					$("#dashboard_message").hide();
 				}
@@ -497,14 +497,14 @@ var NRS = (function(NRS, $, undefined) {
 		var accountLeasingStatus = "";
 
 		if (NRS.lastBlockHeight >= NRS.accountInfo.currentLeasingHeightFrom) {
-			accountLeasingLabel = "Leased Out";
-			accountLeasingStatus = "Your account effective balance is leased out starting from block " + String(NRS.accountInfo.currentLeasingHeightFrom).escapeHTML() + " until block " + String(NRS.accountInfo.currentLeasingHeightTo).escapeHTML() + " to account <a href='#' data-user='" + String(NRS.accountInfo.currentLessee).escapeHTML() + "' class='user_info'>" + String(NRS.accountInfo.currentLessee).escapeHTML() + "</a>";
-			$("#lease_balance_message").html("<strong>Remember</strong>: This lease will take effect after the current lease has ended.");
+			accountLeasingLabel = "已出租";
+			accountLeasingStatus = "您的余额已被从第" + String(NRS.accountInfo.currentLeasingHeightFrom).escapeHTML() + "块租到第" + String(NRS.accountInfo.currentLeasingHeightTo).escapeHTML() + "块为止，租用者为<a href='#' data-user='" + String(NRS.accountInfo.currentLessee).escapeHTML() + "' class='user_info'>" + String(NRS.accountInfo.currentLessee).escapeHTML() + "</a>";
+			$("#lease_balance_message").html("<strong>请记住</strong>: 该租约将持续到租期结束为止.");
 
 		} else if (NRS.lastBlockHeight < NRS.accountInfo.currentLeasingHeightTo) {
-			accountLeasingLabel = "Leased Soon";
-			accountLeasingStatus = "Your account effective balance will be leased out starting from block " + String(NRS.accountInfo.currentLeasingHeightFrom).escapeHTML() + " until block " + String(NRS.accountInfo.currentLeasingHeightTo).escapeHTML() + " to account <a href='#' data-user='" + String(NRS.accountInfo.currentLessee).escapeHTML() + "' class='user_info'>" + String(NRS.accountInfo.currentLessee).escapeHTML() + "</a>";
-			$("#lease_balance_message").html("<strong>Remember</strong>: This lease will take effect after the current lease has ended.");
+			accountLeasingLabel = "出租中";
+			accountLeasingStatus = "您的余额将被从第 " + String(NRS.accountInfo.currentLeasingHeightFrom).escapeHTML() + "块租到第" + String(NRS.accountInfo.currentLeasingHeightTo).escapeHTML() + "块为止，租用者为 <a href='#' data-user='" + String(NRS.accountInfo.currentLessee).escapeHTML() + "' class='user_info'>" + String(NRS.accountInfo.currentLessee).escapeHTML() + "</a>";
+			$("#lease_balance_message").html("<strong>请记住</strong>: This lease will take effect after the current lease has ended.");
 		} else {
 			accountLeasingStatus = "Your account effective balance is not leased out.";
 			$("#lease_balance_message").html("<strong>Remember</strong>: Once submitted the lease cannot be cancelled.");
@@ -524,7 +524,7 @@ var NRS = (function(NRS, $, undefined) {
 				accountLeasingStatus += "<br /><br />";
 			}
 			accountLeasingLabel += NRS.accountInfo.lessors.length + (NRS.accountInfo.lessors.length == 1 ? " lessor" : "lessors");
-			accountLeasingStatus += NRS.accountInfo.lessors.length + " " + (NRS.accountInfo.lessors.length == 1 ? "lessor has" : "lessors have") + " leased their effective balance to your account.";
+			accountLeasingStatus += NRS.accountInfo.lessors.length + " " + (NRS.accountInfo.lessors.length == 1 ? "lessor has" : "lessors have") + " 租用该帐户的有效余额.";
 
 			var rows = "";
 
@@ -624,7 +624,7 @@ var NRS = (function(NRS, $, undefined) {
 				});
 			}
 		} else {
-			$.growl("Multiple different assets have been sold and/or bought.", {
+			$.growl("多个不同资产已被出售/购买.", {
 				"type": "success"
 			});
 		}
@@ -693,14 +693,14 @@ var NRS = (function(NRS, $, undefined) {
 					response.account = input.account;
 					NRS.showAccountModal(response);
 				} else {
-					$.growl("Nothing found, please try another query.", {
+					$.growl("搜索不到,请换个关键词吧.", {
 						"type": "danger"
 					});
 				}
 			});
 		} else {
 			if (!/^\d+$/.test(id)) {
-				$.growl("Invalid input. Search by ID or reed solomon account number.", {
+				$.growl("无效的输入. 请搜索ID，或者按数字帐号搜索.", {
 					"type": "danger"
 				});
 				return;
@@ -726,7 +726,7 @@ var NRS = (function(NRS, $, undefined) {
 									response.block = input.block;
 									NRS.showBlockModal(response);
 								} else {
-									$.growl("Nothing found, please try another query.", {
+									$.growl("搜索不到,请换个关键词吧.", {
 										"type": "danger"
 									});
 								}

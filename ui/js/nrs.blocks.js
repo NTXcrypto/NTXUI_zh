@@ -1,4 +1,4 @@
-var NRS = (function(NRS, $, undefined) {
+﻿var NRS = (function(NRS, $, undefined) {
 	NRS.blocksPageType = null;
 	NRS.tempBlocks = [];
 

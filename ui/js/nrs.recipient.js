@@ -1,4 +1,4 @@
-var NRS = (function(NRS, $, undefined) {
+﻿var NRS = (function(NRS, $, undefined) {
 	NRS.automaticallyCheckRecipient = function() {
 		$("#send_money_recipient, #transfer_asset_recipient, #send_message_recipient, #add_contact_account_id, #update_contact_account_id, #lease_balance_recipient").blur(function() {
 			var value = $(this).val();
@@ -56,11 +56,11 @@ var NRS = (function(NRS, $, undefined) {
 
 	NRS.forms.sendMoneyComplete = function(response, data) {
 		if (!(data["_extra"] && data["_extra"].convertedAccount) && !(data.recipient in NRS.contacts)) {
-			$.growl("NTX has been sent! <a href='#' data-account='" + NRS.getAccountFormatted(data, "recipient") + "' data-toggle='modal' data-target='#add_contact_modal' style='text-decoration:underline'>Add recipient to contacts?</a>", {
+			$.growl("NTX已发送! <a href='#' data-account='" + NRS.getAccountFormatted(data, "recipient") + "' data-toggle='modal' data-target='#add_contact_modal' style='text-decoration:underline'>添加接收者为联系人?</a>", {
 				"type": "success"
 			});
 		} else {
-			$.growl("NTX has been sent!", {
+			$.growl("NTX已发送!", {
 				"type": "success"
 			});
 		}
@@ -84,7 +84,7 @@ var NRS = (function(NRS, $, undefined) {
 			if (response.publicKey) {
 				callback({
 					"type": "info",
-					"message": "The recipient account has a public key and a balance of " + NRS.formatAmount(response.unconfirmedBalanceNQT, false, true) + "NTX.",
+					"message": "该接收者的帐户有公钥，且它的余额为" + NRS.formatAmount(response.unconfirmedBalanceNQT, false, true) + "NTX.",
 					"account": response
 				});
 			} else {
@@ -92,26 +92,26 @@ var NRS = (function(NRS, $, undefined) {
 					if (response.errorCode == 4) {
 						callback({
 							"type": "danger",
-							"message": "The recipient account is malformed, please adjust." + (!/^(NTX\-)/i.test(accountId) ? " If you want to type an alias, prepend it with the @ character." : ""),
+							"message": "该接收者的帐户有异常，请核实." + (!/^(NTX\-)/i.test(accountId) ? " 如果您是想输入别名, 请在它前面加上@." : ""),
 							"account": null
 						});
 					} else if (response.errorCode == 5) {
 						callback({
 							"type": "warning",
-							"message": "The recipient account is an unknown account, meaning it has never had an incoming or outgoing transaction. Please double check your recipient address before submitting.",
+							"message": "该接收者帐户系未知帐户, 这意味着它从未有过一次交易记录.请再次检查确认一下您的接收者帐户地址是正确的.",
 							"account": null
 						});
 					} else {
 						callback({
 							"type": "danger",
-							"message": "There is a problem with the recipient account: " + response.errorDescription,
+							"message": "该接收者帐户有点问题: " + response.errorDescription,
 							"account": null
 						});
 					}
 				} else {
 					callback({
 						"type": "warning",
-						"message": "The recipient account does not have a public key, meaning it has never had an outgoing transaction. The account has a balance of " + NRS.formatAmount(response.unconfirmedBalanceNQT, false, true) + " NTX. Please double check your recipient address before submitting.",
+						"message": "该接收者帐户没有公钥，这意味着该帐户没有向外发送过交易. 该帐户有余额" + NRS.formatAmount(response.unconfirmedBalanceNQT, false, true) + " NTX. 请再次检查确认一下您的接收者帐户地址是正确的.",
 						"account": response
 					});
 				}
@@ -140,7 +140,7 @@ var NRS = (function(NRS, $, undefined) {
 			if (address.set(account)) {
 				NRS.getAccountError(account, function(response) {
 					if (response.account) {
-						var message = "The recipient address translates to account <strong>" + String(response.account.account).escapeHTML() + "</strong>, " + response.message.replace("The recipient account", "which").escapeHTML();
+						var message = "接收者地址转换为帐户 <strong>" + String(response.account.account).escapeHTML() + "</strong>, " + response.message.replace("该接收者帐户", "which").escapeHTML();
 					} else {
 						var message = response.message.escapeHTML();
 					}
@@ -150,16 +150,16 @@ var NRS = (function(NRS, $, undefined) {
 			} else {
 				if (address.guess.length == 1) {
 
-					callout.removeClass(classes).addClass("callout-danger").html("The recipient address is malformed, did you mean <span class='malformed_address' data-address='" + String(address.guess[0]).escapeHTML() + "' onclick='NRS.correctAddressMistake(this);'>" + address.format_guess(address.guess[0], account) + "</span> ?").show();
+					callout.removeClass(classes).addClass("callout-danger").html("接收者帐户异常, did you mean <span class='malformed_address' data-address='" + String(address.guess[0]).escapeHTML() + "' onclick='NRS.correctAddressMistake(this);'>" + address.format_guess(address.guess[0], account) + "</span> ?").show();
 				} else if (address.guess.length > 1) {
-					var html = "The recipient address is malformed, did you mean:<ul>";
+					var html = "接收者帐户异常, did you mean:<ul>";
 					for (var i = 0; i < adr.guess.length; i++) {
 						html += "<li><span clas='malformed_address' data-address='" + String(address.guess[i]).escapeHTML() + "' onclick='NRS.correctAddressMistake(this);'>" + adddress.format_guess(address.guess[i], account) + "</span></li>";
 					}
 
 					callout.removeClass(classes).addClass("callout-danger").html(html).show();
 				} else {
-					callout.removeClass(classes).addClass("callout-danger").html("The recipient address is malformed, please adjust.").show();
+					callout.removeClass(classes).addClass("callout-danger").html("接收者帐户异常, 请核实.").show();
 				}
 			}
 		} else if (!(/^\d+$/.test(account))) {
@@ -183,7 +183,7 @@ var NRS = (function(NRS, $, undefined) {
 					} else if (/^[a-z0-9]+$/i.test(account)) {
 						NRS.checkRecipientAlias(account, modal);
 					} else {
-						callout.removeClass(classes).addClass("callout-danger").html("The recipient account is malformed, please adjust.").show();
+						callout.removeClass(classes).addClass("callout-danger").html("接收者帐户异常, 请核实.").show();
 					}
 				});
 			} else if (/^[a-z0-9@]+$/i.test(account)) {
@@ -192,7 +192,7 @@ var NRS = (function(NRS, $, undefined) {
 					NRS.checkRecipientAlias(account, modal);
 				}
 			} else {
-				callout.removeClass(classes).addClass("callout-danger").html("The recipient account is malformed, please adjust.").show();
+				callout.removeClass(classes).addClass("callout-danger").html("接收者帐户异常, 请核实.").show();
 			}
 		} else {
 			NRS.getAccountError(account, function(response) {
@@ -212,7 +212,7 @@ var NRS = (function(NRS, $, undefined) {
 			"aliasName": account
 		}, function(response) {
 			if (response.errorCode) {
-				callout.removeClass(classes).addClass("callout-danger").html(response.errorDescription ? "Error: " + response.errorDescription.escapeHTML() : "The alias does not exist.").show();
+				callout.removeClass(classes).addClass("callout-danger").html(response.errorDescription ? "Error: " + response.errorDescription.escapeHTML() : "该别名不存在.").show();
 			} else {
 				if (response.aliasURI) {
 					var alias = String(response.aliasURI);
@@ -233,12 +233,12 @@ var NRS = (function(NRS, $, undefined) {
 							callout.html("The alias links to account <strong>" + match[1].escapeHTML() + "</strong>, " + response.message.replace("The recipient account", "which") + " The alias was last adjusted on " + NRS.formatTimestamp(timestamp) + ".").removeClass(classes).addClass("callout-" + response.type).show();
 						});
 					} else {
-						callout.removeClass(classes).addClass("callout-danger").html("The alias does not link to an account. " + (!alias ? "The URI is empty." : "The URI is '" + alias.escapeHTML() + "'")).show();
+						callout.removeClass(classes).addClass("callout-danger").html("该别名未绑定到任何帐号. " + (!alias ? "URI为空." : "URI是'" + alias.escapeHTML() + "'")).show();
 					}
 				} else if (response.aliasName) {
-					callout.removeClass(classes).addClass("callout-danger").html("The alias links to an empty URI.").show();
+					callout.removeClass(classes).addClass("callout-danger").html("该别名绑定到了空的URI.").show();
 				} else {
-					callout.removeClass(classes).addClass("callout-danger").html(response.errorDescription ? "Error: " + response.errorDescription.escapeHTML() : "The alias does not exist.").show();
+					callout.removeClass(classes).addClass("callout-danger").html(response.errorDescription ? "Error: " + response.errorDescription.escapeHTML() : "该别名不存在.").show();
 				}
 			}
 		});

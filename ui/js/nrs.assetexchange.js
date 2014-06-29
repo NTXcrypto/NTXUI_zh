@@ -1,4 +1,4 @@
-var NRS = (function(NRS, $, undefined) {
+﻿var NRS = (function(NRS, $, undefined) {
 	NRS.assets = [];
 	NRS.assetIds = [];
 	NRS.closedGroups = [];
@@ -169,13 +169,13 @@ var NRS = (function(NRS, $, undefined) {
 
 		if (!data.id) {
 			return {
-				"error": "Asset or account ID is a required field."
+				"error": "资产或者帐户ID是必填字段."
 			};
 		}
 
 		if (!/^\d+$/.test(data.id) && !/^NTX\-/i.test(data.id)) {
 			return {
-				"error": "Asset or account ID is invalid."
+				"error": "资产或者帐户ID无效."
 			};
 		}
 
@@ -189,7 +189,7 @@ var NRS = (function(NRS, $, undefined) {
 					if (response.assets && response.assets[0] && response.assets[0].length) {
 						NRS.saveAssetBookmarks(response.assets[0], NRS.forms.addAssetBookmarkComplete);
 					} else {
-						NRS.showModalError("No assets found by this account.", $modal);
+						NRS.showModalError("该帐户下无资产记录.", $modal);
 					}
 					//NRS.saveAssetIssuer(data.id);
 				}
@@ -209,7 +209,7 @@ var NRS = (function(NRS, $, undefined) {
 								NRS.saveAssetBookmarks(response.assets[0], NRS.forms.addAssetBookmarkComplete);
 								//NRS.saveAssetIssuer(data.id);
 							} else {
-								NRS.showModalError("No asset found.", $modal);
+								NRS.showModalError("找不到资产.", $modal);
 							}
 						}
 					});
@@ -236,7 +236,7 @@ var NRS = (function(NRS, $, undefined) {
 
 		if (newAssets.length == 0) {
 			NRS.closeModal();
-			$.growl((submittedAssets.length == 1 ? "Asset" : "Assets") + " already in bookmark list.", {
+			$.growl((submittedAssets.length == 1 ? "Asset" : "Assets") + " 已在书签列表内.", {
 				"type": "danger"
 			});
 			$("#asset_exchange_sidebar a.active").removeClass("active");
@@ -244,7 +244,7 @@ var NRS = (function(NRS, $, undefined) {
 			return;
 		} else {
 			NRS.closeModal();
-			$.growl((newAssets.length == 1 ? "Asset" : newAssets.length + " assets") + " added successfully.", {
+			$.growl((newAssets.length == 1 ? "Asset" : newAssets.length + " assets") + " 添加成功.", {
 				"type": "success"
 			});
 
@@ -418,7 +418,7 @@ var NRS = (function(NRS, $, undefined) {
 					rows += "<a href='#' class='list-group-item list-group-item-header" + (asset.groupName == "Ignore List" ? " no-context" : "") + "'" + (asset.groupName != "Ignore List" ? " data-context='asset_exchange_sidebar_group_context' " : "data-context=''") + " data-groupname='" + asset.groupName.escapeHTML() + "' data-closed='" + isClosedGroup + "'><h4 class='list-group-item-heading'>" + asset.groupName.toUpperCase().escapeHTML() + "</h4><i class='fa fa-angle-" + (isClosedGroup ? "right" : "down") + " group_icon'></i></h4></a>";
 				} else {
 					ungrouped = true;
-					rows += "<a href='#' class='list-group-item list-group-item-header no-context' data-closed='" + isClosedGroup + "'><h4 class='list-group-item-heading'>UNGROUPED <i class='fa pull-right fa-angle-" + (isClosedGroup ? "right" : "down") + "'></i></h4></a>";
+					rows += "<a href='#' class='list-group-item list-group-item-header no-context' data-closed='" + isClosedGroup + "'><h4 class='list-group-item-heading'>未分组 <i class='fa pull-right fa-angle-" + (isClosedGroup ? "right" : "down") + "'></i></h4></a>";
 				}
 
 				lastGroup = asset.groupName.toLowerCase();
@@ -1021,7 +1021,7 @@ var NRS = (function(NRS, $, undefined) {
 		} else {
 			//do not allow period
 			if (charCode == 110 || charCode == 190 || charCode == 188) {
-				$.growl("Fractions are not allowed.", {
+				$.growl("不允许出现分数.", {
 					"type": "danger"
 				});
 				e.preventDefault();
@@ -1039,9 +1039,9 @@ var NRS = (function(NRS, $, undefined) {
 
 			if (selectedText != $(this).val()) {
 				if (isQuantityField) {
-					errorMessage = "Only " + NRS.currentAsset.decimals + " digits after the decimal mark are allowed for this asset.";
+					errorMessage = "该资产仅支持小数点后 " + NRS.currentAsset.decimals + " 位小数.";
 				} else {
-					errorMessage = "Only " + (8 - NRS.currentAsset.decimals) + " digits after the decimal mark are allowed.";
+					errorMessage = "仅支持小数点后 " + (8 - NRS.currentAsset.decimals) + " 位小数.";
 				}
 
 				$.growl(errorMessage, {
@@ -1059,7 +1059,7 @@ var NRS = (function(NRS, $, undefined) {
 		} else {
 			//comma
 			if (charCode == 188) {
-				$.growl("Comma is not allowed, use a dot instead.", {
+				$.growl("逗号是不允许的，请用一个点(.)来代替.", {
 					"type": "danger"
 				});
 			}
@@ -1105,14 +1105,14 @@ var NRS = (function(NRS, $, undefined) {
 			var feeNQT = new BigInteger(NRS.convertToNQT(String($("#" + orderType + "_asset_fee").val())));
 			var totalNXT = NRS.formatAmount(NRS.calculateOrderTotalNQT(quantityQNT, priceNQT, NRS.currentAsset.decimals), false, true);
 		} catch (err) {
-			$.growl("Invalid input.", {
+			$.growl("无效输入.", {
 				"type": "danger"
 			});
 			return e.preventDefault();
 		}
 
 		if (priceNQT.toString() == "0" || quantityQNT.toString() == "0") {
-			$.growl("Please fill in an amount and price.", {
+			$.growl("请填写金额和价格.", {
 				"type": "danger"
 			});
 			return e.preventDefault();
@@ -1125,11 +1125,11 @@ var NRS = (function(NRS, $, undefined) {
 		var priceNQTPerWholeQNT = priceNQT.multiply(new BigInteger("" + Math.pow(10, NRS.currentAsset.decimals)));
 
 		if (orderType == "buy") {
-			var description = "Buy <strong>" + NRS.formatQuantity(quantityQNT, NRS.currentAsset.decimals, true) + " " + $("#asset_name").html() + "</strong> assets at <strong>" + NRS.formatAmount(priceNQTPerWholeQNT, false, true) + " NTX</strong> each.";
-			var tooltipTitle = "Per whole asset bought you will pay " + NRS.formatAmount(priceNQTPerWholeQNT, false, true) + " NTX, making a total of " + totalNXT + " NTX once everything have been bought.";
+			var description = "以每个<strong>" + NRS.formatAmount(priceNQTPerWholeQNT, false, true) + " NTX</strong>的价格购买了 <strong>" + NRS.formatQuantity(quantityQNT, NRS.currentAsset.decimals, true) + " " + $("#asset_name").html() + "</strong> 个.";
+			var tooltipTitle = "购买单个资产，您将支付 " + NRS.formatAmount(priceNQTPerWholeQNT, false, true) + " NTX, 如果全部购买完，您将支付 " + totalNXT + " NTX .";
 		} else {
-			var description = "Sell <strong>" + NRS.formatQuantity(quantityQNT, NRS.currentAsset.decimals, true) + " " + $("#asset_name").html() + "</strong> assets at <strong>" + NRS.formatAmount(priceNQTPerWholeQNT, false, true) + " NTX</strong> each.";
-			var tooltipTitle = "Per whole asset sold you will receive " + NRS.formatAmount(priceNQTPerWholeQNT, false, true) + " NTX, making a total of " + totalNXT + " NTX once everything has been sold.";
+			var description = " 以每个<strong>" + NRS.formatAmount(priceNQTPerWholeQNT, false, true) + " NTX</strong>的价格销售了<strong>" + NRS.formatQuantity(quantityQNT, NRS.currentAsset.decimals, true) + " " + $("#asset_name").html() + "</strong> 个.";
+			var tooltipTitle = "单个资产销售后，您将得到" + NRS.formatAmount(priceNQTPerWholeQNT, false, true) + "NTX, 一旦所有都销售完，总共会得到 " + totalNXT + " NTX.";
 		}
 
 		$("#asset_order_description").html(description);
@@ -1185,7 +1185,7 @@ var NRS = (function(NRS, $, undefined) {
 		data.priceNQT = new BigInteger(data.priceNQT);
 		data.totalNQT = new BigInteger(NRS.calculateOrderTotalNQT(data.quantityQNT, data.priceNQT));
 
-		var rowToAdd = "<tr class='tentative' data-transaction='" + String(response.transaction).escapeHTML() + "' data-quantity='" + data.quantityQNT.toString().escapeHTML() + "' data-price='" + data.priceNQT.toString().escapeHTML() + "'><td>You - <strong>Pending</strong></td><td>" + NRS.formatQuantity(data.quantityQNT, NRS.currentAsset.decimals) + "</td><td>" + NRS.formatOrderPricePerWholeQNT(data.priceNQT, NRS.currentAsset.decimals) + "</td><td>" + NRS.formatAmount(data.totalNQT) + "</td></tr>";
+		var rowToAdd = "<tr class='tentative' data-transaction='" + String(response.transaction).escapeHTML() + "' data-quantity='" + data.quantityQNT.toString().escapeHTML() + "' data-price='" + data.priceNQT.toString().escapeHTML() + "'><td>You - <strong>处理中</strong></td><td>" + NRS.formatQuantity(data.quantityQNT, NRS.currentAsset.decimals) + "</td><td>" + NRS.formatOrderPricePerWholeQNT(data.priceNQT, NRS.currentAsset.decimals) + "</td><td>" + NRS.formatAmount(data.totalNQT) + "</td></tr>";
 
 		var rowAdded = false;
 
@@ -1218,11 +1218,11 @@ var NRS = (function(NRS, $, undefined) {
 
 		if (!data.description) {
 			return {
-				"error": "Description is a required field."
+				"error": "描述是必填项."
 			};
 		} else if (!/^\d+$/.test(data.quantity)) {
 			return {
-				"error": "Quantity must be a whole numbrer."
+				"error": "数量必须是一个整数."
 			};
 		} else {
 			data.quantityQNT = String(data.quantity);
@@ -1261,7 +1261,7 @@ var NRS = (function(NRS, $, undefined) {
 
 		if (!newGroupName.match(/^[a-z0-9 ]+$/i)) {
 			return {
-				"error": "Only alphanumerical characters can be used in the group name."
+				"error": "组名只允许使用字母 数字 字符."
 			};
 		}
 
@@ -1272,7 +1272,7 @@ var NRS = (function(NRS, $, undefined) {
 		}], function() {
 			setTimeout(function() {
 				NRS.pages.asset_exchange();
-				$.growl("Group name updated successfully.", {
+				$.growl("组名更新成功.", {
 					"type": "success"
 				});
 			}, 50);
@@ -1345,7 +1345,7 @@ var NRS = (function(NRS, $, undefined) {
 			}], function() {
 				setTimeout(function() {
 					NRS.pages.asset_exchange();
-					$.growl("Asset removed from group successfully.", {
+					$.growl("资产成功从组内移除.", {
 						"type": "success"
 					});
 				}, 50);
@@ -1363,7 +1363,7 @@ var NRS = (function(NRS, $, undefined) {
 			}
 
 			if (ownsAsset) {
-				$.growl("Asset cannot be removed (you own it).", {
+				$.growl("资产无法移除 (您拥有它).", {
 					"type": "danger"
 				});
 			} else {
@@ -1388,7 +1388,7 @@ var NRS = (function(NRS, $, undefined) {
 					*/
 					setTimeout(function() {
 						NRS.pages.asset_exchange();
-						$.growl("Asset removed from bookmarks successfully.", {
+						$.growl("该资产已经书签中移除.", {
 							"type": "success"
 						});
 					}, 50);
@@ -1425,11 +1425,11 @@ var NRS = (function(NRS, $, undefined) {
 			setTimeout(function() {
 				NRS.pages.asset_exchange();
 				if (!groupName) {
-					$.growl("Asset removed from group successfully.", {
+					$.growl("资产已从组内移除.", {
 						"type": "success"
 					});
 				} else {
-					$.growl("Asset added to group successfully.", {
+					$.growl("资产已添加到组内.", {
 						"type": "success"
 					});
 				}
@@ -1649,7 +1649,7 @@ var NRS = (function(NRS, $, undefined) {
 				sign = "-";
 			}
 
-			rows += "<tr" + (tentative != -1 ? " class='tentative tentative-allow-links'" : "") + " data-asset='" + String(asset.asset).escapeHTML() + "'><td><a href='#' data-goto-asset='" + String(asset.asset).escapeHTML() + "'>" + String(asset.name).escapeHTML() + "</a></td><td class='quantity'>" + NRS.formatQuantity(asset.balanceQNT, asset.decimals) + (tentative != -1 ? " " + sign + " <span class='added_quantity'>" + NRS.formatQuantity(tentative, asset.decimals) + "</span>" : "") + "</td><td>" + NRS.formatQuantity(asset.quantityQNT, asset.decimals) + "</td><td>" + percentageAsset + "%</td><td>" + (lowestAskOrder != -1 ? NRS.formatOrderPricePerWholeQNT(lowestAskOrder, asset.decimals) : "/") + "</td><td>" + (highestBidOrder != -1 ? NRS.formatOrderPricePerWholeQNT(highestBidOrder, asset.decimals) : "/") + "</td><td>" + (highestBidOrder != -1 ? NRS.formatAmount(totalNQT) : "/") + "</td><td><a href='#' data-toggle='modal' data-target='#transfer_asset_modal' data-asset='" + String(asset.asset).escapeHTML() + "' data-name='" + String(asset.name).escapeHTML() + "' data-decimals='" + String(asset.decimals).escapeHTML() + "'>Transfer</a></td></tr>";
+			rows += "<tr" + (tentative != -1 ? " class='tentative tentative-allow-links'" : "") + " data-asset='" + String(asset.asset).escapeHTML() + "'><td><a href='#' data-goto-asset='" + String(asset.asset).escapeHTML() + "'>" + String(asset.name).escapeHTML() + "</a></td><td class='quantity'>" + NRS.formatQuantity(asset.balanceQNT, asset.decimals) + (tentative != -1 ? " " + sign + " <span class='added_quantity'>" + NRS.formatQuantity(tentative, asset.decimals) + "</span>" : "") + "</td><td>" + NRS.formatQuantity(asset.quantityQNT, asset.decimals) + "</td><td>" + percentageAsset + "%</td><td>" + (lowestAskOrder != -1 ? NRS.formatOrderPricePerWholeQNT(lowestAskOrder, asset.decimals) : "/") + "</td><td>" + (highestBidOrder != -1 ? NRS.formatOrderPricePerWholeQNT(highestBidOrder, asset.decimals) : "/") + "</td><td>" + (highestBidOrder != -1 ? NRS.formatAmount(totalNQT) : "/") + "</td><td><a href='#' data-toggle='modal' data-target='#transfer_asset_modal' data-asset='" + String(asset.asset).escapeHTML() + "' data-name='" + String(asset.name).escapeHTML() + "' data-decimals='" + String(asset.decimals).escapeHTML() + "'>转让</a></td></tr>";
 		}
 
 		$("#my_assets_table tbody").empty().append(rows);
@@ -1698,9 +1698,9 @@ var NRS = (function(NRS, $, undefined) {
 		var availableAssetsMessage = "";
 
 		if (confirmedBalance == unconfirmedBalance) {
-			availableAssetsMessage = " - " + NRS.formatQuantity(confirmedBalance, decimals) + " available for transfer";
+			availableAssetsMessage = " - " + NRS.formatQuantity(confirmedBalance, decimals) + " 可用于转让";
 		} else {
-			availableAssetsMessage = " - " + NRS.formatQuantity(unconfirmedBalance, decimals) + " available for transfer (" + NRS.formatQuantity(confirmedBalance, decimals) + " total)";
+			availableAssetsMessage = " - " + NRS.formatQuantity(unconfirmedBalance, decimals) + " 可用于转让 (" + NRS.formatQuantity(confirmedBalance, decimals) + " total)";
 		}
 
 		$("#transfer_asset_available").html(availableAssetsMessage);
@@ -1714,7 +1714,7 @@ var NRS = (function(NRS, $, undefined) {
 				if (new Big(data.quantity).cmp(new Big(NRS.settings["asset_transfer_warning"])) > 0) {
 					NRS.showedFormWarning = true;
 					return {
-						"error": "Quantity specified is higher than " + String(NRS.settings["asset_transfer_warning"]).escapeHTML() + ". Are you sure you want to continue? Click the submit button again to confirm."
+						"error": "指的数量高于 " + String(NRS.settings["asset_transfer_warning"]).escapeHTML() + ". 您确认要继续? 点击提交按钮以再次确认."
 					};
 				}
 			}
@@ -1724,7 +1724,7 @@ var NRS = (function(NRS, $, undefined) {
 			data.quantityQNT = NRS.convertToQNT(data.quantity, data.decimals);
 		} catch (e) {
 			return {
-				"error": "Incorrect quantity: " + e
+				"error": "数量有误: " + e
 			};
 		}
 
@@ -1778,7 +1778,7 @@ var NRS = (function(NRS, $, undefined) {
 								NRS.loadAsset(response);
 							});
 						} else {
-							$.growl("Could not find asset.", {
+							$.growl("搜索不到.", {
 								"type": "danger"
 							});
 						}
@@ -1984,7 +1984,7 @@ var NRS = (function(NRS, $, undefined) {
 			completeOrder.quantityQNT = new BigInteger(completeOrder.quantityQNT);
 			completeOrder.totalNQT = new BigInteger(NRS.calculateOrderTotalNQT(completeOrder.quantityQNT, completeOrder.priceNQT));
 
-			rows += "<tr data-order='" + String(completeOrder.order).escapeHTML() + "'" + (cancelled ? " class='tentative tentative-crossed'" : (completeOrder.tentative ? " class='tentative'" : "")) + "><td><a href='#' data-goto-asset='" + String(completeOrder.asset).escapeHTML() + "'>" + completeOrder.assetName.escapeHTML() + "</a></td><td>" + NRS.formatQuantity(completeOrder.quantityQNT, completeOrder.decimals) + "</td><td>" + NRS.formatOrderPricePerWholeQNT(completeOrder.priceNQT, completeOrder.decimals) + "</td><td>" + NRS.formatAmount(completeOrder.totalNQT) + "</td><td class='cancel'>" + (cancelled || completeOrder.tentative ? "/" : "<a href='#' data-toggle='modal' data-target='#cancel_order_modal' data-order='" + String(completeOrder.order).escapeHTML() + "' data-type='" + type + "'>Cancel</a>") + "</td></tr>";
+			rows += "<tr data-order='" + String(completeOrder.order).escapeHTML() + "'" + (cancelled ? " class='tentative tentative-crossed'" : (completeOrder.tentative ? " class='tentative'" : "")) + "><td><a href='#' data-goto-asset='" + String(completeOrder.asset).escapeHTML() + "'>" + completeOrder.assetName.escapeHTML() + "</a></td><td>" + NRS.formatQuantity(completeOrder.quantityQNT, completeOrder.decimals) + "</td><td>" + NRS.formatOrderPricePerWholeQNT(completeOrder.priceNQT, completeOrder.decimals) + "</td><td>" + NRS.formatAmount(completeOrder.totalNQT) + "</td><td class='cancel'>" + (cancelled || completeOrder.tentative ? "/" : "<a href='#' data-toggle='modal' data-target='#cancel_order_modal' data-order='" + String(completeOrder.order).escapeHTML() + "' data-type='" + type + "'>取消</a>") + "</td></tr>";
 		}
 
 		$("#open_" + type + "_orders_table tbody").empty().append(rows);

@@ -20,9 +20,9 @@
     <body class="lockscreen fixed">
         <header class="header">
             <a href="#" class="logo" id="logo" data-page="dashboard">
-                <img src="img/logo_small.png" style="opacity:0.05" />
+                <img src="img/nxt_logo_small.png" style="opacity:0.95" />
             </a>
-            <nav class="navbar navbar-static-top" role="navigation">
+           <nav class="navbar navbar-static-top" role="navigation">
                 <a href="#" class="navbar-btn sidebar-toggle" data-toggle="offcanvas" role="button">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
@@ -31,10 +31,10 @@
                 </a>
                 <div class="navbar-right">
                     <ul class="nav navbar-nav">
-                    	<li class="dropdown"><a href="#" style="font-weight:bold;" data-toggle="modal" data-target="#send_money_modal">Send NTX</a></li>
-                    	<li class="dropdown"><a href="#" style="font-weight:bold;" data-toggle="modal" data-target="#send_message_modal">Send Message</a></li>
-	                    <li class="dropdown"><a href="#" style="font-weight:bold;" data-toggle="modal" data-target="#generate_token_modal">Generate Token</a></li>
-						<li class="dropdown"><a href="#" style="font-weight:bold;" class="goto-page" data-page="settings">Settings</a></li>
+                    	<li class="dropdown"><a href="#" style="font-weight:bold;" data-toggle="modal" data-target="#send_money_modal">发送NTX</a></li>
+                    	<li class="dropdown"><a href="#" style="font-weight:bold;" data-toggle="modal" data-target="#send_message_modal">发送信息</a></li>
+	                    <li class="dropdown"><a href="#" style="font-weight:bold;" data-toggle="modal" data-target="#generate_token_modal">创建令牌</a></li>
+						<li class="dropdown"><a href="#" style="font-weight:bold;" class="goto-page" data-page="settings">设置</a></li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <i class="fa fa-question-circle"></i>
@@ -45,15 +45,15 @@
 								<li><a role="menuitem" tabindex="-1" href="https://wiki.nxtcrypto.org/" target="_blank">NTX Wiki</a></li>
 								<li><a role="menuitem" tabindex="-1" href="https://wiki.nxtcrypto.org/wiki/Nxt_client_interface" target="_blank">Interface Tutorial</a></li>
 								<li><a role="menuitem" tabindex="-1" href="https://wiki.nxtcrypto.org/wiki/Asset_Exchange" target="_blank">Asset Exchange Tutorial</a></li>
-							</ul>
+                            </ul>
 						</li>
                         <li class="dropdown" id="logout_button_container">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="logout_button">
                                 <i class="fa fa-power-off"></i>
                             </a>
                             <ul class="dropdown-menu" role="menu">
-								<li><a role="menuitem" tabindex="-1" href="#" onclick="NRS.logout()">Log Out</a></li>
-								<li><a role="menuitem" tabindex="-1" href="#" onclick="NRS.logout(true)">Log Out &amp; Stop Forging</a></li>
+								<li><a role="menuitem" tabindex="-1" href="#" onClick="NRS.logout()" >退出</a></li>
+								<li><a role="menuitem" tabindex="-1" href="#" onClick="NRS.logout(true)">退出并停止锻造</a></li>
 							</ul>
 						</li>
                     </ul>
@@ -66,86 +66,86 @@
                 	<div class="user-panel">
                         <div class="pull-left info">
                         	<div class="pull-left info">
-                        		<div style="margin-bottom:5px;"><a href="#" id="account_name" data-toggle="modal" data-target="#account_info_modal">No Name Set</a></div>
+                        		<div style="margin-bottom:5px;"><a href="#" id="account_name" data-toggle="modal" data-target="#account_info_modal">未设置姓名</a></div>
 	                        	<div id="account_id_dropdown" class="dropdown" style="margin-bottom:10px">
 	                        		<span id="account_id_prefix">ID: </span><span id="account_id" class="dropdown-toggle" data-toggle="dropdown" data-type="account_id" style="font-weight:bold"></span>
 									<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-										<li role="presentation" class="copy_link"><a role="menuitem" tabindex="-1" href="#" data-type="account_rs">Copy Account ID</a></li>
-										<li role="presentation" class="copy_link"><a role="menuitem" tabindex="-1" href="#" data-type="account_id">Copy Numeric Account	ID</a></li>
-										<li role="presentation" class="remote_only copy_link"><a role="menuitem" tabindex="-1" href="#" data-type="message_link">Copy 'Send Message' Link</a></li>
-										<li role="presentation" class="remote_only copy_link"><a role="menuitem" tabindex="-1" href="#" data-type="send_link">Copy 'Send Ntx' Link</a></li>
+										<li role="presentation" class="copy_link"><a role="menuitem" tabindex="-1" href="#" data-type="account_rs">复制帐号ID</a></li>
+										<li role="presentation" class="copy_link"><a role="menuitem" tabindex="-1" href="#" data-type="account_id">复制数字帐号ID</a></li>
+										<li role="presentation" class="remote_only copy_link"><a role="menuitem" tabindex="-1" href="#" data-type="message_link">复制 '发送消息' 链接</a></li>
+										<li role="presentation" class="remote_only copy_link"><a role="menuitem" tabindex="-1" href="#" data-type="send_link">复制 '发送NTX' 链接</a></li>
 									</ul>
 								</div>
-	                            <a href="#" id="forging_indicator" class="forging" style="display:none;font-size:13px;"><i class="fa fa-circle" style="font-size:12px;"></i> <span>Forging</span></a>
+	                            <a href="#" id="forging_indicator" class="forging" style="display:none;font-size:13px;"><i class="fa fa-circle" style="font-size:12px;"></i> <span>锻造中</span></a>
                         	</div>
                         </div>
                     </div>       
                     <form action="#" method="get" class="sidebar-form" id="id_search">
                         <div class="input-group">
-                            <input type="text" name="q" class="form-control" placeholder="Search by ID...">
+                            <input type="text" name="q" class="form-control" placeholder="搜索ID...">
                             <span class="input-group-btn">
                                 <button type="submit" name="seach" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i></button>
                             </span>
                         </div>
                     </form>             
                     <ul class="sidebar-menu">
-                        <li class="active" id="dashboard_link"><a href="#" data-page="dashboard"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
-                        <li><a href="#" data-page="transactions"><i class="fa fa-briefcase"></i> <span>Transactions</span></a></li>
+                        <li class="active" id="dashboard_link"><a href="#" data-page="dashboard"><i class="fa fa-dashboard"></i> <span>主面板</span></a></li>
+                        <li><a href="#" data-page="transactions"><i class="fa fa-briefcase"></i> <span>交易记录</span></a></li>
                         <li class="treeview" id="sidebar_asset_exchange">
-                        	<a href="#" data-page="asset_exchange"><i class="fa fa-signal"></i><span>Asset Exchange</span><i class="fa pull-right fa-angle-right" style="padding-top:3px"></i></a>
+                        	<a href="#" data-page="asset_exchange"><i class="fa fa-signal"></i><span>资产交易所</span><i class="fa pull-right fa-angle-right" style="padding-top:3px"></i></a>
                             <ul class="treeview-menu" style="display: none;">
-                                 <li><a href="#" data-page="asset_exchange"><i class="fa fa-angle-double-right"></i> Asset Exchange</a></li>
-                            	<li><a href="#" data-page="my_assets"><i class="fa fa-angle-double-right"></i> My Assets</a></li>
-                                <li><a href="#" data-page="open_orders"><i class="fa fa-angle-double-right"></i> Open Orders</a></li>
-                                <li><a href="#" data-toggle="modal" data-target="#issue_asset_modal"><i class="fa fa-angle-double-right"></i> Issue Asset</a></li>
+                                 <li><a href="#" data-page="asset_exchange"><i class="fa fa-angle-double-right"></i> 资产交易平台</a></li>
+                            	<li><a href="#" data-page="my_assets"><i class="fa fa-angle-double-right"></i> 我的资产</a></li>
+                                <li><a href="#" data-page="open_orders"><i class="fa fa-angle-double-right"></i> 我的订单</a></li>
+                                <li><a href="#" data-toggle="modal" data-target="#issue_asset_modal"><i class="fa fa-angle-double-right"></i> 授权资产</a></li>
                         	</ul>
                         </li>
-                        <li><a href="#" data-page="contacts"><i class="fa fa-user"></i> <span>Contacts</span></a></li>
-                        <li><a href="#" data-page="messages"><i class="fa fa-envelope"></i> <span>Messages</span></a></li>
-                        <li><a href="#" data-page="aliases"><i class="fa fa-bookmark"></i> <span>Aliases</span></a></li>
-                        <li class="testnet_only"><a href="#" data-page="polls"><i class="fa fa-thumbs-up"></i><span>Polls</span></a></li>
-                        <li><a href="#" data-page="blocks"><i class="fa fa-bars"></i> <span>Blocks</span></a></li>
-                        <li><a href="#" data-page="peers"><i class="fa fa-cloud"></i> <span>Peers</span></a></li>
-                        <li id="news_link"><a href="#" data-page="news"><i class="fa fa-book"></i> <span>News</span></a></li>
+                        <li><a href="#" data-page="contacts"><i class="fa fa-user"></i> <span>通讯录</span></a></li>
+                        <li><a href="#" data-page="messages"><i class="fa fa-envelope"></i> <span>信息</span></a></li>
+                        <li><a href="#" data-page="aliases"><i class="fa fa-bookmark"></i> <span>别名</span></a></li>
+                        <li class="testnet_only"><a href="#" data-page="polls"><i class="fa fa-thumbs-up"></i><span>投票</span></a></li>
+                        <li><a href="#" data-page="blocks"><i class="fa fa-bars"></i> <span>块链</span></a></li>
+                        <li><a href="#" data-page="peers"><i class="fa fa-cloud"></i> <span>节点</span></a></li>
+                        <li id="news_link"><a href="#" data-page="news"><i class="fa fa-book"></i> <span>新闻</span></a></li>  
                 	</ul>
             	</section>
             </aside>
             <aside class="right-side">
            		<div id="dashboard_page" class="page" style="display:block">
-	                <section class="content-header"><h1>Dashboard</h1></section>
+	                <section class="content-header"><h1>主面板</h1></section>
 	                
 	                <section class="content">
-	                	<div class="alert-danger alert alert-no-icon" id="dashboard_message" style="display:none;padding:5px;padding-left:5px;margin-bottom:15px;"><b>Warning!</b>: Your account does not have a public key! This means it's not as protected as other accounts. You must make an outgoing transaction to fix this issue (<a href="#" data-toggle="modal" data-target="#send_message_modal">send a message</a>, <a href="#" data-toggle="modal" data-target="#register_alias_modal">buy an alias</a>, <a href="#" data-toggle="modal" data-target="#send_money_modal">send Ntx</a>, ...)</div>
+	                	<div class="alert-danger alert alert-no-icon" id="dashboard_message" style="display:none;padding:5px;padding-left:5px;margin-bottom:15px;"><b>注意!</b>: 您的帐号缺少公钥! 这意味着您的帐号不像其它帐号一样受到保护. 您必须向外发送至少一个币来修复该问题 (<a href="#" data-toggle="modal" data-target="#send_message_modal">发送信息</a>, <a href="#" data-toggle="modal" data-target="#register_alias_modal">购买一个别名</a>, <a href="#" data-toggle="modal" data-target="#send_money_modal">发送NTX</a>, ...)</div>
 	               
 	                    <div class="row">
 	                        <div class="col-lg-3 col-xs-6">
 	                            <div class="small-box bg-aqua">
 	                                <div class="inner">
 	                                    <h3><span id="account_balance" class="loading_dots"><span>.</span><span>.</span><span>.</span></span></h3>
-	                                    <p>Account Balance <span class="label" id="account_leasing" style="display:none;background-color:#1990B1"></span></p>
+	                                    <p>帐户余额 <span class="label" id="account_leasing" style="display:none;background-color:#1990B1"></span></p>
 	                                </div>
 	                                <div class="icon"><i class="fa fa-briefcase"></i></div>
-	                                <a href="#" class="small-box-footer" data-toggle="modal" data-target="#account_details_modal">More info <i class="fa fa-arrow-circle-right"></i></a>
+	                                <a href="#" class="small-box-footer" data-toggle="modal" data-target="#account_details_modal">更多信息 <i class="fa fa-arrow-circle-right"></i></a>
 	                            </div>
 	                        </div>
 	                        <div class="col-lg-3 col-xs-6">
 	                            <div class="small-box bg-green">
 	                                <div class="inner">
 	                                    <h3><span id="account_forged_balance" class="loading_dots"><span>.</span><span>.</span><span>.</span></span></h3>
-	                                    <p>Forged Balance</p>
+	                                    <p>锻造余额</p>
 	                                </div>
 	                                <div class="icon"><i class="ion ion-hammer"></i></div>
-	                                <a href="#" id="goto_forged_blocks" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+	                                <a href="#" id="goto_forged_blocks" class="small-box-footer">更多信息 <i class="fa fa-arrow-circle-right"></i></a>
 	                            </div>
 	                        </div>
 	                        <div class="col-lg-3 col-xs-6">
 	                            <div class="small-box bg-yellow">
 	                                <div class="inner">
 	                                    <h3><span id="account_nr_assets" class="loading_dots"><span>.</span><span>.</span><span>.</span></span></h3>
-	                                    <p>Assets Owned</p>
+	                                    <p>拥有资产</p>
 	                                </div>
 	                                <div class="icon"><i class="ion ion-pie-graph"></i></div>
-	                                <a href="#" class="small-box-footer goto-page" data-page="my_assets">More info <i class="fa fa-arrow-circle-right"></i></a>
+	                                <a href="#" class="small-box-footer goto-page" data-page="my_assets">更多信息 <i class="fa fa-arrow-circle-right"></i></a>
 	                            </div>
 	                        </div>
 	                        <div class="col-lg-3 col-xs-6">
@@ -155,22 +155,22 @@
 	                                    <p><span id="nrs_version_info">NRS Version</span> <span class="label label-danger" id="nrs_update" style="display:none;"></span></p>
 	                                </div>
 	                                <div class="icon"><i class="fa fa-code"></i></div>
-	                                <a href="#" class="small-box-footer" data-toggle="modal" data-target="#nrs_modal">More info <i class="fa fa-arrow-circle-right"></i></a>
+	                                <a href="#" class="small-box-footer" data-toggle="modal" data-target="#nrs_modal">更多信息 <i class="fa fa-arrow-circle-right"></i></a>
 	                            </div>
 	                        </div>
 	                    </div>
 						<div class="row">
 						    <div class="col-md-6">
 						        <div class="box box-primary">
-						            <div class="box-header"><h3 class="box-title">Recent Transactions</h3></div>
+						            <div class="box-header"><h3 class="box-title">最近的交易</h3></div>
 						            <div class="box-body no-padding">
 						            	<div class="data-container data-loading" data-no-padding="true" data-extra="#dashboard_transactions_footer">
 							                <table class="table table-striped" id="dashboard_transactions_table">
 							                	<thead>
 							                    <tr>
-							                        <th>Date</th>
-							                        <th colspan="2">Amount + Fee</th>
-							                        <th>Account</th>
+							                        <th>日期</th>
+							                        <th colspan="2">金额 + 费用</th>
+							                        <th>帐号</th>
 							                        <th style="width:40px">Conf.</th>
 							                    </tr>
 							                    </thead>
@@ -179,23 +179,23 @@
 							                    </tbody>
 							                </table>
 							                <div class="data-loading-container"><img src="img/loading_indicator.gif" alt="Loading..." width="32" height="32" /></div>
-							                <div class="data-empty-container"><p>No transactions yet.</p></div>
+							                <div class="data-empty-container"><p>暂无交易.</p></div>
 							       		</div>
 						            </div>
-						            <div class="box-footer" id="dashboard_transactions_footer" style="display: none"><button class="btn btn-primary goto-page" data-page="transactions"><i class="fa fa-caret-right"></i> View More</button></div>
+						            <div class="box-footer" id="dashboard_transactions_footer" style="display: none"><button class="btn btn-primary goto-page" data-page="transactions"><i class="fa fa-caret-right"></i> 查看更多</button></div>
 						        </div>
 							</div>
 							<div class="col-md-6">
 							    <div class="box box-success">
-							        <div class="box-header"><h3 class="box-title">Recent Blocks</h3></div>
+							        <div class="box-header"><h3 class="box-title">最新数据块</h3></div>
 							        <div class="box-body no-padding">
 							        	<div class="data-container data-loading" data-no-padding="true" data-extra="#dashboard_blocks_footer">
 								            <table class="table table-striped" id="dashboard_blocks_table">
 								            	<thead>
 								                <tr>
-								                    <th style="width: 30px">Height</th>
-								                    <th>Date</th>
-								                    <th>Amount + Fee</th>
+								                    <th style="width: 30px">序号</th>
+								                    <th>日期</th>
+								                    <th>金额 + 费用</th>
 								                    <th>Nr. TX</th>
 								                </tr>
 								                </thead>
@@ -204,10 +204,10 @@
 								                </tbody>
 								            </table>
 								            <div class="data-loading-container"><img src="img/loading_indicator.gif" alt="Loading..." width="32" height="32" /></div>
-								            <div class="data-empty-container"><p>No blocks found.</p></div>
+								            <div class="data-empty-container"><p>暂无块链.</p></div>
 								    	</div>
 							        </div>
-							        <div class="box-footer" id="dashboard_blocks_footer" style="display: none"><button class="btn btn-primary goto-page" data-page="blocks"><i class="fa fa-caret-right"></i> View More</button></div>
+							        <div class="box-footer" id="dashboard_blocks_footer" style="display: none"><button class="btn btn-primary goto-page" data-page="blocks" ><i class="fa fa-caret-right"></i> 查看更多</button></div>
 							    </div>
 							</div>
 						</div>
@@ -216,26 +216,26 @@
 				
 				<div id="transactions_page" class="page">
 	                <section class="content-header">
-	                	<h1>Transactions</h1>
+	                	<h1>交易记录</h1>
 						<div style="position:absolute;top:9px;right:9px;">
 							<div class="btn-group">
 								<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-									<span class="text">All Transactions</span> <span class="caret"></span>
+									<span class="text">所有交易</span> <span class="caret"></span>
 								</button>
 					        	<ul id="transactions_page_type" class="dropdown-menu" role="menu" style="right:0;left:auto;">
-					        		<li><a href="#" data-type="">All Transactions</a></li>
-					          		<li><a href="#" data-type="0:0">Ordinary Payment</a></li>
-					           		<li><a href="#" data-type="1:0">Arbitrary Message</a></li>
-					           		<li><a href="#" data-type="1:1">Alias Assignment</a></li>
-					           		<li><a href="#" data-type="1:2">Poll Creation</a></li>
-					           		<li><a href="#" data-type="1:3">Vote Casting</a></li>
-					           		<li><a href="#" data-type="2:0">Asset Issuance</a></li>
-					           		<li><a href="#" data-type="2:1">Asset Transfer</a></li>
-					           		<li><a href="#" data-type="2:2">Ask Order Placement</a></li>
-					           		<li><a href="#" data-type="2:3">Bid Order Placement</a></li>
-					           		<li><a href="#" data-type="2:4">Ask Order Cancellation</a></li>
-					           		<li><a href="#" data-type="2:5">Bid Order Cancellation</a></li>
-					           		<li><a href="#" data-type="unconfirmed">Unconfirmed Transactions</a></li>
+					        		<li><a href="#" data-type="">所有交易</a></li>
+					          		<li><a href="#" data-type="0:0">常规支付</a></li>
+					           		<li><a href="#" data-type="1:0">发送消息</a></li>
+					           		<li><a href="#" data-type="1:1">注册别名</a></li>
+					           		<li><a href="#" data-type="1:2">创建投票</a></li>
+					           		<li><a href="#" data-type="1:3">参与投票</a></li>
+					           		<li><a href="#" data-type="2:0">授权资产</a></li>
+					           		<li><a href="#" data-type="2:1">资产转让</a></li>
+					           		<li><a href="#" data-type="2:2">添加卖单</a></li>
+					           		<li><a href="#" data-type="2:3">添加买单</a></li>
+					           		<li><a href="#" data-type="2:4">取消卖单</a></li>
+					           		<li><a href="#" data-type="2:5">取消买单</a></li>
+					           		<li><a href="#" data-type="unconfirmed">未确认交易</a></li>
 					          	</ul>
 							</div>
 	                	</div>
@@ -246,13 +246,13 @@
 							<table class="table table-striped" id="transactions_table">
 								<thead>
 							    <tr>
-							    	<th>Transaction ID</th>
-							        <th>Date</th>
-							        <th>Type</th>
-							        <th colspan="2">Amount</th>
-							        <th>Fee</th>
-							        <th>Account</th>
-							        <th>Confirmations</th>
+							    	<th>交易ID</th>
+							        <th>日期</th>
+							        <th>类型</th>
+							        <th colspan="2">金额</th>
+							        <th>费用</th>
+							        <th>帐户</th>
+							        <th>确认数</th>
 							    </tr>
 							    </thead>
 							    <tbody>
@@ -260,14 +260,14 @@
 							    </tbody>
 							</table>
 							<div class="data-loading-container"><img src="img/loading_indicator.gif" alt="Loading..." width="32" height="32" /></div>
-							<div class="data-empty-container"><p>No transactions found.</p></div>
+							<div class="data-empty-container"><p>暂无交易.</p></div>
 						</div>
 	                </section>
                 </div>
                                 
                 <div id="messages_page" class="page">
 	                <section class="content-header">
-	                	<h1>Messages</h1>
+	                	<h1>信息</h1>
 	                	<!--
 						<div style="position:absolute;top:9px;right:9px;">
 				            <div class="btn-group">
@@ -285,14 +285,14 @@
 					          <div class="content-splitter-sidebar" id="message_sidebar" style="width:200px;overflow-x:hidden;">
 					              <div class="content-splitter-sidebar-inner">
 					              	<div class="list-group unselectable sidebar_context" id="messages_sidebar">
-				                        <div style="text-align:center;padding-top:10px;">Loading, please wait<span class="loading_dots"><span>.</span><span>.</span><span>.</span></span></div>
+				                        <div style="text-align:center;padding-top:10px;">加载中，请稍等<span class="loading_dots"><span>.</span><span>.</span><span>.</span></span></div>
 					              	</div>
 						             </div>
 						         </div>
 						         <div class="content-splitter-right" id="message_content">
 						         	<div class="content-splitter-right-inner">
-						         		<div id="no_message_selected" style="padding-top: 150px;text-align:center;">Please select a contact in the left sidebar.</div>
-						         		<div id="no_messages_available" style="padding-top: 150px;text-align:center;display:none;">No messages available, <a href="#" data-toggle="modal" data-target="#send_message_modal">send one</a>.</div>
+						         		<div id="no_message_selected" style="padding-top: 150px;text-align:center;">请从左侧选择一个联系人.</div>
+						         		<div id="no_messages_available" style="padding-top: 150px;text-align:center;display:none;">暂无信息, <a href="#" data-toggle="modal" data-target="#send_message_modal">来一发</a>.</div>
 						         		
 						         		<div id="message_details">
 							           	</div>
@@ -304,13 +304,13 @@
 							           			<div class="col-xs-10 col-sm-10 col-md-10">
 							           				<div class="form-group">
 							           					<input type="password" class="form-control secret_phrase" id="inline_message_password" name="inline_message_password" placeholder="Secret Phrase" style="display:inline;width:50%">
-							           					<span style="display:none"><label for="inline_message_encrypt" style="font-weight:normal;color:#666"><input type="checkbox" name="inline_message_encrypt" id="inline_message_encrypt" value="1" /> Encrypt</label></span>
+							           					<span style="display:none"><label for="inline_message_encrypt" style="font-weight:normal;color:#666"><input type="checkbox" name="inline_message_encrypt" id="inline_message_encrypt" value="1" /> 加密</label></span>
 							           				</div>
 							           			</div>
 							           			<div class="col-xs-2-col-sm-2 col-md-2">
 							           				<div class="form-group" style="text-align:right">
 							           					<input type="hidden" name="inline_message_recipient" id="inline_message_recipient" value="" />
-							           					<button type="submit" id="inline_message_submit" class="btn btn-default" data-loading-text="Submitting...">Send</button>
+							           					<button type="submit" id="inline_message_submit" class="btn btn-default" data-loading-text="Submitting...">发送</button>
 							           				</div>
 							           			</div>
 							           		</div>
@@ -324,23 +324,23 @@
                 
                 <div id="contacts_page" class="page">
                     <section class="content-header">
-                    	<h1>Contacts</h1>
+                    	<h1>联系人</h1>
                     	<div style="position:absolute;top:9px;right:9px;">
-							<button id="add_contact_button" type="button" class="btn btn-default" data-toggle="modal" data-target="#add_contact_modal">Add Contact</button>
+							<button id="add_contact_button" type="button" class="btn btn-default" data-toggle="modal" data-target="#add_contact_modal">添加联系人</button>
 						</div>
                     </section>
                 	
                     <section class="content">
-                    	<div id="contact_page_database_error" style="display:none">Your browser does not support database access, without which contacts cannot be created.</div>
+                    	<div id="contact_page_database_error" style="display:none">您的浏览器不支持数据访问，无法创建联系人.</div>
                   		<div class="data-container data-loading" id="contacts_table_container">
                 			<table class="table table-striped" id="contacts_table">
                 				<thead>
                 			    <tr>
-                			        <th>Name</th>
-                			        <th>Account ID</th>
-                			        <th>Email Address</th>
-                			        <th>Description</th>
-                			        <th style="width:10%">Actions</th>
+                			        <th>姓名</th>
+                			        <th>帐号ID</th>
+                			        <th>邮件地址</th>
+                			        <th>描述</th>
+                			        <th style="width:10%">操作</th>
                 			    </tr>
                 			    </thead>
                 			    <tbody>
@@ -348,7 +348,7 @@
                 			    </tbody>
                 			</table>
                 			<div class="data-loading-container"><img src="img/loading_indicator.gif" alt="Loading..." width="32" height="32" /></div>
-                			<div class="data-empty-container"><p>No contacts yet, <a href="#" data-toggle="modal" data-target="#add_contact_modal">add one.</a></p></div>
+                			<div class="data-empty-container"><p>暂无联系人, <a href="#" data-toggle="modal" data-target="#add_contact_modal">加一个.</a></p></div>
                 		</div>
                     </section>
                 </div>
@@ -357,7 +357,7 @@
                     <section class="content-header">
                     	<h1>Polls</h1>
                     	<div style="position:absolute;top:9px;right:9px;">
-							<button type="button" class="btn btn-default" data-toggle="modal" data-target="#create_poll_modal">Create Poll</button>
+							<button type="button" class="btn btn-default" data-toggle="modal" data-target="#create_poll_modal">创建投票</button>
 						</div>
                     </section>
                 	
@@ -366,11 +366,11 @@
                 			<table class="table table-striped" id="polls_table">
                 				<thead>
                 			    <tr>
-                			        <th>Title</th>
-                			        <th>Description</th>
-                			        <th>Sender</th>
-                			        <th>Start Date</th>
-                			        <th>Vote</th>
+                			        <th>标题</th>
+                			        <th>描述</th>
+                			        <th>发送者</th>
+                			        <th>开始日期</th>
+                			        <th>投票</th>
                 			    </tr>
                 			    </thead>
                 			    <tbody>
@@ -378,24 +378,24 @@
                 			    </tbody>
                 			</table>
                 			<div class="data-loading-container"><img src="img/loading_indicator.gif" alt="Loading..." width="32" height="32" /></div>
-                			<div class="data-empty-container"><p>No polls found.</p></div>
+                			<div class="data-empty-container"><p>暂无投票.</p></div>
                 		</div>
                     </section>
                 </div>
                 
             	<div id="aliases_page" class="page">
                 	<section class="content-header">
-                		<h1>Aliases</h1>
+                		<h1>别名</h1>
                 		<div style="position:absolute;top:9px;right:9px;">
 							<form action="#" method="get" class="sidebar-form" id="alias_search" style="width:180px;margin:0;display:inline-block;vertical-align:middle;">
 								<div class="input-group">
-									<input type="text" name="q" class="form-control" placeholder="Search Aliases...">
+									<input type="text" name="q" class="form-control" placeholder="搜索别名...">
 									<span class="input-group-btn">
 										<button type="submit" name="seach" class="btn btn-flat"><i class="fa fa-search"></i></button>
 									</span>
 								</div>
 							</form>             
-							<button type="button" class="btn btn-default" data-toggle="modal" data-target="#register_alias_modal" style="display:inline-block;vertical-align:middle;">Register Alias</button>
+							<button type="button" class="btn btn-default" data-toggle="modal" data-target="#register_alias_modal" style="display:inline-block;vertical-align:middle;">注册别名</button>
 						</div>
                 	</section>
                 	<section class="content">
@@ -404,7 +404,7 @@
     	                        <div class="small-box bg-aqua">
     	                            <div class="inner inner-smaller">
     	                                <h3><span id="alias_count" class="loading_dots"><span>.</span><span>.</span><span>.</span></span></h3>
-    	                                <p>Aliases Owned</p>
+    	                                <p>我的别名</p>
     	                            </div>
     	                            <div class="icon-smaller" style="bottom:-10px"><i class="fa fa-briefcase"></i></div>
     	                            <div class="small-box-footer"></div>
@@ -414,7 +414,7 @@
     	                        <div class="small-box bg-green">
     	                            <div class="inner inner-smaller">
     	                                <h3><span id="empty_alias_count" class="loading_dots"><span>.</span><span>.</span><span>.</span></span></h3>
-    	                                <p>Empty Aliases</p>
+    	                                <p>空别名</p>
     	                            </div>
     	                            <div class="icon-smaller" style="bottom:-10px"><i class="fa fa-exclamation"></i></div>
     	                            <div class="small-box-footer"></div>
@@ -424,7 +424,7 @@
     	                        <div class="small-box bg-yellow">
     	                            <div class="inner inner-smaller">
     	                                <h3><span id="alias_uri_count" class="loading_dots"><span>.</span><span>.</span><span>.</span></span></h3>
-    	                                <p>Aliases to URI</p>
+    	                                <p>别名对URI</p>
     	                            </div>
     	                            <div class="icon-smaller" style="bottom:-10px"><i class="fa fa-cloud"></i></div>
     	                            <div class="small-box-footer"></div>
@@ -434,7 +434,7 @@
     	                        <div class="small-box bg-red">
     	                            <div class="inner inner-smaller">
     	                                <h3><span id="alias_account_count" class="loading_dots"><span>.</span><span>.</span><span>.</span></span></h3>
-    	                                <p>Aliases to Account ID</p>
+    	                                <p>别名对帐户ID</p>
     	                            </div>
     	                            <div class="icon-smaller" style="bottom:-10px"><i class="ion ion-person"></i></div>
     	                            <div class="small-box-footer"></div>
@@ -446,9 +446,9 @@
 							<table class="table table-striped" id="aliases_table">
 								<thead>
 							    <tr>
-							        <th>Alias</th>
+							        <th>别名</th>
 							        <th>URI</th>
-							        <th>Edit</th>
+							        <th>编辑</th>
 							    </tr>
 							    </thead>
 							    <tbody>
@@ -456,28 +456,28 @@
 							    </tbody>
 							</table>
 							<div class="data-loading-container"><img src="img/loading_indicator.gif" alt="Loading..." width="32" height="32" /></div>
-							<div class="data-empty-container"><p>No aliases yet, <a href="#" data-toggle="modal" data-target="#register_alias_modal">register one!</a></p></div>
+							<div class="data-empty-container"><p>暂无别名, <a href="#" data-toggle="modal" data-target="#register_alias_modal">来一发!</a></p></div>
 						</div>
 	                </section>
                 </div>
                                 
                 <div id="open_orders_page" class="page">
-                	<section class="content-header"><h1>Open Orders</h1></section>
+                	<section class="content-header"><h1>买单</h1></section>
                  	<section class="content">
 	                 	<div class="row">
 	                 	    <div class="col-md-6">
 	                 	        <div class="box box-primary">
-	                 	            <div class="box-header"><h3 class="box-title">Sell Orders</h3></div>
+	                 	            <div class="box-header"><h3 class="box-title">卖单</h3></div>
 	                 	            <div class="box-body no-padding">
                 	   					<div class="data-container data-loading" data-no-padding="true">
 		                 	                <table class="table table-striped" id="open_ask_orders_table">
 												<thead>
 												<tr>
-												    <th>Asset</th>
-												    <th>Quantity</th>
-												    <th>Price</th>
-												    <th>Total</th>
-												    <th>Cancel</th>
+												    <th>资产</th>
+												    <th>数量</th>
+												    <th>价格</th>
+												    <th>总计</th>
+												    <th>取消</th>
 												</tr>
 												</thead>
 		                 	                    <tbody>
@@ -485,24 +485,24 @@
 		                 	                    </tbody>
 		                 	                </table>
 		                 	                <div class="data-loading-container"><img src="img/loading_indicator.gif" alt="Loading..." width="32" height="32" /></div>
-		                 	                <div class="data-empty-container"><p>No open sell orders.</p></div>
+		                 	                <div class="data-empty-container"><p>没有卖单.</p></div>
 	                 	                </div>
 	                 	            </div>
 	                 	        </div>
 	                 		</div>				                        	
 	                 		<div class="col-md-6">
 	                 		    <div class="box box-primary">
-	                 		        <div class="box-header"><h3 class="box-title">Buy Orders</h3></div>
+	                 		        <div class="box-header"><h3 class="box-title">买单</h3></div>
 	                 		        <div class="box-body no-padding">
 	                 		            <div class="data-container data-loading" data-no-padding="true">
 		                 		            <table class="table table-striped" id="open_bid_orders_table">
 												<thead>
 												<tr>
-												    <th>Asset</th>
-												    <th>Quantity</th>
-												    <th>Price</th>
-												    <th>Total</th>
-												    <th>Cancel</th>
+												    <th>资产</th>
+												    <th>数量</th>
+												    <th>价格</th>
+												    <th>总计</th>
+												    <th>取消</th>
 												</tr>
 												</thead>
 		                 		                <tbody>
@@ -510,7 +510,7 @@
 		                 		                </tbody>
 		                 		            </table>
 		                 		            <div class="data-loading-container"><img src="img/loading_indicator.gif" alt="Loading..." width="32" height="32" /></div>
-		                 		            <div class="data-empty-container"><p>No open buy orders.</p></div>
+		                 		            <div class="data-empty-container"><p>暂无买单.</p></div>
 		                 		    	</div>
 	                 		        </div>
 	                 		    </div>
@@ -520,20 +520,20 @@
                 </div>
                                 					
                 <div id="my_assets_page" class="page">
-	                <section class="content-header"><h1>My Assets</h1></section>
+	                <section class="content-header"><h1>我的资产</h1></section>
 					<section class="content">
 						<div class="data-container data-loading">
 							<table class="table table-striped" id="my_assets_table">
 								<thead>
 							    <tr>
-							        <th>Asset</th>
-							        <th>Quantity</th>
-							        <th>Total Available</th>
-							        <th>Percentage</th>
-							        <th>Lowest Ask</th>
-							        <th>Highest Bid</th>
-							        <th>Value in NTX</th>
-							        <th>Transfer</th>
+							        <th>资产</th>
+							        <th>数量</th>
+							        <th>总计</th>
+							        <th>占比</th>
+							        <th>最低卖价</th>
+							        <th>最高买价</th>
+							        <th>以NTX计价</th>
+							        <th>转让</th>
 							    </tr>
 							    </thead>
 							    <tbody>
@@ -541,18 +541,18 @@
 							    </tbody>
 							</table>
 							<div class="data-loading-container"><img src="img/loading_indicator.gif" alt="Loading..." width="32" height="32" /></div>
-							<div class="data-empty-container"><p>No assets yet, go buy some on the exchange!</p></div>
+							<div class="data-empty-container"><p>暂无资产，到交易所买点吧!</p></div>
 						</div>
 					</section>
 				</div>
 
                 <div id="asset_exchange_page" class="page">
 	                <section class="content-header">
-	                	<h1>Asset Exchange</h1>
+	                	<h1>资产交易所</h1>
 	                	<div style="position:absolute;top:9px;right:9px;">
-	                		<button type="button" class="btn btn-sm btn-default" id="asset_exchange_add_asset_bookmark" data-toggle="modal" data-target="#add_asset_bookmark_modal">Add Asset</button>
-	                		<button type="button" class="btn btn-sm btn-default" id="asset_exchange_bookmark_this_asset" style="display:none">Bookmark This Asset</button>
-		                	<button type="button" class="btn btn-sm btn-default" id="asset_exchange_clear_search" style="display:none">Clear Search Results</button>
+	                		<button type="button" class="btn btn-sm btn-default" id="asset_exchange_add_asset_bookmark" data-toggle="modal" data-target="#add_asset_bookmark_modal">添加资产</button>
+	                		<button type="button" class="btn btn-sm btn-default" id="asset_exchange_bookmark_this_asset" style="display:none">标为书签</button>
+		                	<button type="button" class="btn btn-sm btn-default" id="asset_exchange_clear_search" style="display:none">重置搜索</button>
 	                	</div>
 	                </section>
 	                <section class="content content-stretch" style="position:fixed;margin-top:3px;padding:0; width:100%; height:100%;">
@@ -564,7 +564,7 @@
 											<div id="asset_exchange_sidebar_search">
 												 <form action="#" method="get" class="sidebar-form" id="asset_exchange_search">
 													<div class="input-group">
-														<input type="text" name="q" class="form-control" placeholder="Search assets">
+														<input type="text" name="q" class="form-control" placeholder="搜索资产">
 														<span class="input-group-btn">
 														<button type="submit" name="seach" class="btn btn-flat" style="padding-left:3px"><i class="fa fa-search"></i></button>
 														</span>
@@ -572,35 +572,35 @@
 												</form>     
 											</div>
 											<div id="asset_exchange_sidebar_content">
-				                        		<div style="text-align:center;padding-top:10px;">Loading, please wait<span class="loading_dots"><span>.</span><span>.</span><span>.</span></span></div>
+				                        		<div style="text-align:center;padding-top:10px;">加载中，请稍等<span class="loading_dots"><span>.</span><span>.</span><span>.</span></span></div>
 				                        	</div>
 			                        	</div>
 						             </div>
 						         </div>
 						         <div class="content-splitter-right">
 						         	<div class="content-splitter-right-inner">
-						         		<div id="no_assets_available" style="padding-top: 150px;text-align:center;display:none;">You don't have any assets in your bookmark list yet. Click on "Add Asset" in the top right corner to add one.</div>
-						         		<div id="no_asset_search_results" style="padding-top: 150px;text-align:center;display:none;">No assets found that match search query.</div>
-						         		<div id="no_asset_selected" style="padding-top: 150px;text-align:center;">Please select an asset in the left sidebar.</div>
-						         		<div id="loading_asset_data" style="padding-top: 150px;text-align:center;display: none;">Asset data loading, please wait...<br /><br /><img class="loading" src="img/loading_indicator.gif" alt="Loading..." width="32" height="32" /></div>
+						         		<div id="no_assets_available" style="padding-top: 150px;text-align:center;display:none;">你还没有添加资产到书签列表里面，点击头部右侧的“添加资产”按钮来添加一个吧！.</div>
+						         		<div id="no_asset_search_results" style="padding-top: 150px;text-align:center;display:none;">找不到与搜索关键字相符的资产.</div>
+						         		<div id="no_asset_selected" style="padding-top: 150px;text-align:center;">请从左侧选择一个资产.</div>
+						         		<div id="loading_asset_data" style="padding-top: 150px;text-align:center;display: none;">资产数据加载中，请稍等...<br /><br /><img class="loading" src="img/loading_indicator.gif" alt="Loading..." width="32" height="32" /></div>
 						         		<div id="asset_details" style="display:none;">
-							            	<div class="alert alert-danger alert-no-icon" id="asset_exchange_duplicates_warning" style="display:none"><strong>Warning</strong>: There <span></span> with the same name in the asset exchange. Please make sure you choose the right one. Look at the account and asset id for confirmation.</div>
+							            	<div class="alert alert-danger alert-no-icon" id="asset_exchange_duplicates_warning" style="display:none"><strong>注意</strong>:  <span></span> 在资产交易所有重复的名称. 请核对一下帐号和资产ID，确保你选择的正确的那个.</div>
 
 							            	<div style="float:right;color: #999999;background:white;padding:5px;border:1px solid #ccc;border-radius:3px">
-							            		<strong>Account</strong>: <span id="asset_account"></span><br />
+							            		<strong>帐户</strong>: <span id="asset_account"></span><br />
 					                        	<span id="asset_id_dropdown" class="dropdown" style="margin-bottom:0;">
-					                        		<strong>Asset Id</strong>: &nbsp;<a href="#" id="asset_id" class="dropdown-toggle" data-toggle="dropdown"></a>
+					                        		<strong>资产Id</strong>: &nbsp;<a href="#" id="asset_id" class="dropdown-toggle" data-toggle="dropdown"></a>
 													<ul class="dropdown-menu" role="menu" style="right:0;left:auto;text-align:left;">
-														<li role="presentation" class="copy_link"><a role="menuitem" tabindex="-1" href="#" data-type="asset_id">Copy Asset ID</a></li>
-														<li role="presentation" class="remote_only copy_link"><a role="menuitem" tabindex="-1" href="#" data-type="asset_link">Copy Asset Link</a></li>
+														<li role="presentation" class="copy_link"><a role="menuitem" tabindex="-1" href="#" data-type="asset_id">复制资产ID</a></li>
+														<li role="presentation" class="remote_only copy_link"><a role="menuitem" tabindex="-1" href="#" data-type="asset_link">复制资产链接</a></li>
 													</ul>
 												</span>
 							            	</div>
 							                <h3 style="margin-top:0" id="asset_name"></h3>
 
 							                <div style="color:#838383;margin-bottom:5px">
-								                <strong>Quantity</strong>: <span id="asset_quantity"></span>
-								                <strong>Asset Decimals</strong>: <span id="asset_decimals"></span>
+								                <strong>数量</strong>: <span id="asset_quantity"></span>
+								                <strong>小数点</strong>: <span id="asset_decimals"></span>
 							                </div>
 
 							                <div id="asset_description"></div>
@@ -610,18 +610,18 @@
 							                	<div class="col-md-6">
 								                	<div class="box box-solid box-info collapsed-box" id="buy_asset_box">
 								                		<div class="box-header" style="background-color:#DFF0D9;color: #48AB6C;">
-								                	   	<h3 class="box-title">Buy <span class="asset_name"></span> with NTX</h3>
+								                	   	<h3 class="box-title">用NTX买<span class="asset_name"></span></h3>
 								                	       <div class="box-tools pull-right">
 								                	       	<button class="btn btn-info btn-sm" style="background-color: #48AB6C"><i class="fa fa-plus"></i></button>
 								                	        </div>
 								                	    </div>
 								                	    <div class="box-body no-padding" style="display:none">
-								                	    	<div style="background-color:#DFF0D9;color: #666;padding-left:10px;padding-right: 10px;padding-top: 0px;padding-bottom:3px;" id="buy_automatic_price"><strong>Balance</strong>: <span id="your_nxt_balance"></span> NTX</div>
+								                	    	<div style="background-color:#DFF0D9;color: #666;padding-left:10px;padding-right: 10px;padding-top: 0px;padding-bottom:3px;" id="buy_automatic_price"><strong>余额</strong>: <span id="your_nxt_balance"></span> NTX</div>
 								                	    
 									                	    <form role="form" class="form-horizontal" style="padding: 10px;;max-width:350px;margin-left:auto;margin-right:auto;">
 									                	    	<div style="margin-left:-20px">
 										                	    	<div class="form-group">
-										                	    		<label for="buy_asset_quantity" class="col-sm-3 control-label">Quantity</label>
+										                	    		<label for="buy_asset_quantity" class="col-sm-3 control-label">数量</label>
 										                	    		<div class="col-sm-9">
 										                	    			<div class="input-group">
 										                	    				<input id="buy_asset_quantity" type="text" name="buy_asset_quantity" value="0" class="form-control" data-type="buy" />
@@ -630,7 +630,7 @@
 										                	    		</div>
 										                	    	</div>
 										                	    	<div class="form-group">
-										                	    		<label for="buy_asset_price" class="col-sm-3 control-label">Price</label>
+										                	    		<label for="buy_asset_price" class="col-sm-3 control-label">价格</label>
 										                	    		<div class="col-sm-9">
 										                	    			<div class="input-group">
 										                	    				<input id="buy_asset_price" type="text" value="0" name="buy_asset_price" class="form-control" data-type="buy" />
@@ -639,7 +639,7 @@
 										                	    		</div>
 										                	    	</div>
 										                	    	<div class="form-group">
-										                	    		<label for="buy_asset_total" class="col-sm-3 control-label">Total</label>
+										                	    		<label for="buy_asset_total" class="col-sm-3 control-label">总计</label>
 										                	    		<div class="col-sm-9">
 										                	    			<div class="input-group">
 										                	    				<input type="text" name="buy_asset_total" id="buy_asset_total" readonly value="0" class="form-control disabled" />
@@ -648,7 +648,7 @@
 										                	    		</div>
 										                	    	</div>
 										                	    	<div class="form-group">
-										                	    		<label for="buy_asset_fee" class="col-sm-3 control-label">Fee</label>
+										                	    		<label for="buy_asset_fee" class="col-sm-3 control-label">费用</label>
 										                	    		<div class="col-sm-9">
 										                	    			<div class="input-group">
 										                	    				<input type="text" id="buy_asset_fee" name="buy_asset_fee" value="1" class="form-control" />
@@ -659,7 +659,7 @@
 										                	    	<div class="form-group form-group-last">
 										                	    		<div class="col-sm-3"></div>
 										                	    		<div class="col-sm-9">
-										                	    			<button type="button" class="btn btn-primary btn-lg btn-block" id="buy_asset_button" data-toggle="modal" data-target="#asset_order_modal" data-asset="" data-type="Buy">Buy (NTX 鈫�<span class="asset_name"></span>)</button>
+										                	    			<button type="button" class="btn btn-primary btn-lg btn-block" id="buy_asset_button" data-toggle="modal" data-target="#asset_order_modal" data-asset="" data-type="Buy">买 (NTX → <span class="asset_name"></span>)</button>
 										                	    		</div>
 										                	    	</div>
 									                	    	</div>
@@ -668,17 +668,17 @@
 								                	</div>
 								                	<div class="box box-danger" style="min-height:400px;max-height: 400px;overflow: auto;;">
 								                	    <div class="box-header">
-								                	    	<h3 class="box-title">Sell Orders <span id="sell_orders_count"></span></h3>
+								                	    	<h3 class="box-title">卖单 <span id="sell_orders_count"></span></h3>
 								                	    </div>
 								                	    <div class="box-body no-padding">
 								                	        <div class="data-container data-loading" data-no-padding="true">
 								                	            <table class="table table-striped" id="asset_exchange_ask_orders_table">
 								                	            	<thead>
 								                	                <tr>
-								                	                    <th>Account</th>
-								                	                    <th>Quantity</th>
-								                	                    <th>Price</th>
-								                	                    <th>Total</th>
+								                	                    <th>帐户</th>
+								                	                    <th>数量</th>
+								                	                    <th>价格</th>
+								                	                    <th>总计</th>
 								                	                </tr>
 								                	                </thead>
 								                	                <tbody>
@@ -686,7 +686,7 @@
 								                	                </tbody>
 								                	            </table>
 								                	            <div class="data-loading-container"><img class="loading" src="img/loading_indicator.gif" alt="Loading..." width="32" height="32" /></div>
-								                	            <div class="data-empty-container"><p>No sell orders for this asset.</p></div>
+								                	            <div class="data-empty-container"><p>暂时没有卖单.</p></div>
 								                	    	</div>
 								                	    </div>
 								                	</div>
@@ -694,7 +694,7 @@
 							                    <div class="col-md-6">
 								                    <div class="box box-solid box-info collapsed-box" id="sell_asset_box">
 								                        <div class="box-header" style="background:#F2DEDE;color:#ED4348;">
-								                            <h3 class="box-title">Sell <span class="asset_name"></span> for NTX</h3>
+								                            <h3 class="box-title">用NTX卖 <span class="asset_name"></span></h3>
 								                            <div class="box-tools pull-right">
 								                                <button class="btn btn-info btn-sm" style="background-color: #ED4348"> <i class="fa fa-plus"></i></button>
 								                            </div>
@@ -705,7 +705,7 @@
 									                        <form role="form" class="form-horizontal" style="padding: 10px;max-width:350px;margin-left:auto;margin-right:auto;">
 										                        <div style="margin-left:-20px">
 										                        	<div class="form-group">
-										                        		<label for="sell_asset_quantity" class="col-sm-3 control-label">Quantity</label>
+										                        		<label for="sell_asset_quantity" class="col-sm-3 control-label">数量</label>
 										                        		<div class="col-sm-9">
 										                        			<div class="input-group">
 										                        				<input id="sell_asset_quantity" type="text" name="sell_asset_quantity" value="0" class="form-control" data-type="sell" />
@@ -714,7 +714,7 @@
 										                        		</div>
 										                        	</div>
 										                        	<div class="form-group">
-										                        		<label for="sell_asset_price" class="col-sm-3 control-label">Price</label>
+										                        		<label for="sell_asset_price" class="col-sm-3 control-label">价格</label>
 										                        		<div class="col-sm-9">
 										                        			<div class="input-group">
 										                        				<input id="sell_asset_price" type="text" value="0" name="sell_asset_price" class="form-control" data-type="sell" />
@@ -723,7 +723,7 @@
 										                        		</div>
 										                        	</div>
 										                        	<div class="form-group">
-										                        		<label for="sell_asset_total" class="col-sm-3 control-label">Total</label>
+										                        		<label for="sell_asset_total" class="col-sm-3 control-label">总计</label>
 										                        		<div class="col-sm-9">
 										                        			<div class="input-group">
 										                        				<input type="text" name="sell_asset_total" id="sell_asset_total" readonly value="0" class="form-control disabled" />
@@ -732,7 +732,7 @@
 										                        		</div>
 										                        	</div>
 										                        	<div class="form-group">
-										                        		<label for="sell_asset_fee" class="col-sm-3 control-label">Fee</label>
+										                        		<label for="sell_asset_fee" class="col-sm-3 control-label">费用</label>
 										                        		<div class="col-sm-9">
 										                        			<div class="input-group">
 										                        				<input type="text" id="sell_asset_fee" name="sell_asset_fee" value="1" class="form-control" />
@@ -743,7 +743,7 @@
 										                        	<div class="form-group form-group-last">
 										                        		<div class="col-sm-3"></div>
 										                        		<div class="col-sm-9">
-										                        			<button type="button" class="btn btn-primary btn-lg btn-block" id="sell_asset_button" data-toggle="modal" data-target="#asset_order_modal" data-asset="" data-type="Sell">Sell (<span class="asset_name"></span> 鈫�NTX)</button>
+										                        			<button type="button" class="btn btn-primary btn-lg btn-block" id="sell_asset_button" data-toggle="modal" data-target="#asset_order_modal" data-asset="" data-type="Sell">卖 (<span class="asset_name"></span> → NTX)</button>
 										                        		</div>
 										                        	</div>
 										                        </div>
@@ -751,16 +751,16 @@
 								                        </div>
 								                    </div>
 					                        	    <div class="box box-success" style="min-height:400px;max-height: 400px;overflow: auto;;">
-					                        	        <div class="box-header"><h3 class="box-title">Buy Orders <span id="buy_orders_count"></span></h3></div>
+					                        	        <div class="box-header"><h3 class="box-title">买单 <span id="buy_orders_count"></span></h3></div>
 					                        	        <div class="box-body no-padding">
 					                        	       		<div class="data-container data-loading" data-no-padding="true">
 						                        	            <table class="table table-striped" id="asset_exchange_bid_orders_table">
 						                        	            	<thead>
 						                        	                <tr>
-						                        	                    <th>Account</th>
-						                        	                    <th>Quantity</th>
-						                        	                    <th>Price</th>
-						                        	                    <th>Total</th>
+						                        	                    <th>帐户</th>
+						                        	                    <th>数量</th>
+						                        	                    <th>价格</th>
+						                        	                    <th>总计</th>
 						                        	                </tr>
 						                        	                </thead>
 						                        	                <tbody>
@@ -768,7 +768,7 @@
 						                        	                </tbody>
 						                        	            </table>
 						                        	            <div class="data-loading-container"><img class="loading" src="img/loading_indicator.gif" alt="Loading..." width="32" height="32" /></div>
-						                        	            <div class="data-empty-container"><p>No buy orders for this asset.</p></div>
+						                        	            <div class="data-empty-container"><p>暂时没有买单.</p></div>
 						                        	    	</div>
 					                        	        </div>
 					                        	    </div>
@@ -776,18 +776,18 @@
 					                        </div>
 							                        
 					                        <div class="box box-primary" style="max-height:500px;overflow:auto;margin-bottom:100px;">
-					                            <div class="box-header"><h3 class="box-title">Trade History</h3></div>
+					                            <div class="box-header"><h3 class="box-title">交易历史</h3></div>
 					                            <div class="box-body no-padding">
 					                            	<div class="data-container data-loading" data-no-padding="true">
 						                                <table class="table table-striped" id="asset_exchange_trade_history_table">
 						                                	<thead>
 						                                    <tr>
-						                                        <th>Date</th>
-						                                        <th>Quantity</th>
-						                                        <th>Price</th>
-						                                        <th>Total</th>
-						                                        <th>Ask Order ID</th>
-						                                        <th>Bid Order ID</th>
+						                                        <th>日期</th>
+						                                        <th>数量</th>
+						                                        <th>价格</th>
+						                                        <th>总计</th>
+						                                        <th>卖单ID</th>
+						                                        <th>买单ID</th>
 						                                    </tr>
 						                                    </thead>
 						                                    <tbody>
@@ -795,7 +795,7 @@
 						                                    </tbody>
 						                                </table>
 						                                <div class="data-loading-container"><img class="loading" src="img/loading_indicator.gif" alt="Loading..." width="32" height="32" /></div>
-						                                <div class="data-empty-container"><p>No trade history available.</p></div>
+						                                <div class="data-empty-container"><p>暂无交易历史.</p></div>
 						                        	</div>
 					                        	</div>
 					                    	</div>
@@ -808,14 +808,14 @@
                 </div>
                 
                 <div id="trade_history_page" class="page">
-					<section class="content-header"><h1>Trade History</h1></section>
+					<section class="content-header"><h1>交易历史</h1></section>
 					<section class="content">
 						<p>Todo!</p>
 					</section>
                 </div>
                 
                 <div id="settings_page" class="page">
-					<section class="content-header"><h1>Settings</h1></section>
+					<section class="content-header"><h1>设置</h1></section>
 					<section class="content" id="settings_box">
 					
 						<style type="text/css">
@@ -824,41 +824,41 @@
 						
 						<div class="box box-primary">
 							<div class="box-header">
-							    <h3 class="box-title">General</h3>
+							    <h3 class="box-title">常用设置</h3>
 							</div>
 							
 							<form role="form">
 							    <div class="box-body">
 							        <div class="form-group">
-							            <label for="settings_submit_on_enter">Submit Forms on Enter</label>
+							            <label for="settings_submit_on_enter">回车提交</label>
 							            <select name="submit_on_enter" id="settings_submit_on_enter" class="form-control" style="width:150px">
-							                <option value="1">Yes</option>
-							                <option value="0">No</option>
+							                <option value="1">是</option>
+							                <option value="0">否</option>
 							            </select>
-							            <p class="help-block">Be careful when choosing to submit forms via the enter key, submitting can't be undone.</p>
+							            <p class="help-block">请小心，如果选择回车提交表单的话，提交后是无法撤销的.</p>
 							        </div>
 							        <div class="form-group">
 							        <!-- rs -->
 							            <label for="settings_reed_solomon">Use Reed Solomon Format</label>
 							            <select name="reed_solomon" id="settings_reed_solomon" class="form-control" style="width:150px">
-							                <option value="1">Yes</option>
-							                <option value="0">No</option>
+							                <option value="1">是</option>
+							                <option value="0">否</option>
 							            </select>
 							            <p class="help-block">The reed solomon format has built-in error detection.</p>
 							        </div>
 									<div class="form-group">
-							            <label for="settings_animate_forging">Animate Forging Indicator</label>
+							            <label for="settings_animate_forging">动态锻造提示</label>
 							            <select name="animate_forging" id="settings_animate_forging" class="form-control" style="width:150px">
-							                <option value="1">Yes</option>
-							                <option value="0">No</option>
+							                <option value="1">是</option>
+							                <option value="0">否</option>
 							            </select>
 							        </div>
 							        <div class="form-group">
-							            <label for="settings_news">Enable News Section</label>
+							            <label for="settings_news">启用新闻功能</label>
 							            <select name="news" id="settings_news" class="form-control" style="width:150px">
-							            	<option value="-1" id="settings_news_initial">Choose</option>
-							                <option value="1">Yes</option>
-							                <option value="0">No</option>
+							            	<option value="-1" id="settings_news_initial">选择</option>
+							                <option value="1">是</option>
+							                <option value="0">否</option>
 							            </select>
 							        </div>
 							    </div>
@@ -867,29 +867,29 @@
 
 						<div class="box box-warning" id="settings_box">
 							<div class="box-header">
-							    <h3 class="box-title">Form Warnings</h3>
+							    <h3 class="box-title">提示表单</h3>
 							</div>
 							
 							<form role="form">
 							    <div class="box-body" style="padding-top:0;">
-							    	<p class="help-block">Show a warning when an amount / fee entered is higher than specified below.</p>
+							    	<p class="help-block">当金额/费用比指定值高的时候进行提醒.</p>
 
 							        <div class="form-group">
-							            <label for="settings_amount_warning">Max Amount Warning</label>
+							            <label for="settings_amount_warning">高金额提醒</label>
 	                        			<div class="input-group" style="width:150px">
 							          		<input type="text" name="amount_warning" id="settings_amount_warning" class="form-control" />
 	                        				<span class="input-group-addon">NTX</span>
 	                        			</div>
 							        </div>
 							        <div class="form-group">
-							            <label for="settings_fee_warning">Max Fee Warning</label>
+							            <label for="settings_fee_warning">高费用提醒</label>
 	                        			<div class="input-group" style="width:150px">
 							          		<input type="text" name="fee_warning" id="settings_fee_warning" class="form-control" />
 	                        				<span class="input-group-addon">NTX</span>
 	                        			</div>
 							        </div>
 							        <div class="form-group">
-							            <label for="settings_asset_transfer_warning">Max Asset Transfer Warning</label>
+							            <label for="settings_asset_transfer_warning">高资产转让提醒</label>
 	                        			<div class="input-group" style="width:150px">
 							          		<input type="text" name="asset_transfer_warning" id="settings_asset_transfer_warning" class="form-control" />
 	                        				<span class="input-group-addon">QNT</span>
@@ -901,17 +901,17 @@
                                             
                         <div class="box box-success" style="overflow:visible">
 							<div class="box-header">
-							    <h3 class="box-title">Theme Settings</h3>
+							    <h3 class="box-title">主题设置</h3>
 							</div>
 
 							<form role="form">
 							    <div class="box-body">
 									<div class="form-group">
-										<label class="control-label">Header</label>
+										<label class="control-label">头部</label>
 										<div class="input-group">
 										    <div class="btn-group colors">
 												<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="width:140px;text-align:left;">
-													<span class="text">Select Color Scheme</span> <span class="caret"></span>
+													<span class="text">选择颜色方案</span> <span class="caret"></span>
 												</button>
 									        	<ul id="header_color_scheme" class="dropdown-menu color_scheme_editor" role="menu" data-scheme="header" data-container="body"> 
 									          	</ul>
@@ -924,11 +924,11 @@
 										</div>
 									</div>
 									<div class="form-group">
-										<label class="control-label">Sidebar</label>
+										<label class="control-label">侧栏</label>
 										<div class="input-group">
 										    <div class="btn-group colors">
 												<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="width:140px;text-align:left;">
-													<span class="text">Select Color Scheme</span> <span class="caret"></span>
+													<span class="text">选择颜色方案</span> <span class="caret"></span>
 												</button>
 									        	<ul id="sidebar_color_scheme" class="dropdown-menu color_scheme_editor" role="menu" data-scheme="sidebar" data-container="body"> 
 									          	</ul>
@@ -963,11 +963,11 @@
 									-->
 									
 									<div class="form-group">
-										<label class="control-label">Page Header</label>
+										<label class="control-label">页面头部</label>
 										<div class="input-group">
 										    <div class="btn-group colors">
 												<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="width:140px;text-align:left;">
-													<span class="text">Select Color Scheme</span> <span class="caret"></span>
+													<span class="text">选择颜色方案</span> <span class="caret"></span>
 												</button>
 									        	<ul id="page_header_color_scheme" class="dropdown-menu color_scheme_editor" role="menu" data-scheme="page_header" data-container="body"> 
 									          	</ul>
@@ -1025,14 +1025,14 @@
                 </div>
                 
                 <div id="peers_page" class="page">
-               		<section class="content-header"><h1>Peers</h1></section>
+               		<section class="content-header"><h1>节点</h1></section>
 	                <section class="content">
 		                <div class="row">
 		                    <div class="col-lg-3 col-xs-6">
 		                        <div class="small-box bg-aqua">
 		                            <div class="inner inner-smaller">
 		                                <h3><span id="peers_uploaded_volume" class="loading_dots"><span>.</span><span>.</span><span>.</span></span></h3>
-		                                <p>Uploaded Volume</p>
+		                                <p>总上传量</p>
 		                            </div>
 		                            <div class="icon-smaller"><i class="fa fa-upload"></i></div>
     	                            <div class="small-box-footer"></div>
@@ -1042,7 +1042,7 @@
 		                        <div class="small-box bg-green">
 		                            <div class="inner inner-smaller">
 		                            	<h3><span id="peers_downloaded_volume" class="loading_dots"><span>.</span><span>.</span><span>.</span></span></h3>
-		                                <p>Downloaded Volume</p>
+		                                <p>总下载量</p>
 		                            </div>
 		                            <div class="icon-smaller" style="bottom:-12px"><i class="fa fa-download"></i></div>
     	                            <div class="small-box-footer"></div>
@@ -1052,7 +1052,7 @@
 		                        <div class="small-box bg-yellow">
 		                            <div class="inner inner-smaller">
 		                                <h3><span id="peers_connected" class="loading_dots"><span>.</span><span>.</span><span>.</span></span></h3>
-		                                <p>Connected Peers</p>
+		                                <p>已连接的结点</p>
 		                            </div>
 		                            <div class="icon-smaller" style="bottom:-12px"><i class="fa fa-cloud"></i></div>
     	                            <div class="small-box-footer"></div>
@@ -1074,12 +1074,12 @@
 							<table class="table table-striped table-hover" id="peers_table">
 								<thead>
 							    <tr>
-							        <th>Address</th>
-							        <th>Weight</th>
-							        <th>Downloaded</th>
-							        <th>Uploaded</th>
-							        <th>Application</th>
-							        <th>Platform</th>
+							        <th>地址</th>
+							        <th>金额</th>
+							        <th>已下载</th>
+							        <th>已上传</th>
+							        <th>版本</th>
+							        <th>平台</th>
 							    </tr>
 							    </thead>
 							    <tbody>
@@ -1087,13 +1087,13 @@
 							    </tbody>
 							</table>
 							<div class="data-loading-container"><img src="img/loading_indicator.gif" alt="Loading..." width="32" height="32" /></div>
-							<div class="data-empty-container"><p>No peers found.</p></div>
+							<div class="data-empty-container"><p>暂无节点.</p></div>
 						</div>
 	                </section>
                 </div>
                 
 	            <div id="news_page" class="page">
-	                <section class="content-header"><h1>News</h1></section>
+	                <section class="content-header"><h1>新闻</h1></section>
 	                <section class="content">
 		                <div class="row" id="rss_news_container">
 		                    <div class="col-md-6">
@@ -1149,20 +1149,20 @@
 
 				            </div>
 						</div>
-						<div id="rss_news_disabled" style="padding-top: 150px;text-align:center;">The news section is currently disabled. <a href="#" id="rss_news_enable">Click here</a> to enable it.</div>
+						<div id="rss_news_disabled" style="padding-top: 150px;text-align:center;">新闻功能已关闭. <a href="#" id="rss_news_enable">到这里</a> 开启.</div>
 					</section>
 				</div>
                 
                 <div id="blocks_page" class="page">
                		<section class="content-header">
-               			<h1>Blocks</h1>
+               			<h1>数据块</h1>
 						<div style="position:absolute;top:9px;right:9px;">
 							<div class="btn-group" data-toggle="buttons" id="blocks_page_type">
 								<label class="btn btn-default active">
-									<input type="radio" name="blocks_page_type"> All Blocks
+									<input type="radio" name="blocks_page_type"> 所有的块
 								</label>
 								<label class="btn btn-default">
-									<input type="radio" name="blocks_page_type"> Forged By You
+									<input type="radio" name="blocks_page_type"> 你锻造的块
 								</label>
 							</div>
 	                	</div>
@@ -1173,7 +1173,7 @@
 						        <div class="small-box bg-aqua">
 						            <div class="inner inner-smaller">
 						                <h3><span id="blocks_average_amount" class="loading_dots"><span>.</span><span>.</span><span>.</span></span></h3>
-						                <p>Avg. Amount Per Block</p>
+						                <p>每块均值</p>
 						            </div>
 						            <div class="icon-smaller" style="bottom:-14px"><i class="ion ion-stats-bars"></i></div>
     	                            <div class="small-box-footer"></div>
@@ -1183,7 +1183,7 @@
 						        <div class="small-box bg-green">
 						            <div class="inner inner-smaller">
 						                <h3><span id="blocks_average_fee" class="loading_dots"><span>.</span><span>.</span><span>.</span></span></h3>
-						                <p>Avg. Fee Per Block</p>
+						                <p>每块费用均值</p>
 						            </div>
 						            <div class="icon-smaller" style="bottom:-12px"><i class="ion ion-paperclip"></i></div>
     	                            <div class="small-box-footer"></div>
@@ -1193,7 +1193,7 @@
 						        <div class="small-box bg-yellow">
 						            <div class="inner inner-smaller">
 						                <h3><span id="blocks_transactions_per_hour" class="loading_dots"><span>.</span><span>.</span><span>.</span></span></h3>
-						                <p>Transactions Per Hour</p>
+						                <p>每小时交易量</p>
 						            </div>
 						            <div class="icon-smaller"><i class="fa fa-shopping-cart"></i></div>
     	                            <div class="small-box-footer"></div>
@@ -1202,8 +1202,8 @@
 						    <div class="col-lg-3 col-xs-6" id="blocks_generation_time_box">
 						        <div class="small-box bg-red">
 						            <div class="inner inner-smaller">
-						                <h3><span id="blocks_average_generation_time" class="loading_dots"><span>.</span><span>.</span><span>.</span></span></h3>
-						                <p>Block Generation Time</p>
+						                <h3 title="甜甜的咖啡"><span id="blocks_average_generation_time" class="loading_dots"><span>.</span><span>.</span><span>.</span></span></h3>
+						                <p>块的创建时间</p>
 						            </div>
 						            <div class="icon-smaller"><i class="ion ion-clock"></i></div>
     	                            <div class="small-box-footer"></div>
@@ -1213,7 +1213,7 @@
 						        <div class="small-box bg-yellow">
 						            <div class="inner inner-smaller">
 						                <h3><span id="forged_blocks_total" class="loading_dots"><span>.</span><span>.</span><span>.</span></span></h3>
-						                <p># Forged Blocks</p>
+						                <p># 锻造的块</p>
 						            </div>
 						            <div class="icon-smaller"><i class="fa fa-bars"></i></div>
     	                            <div class="small-box-footer"></div>
@@ -1223,7 +1223,7 @@
 						        <div class="small-box bg-red">
 						            <div class="inner inner-smaller">
 						                <h3><span id="forged_fees_total" class="loading_dots"><span>.</span><span>.</span><span>.</span></span></h3>
-						                <p>Forged Fees Total</p>
+						                <p>锻造出的费用</p>
 						            </div>
 						            <div class="icon-smaller"><i class="fa fa-briefcase"></i></div>
     	                            <div class="small-box-footer"></div>
@@ -1235,12 +1235,12 @@
 							<table class="table table-striped" id="blocks_table">
 								<thead>
 							    <tr>
-							        <th>Height</th>
-							        <th>Date</th>
-							        <th>Amount</th>
-							        <th>Fee</th>
+							        <th>序号</th>
+							        <th>日期</th>
+							        <th>金额</th>
+							        <th>费用</th>
 							        <th>Nr TX</th>
-							        <th>Generator</th>
+							        <th>创建者</th>
 							        <th>Payload</th>
 							        <th>Base Target</th>
 							    </tr>
@@ -1250,17 +1250,17 @@
 							    </tbody>
 							</table>
 							<div class="data-loading-container"><img src="img/loading_indicator.gif" alt="Loading..." width="32" height="32" /></div>
-							<div class="data-empty-container">No blocks found.</div>
+							<div class="data-empty-container">未发现块.</div>
 						</div>
 	                </section>
 				</div>
             </aside>
         </div>
 	
-		<div id="testnet_warning" style="display:none;position:fixed;bottom:0;left:0;padding:5px;background:red;color:white;border-top-right-radius:5px;"><strong>Warning</strong>: You are connected to the TestNet. Do not use your real password!</div>
+		<div id="testnet_warning" style="display:none;position:fixed;bottom:0;left:0;padding:5px;background:red;color:white;border-top-right-radius:5px;"><strong>注意</strong>: 您连接到的是测试网络，请勿使用您的真实密码!</div>
 
 		<div id="lockscreen">
-			<div id="old_browser_warning" style="display:none;margin-left:auto;margin-right:auto;margin-top:200px;background:white;color:black;padding:20px;width:300px;">You are using an old browser which this application does not support.</div>
+			<div id="old_browser_warning" style="display:none;margin-left:auto;margin-right:auto;margin-top:200px;background:white;color:black;padding:20px;width:300px;">您使用的浏览器版本过旧，不支持该程序的加载.</div>
 			
 			<!--
 			<div style="position:absolute;top:10px;left:10px;" id="server_select">
@@ -1276,9 +1276,9 @@
 		    </div>
 		    -->
 			
-			<table id="center" style="display:none;width:100%;height:100%">
+			<table id="center" style="display:none;width:100%;height:100%;">
 	        	<tr><td style="text-align:center;vertical-align:middle">
-		        	 <center><img src="img/logo.png" alt="Ntx" width="172" height="200" style="margin-bottom:40px" /></center>
+		        	 <center><img src="img/nxt_logo.png" alt="Nxt" width="320" height="88" style="margin-bottom:40px;opacity: 0.5;;" /></center>
 		            	 
 		            <div id="login_panel">   
 		            	<div class="callout callout-danger" id="testnet_login" style="max-width:400px;min-width:400px;display:none;">Log in with your <strong>TestNet</strong> account - not your real one!</div>
@@ -1286,60 +1286,60 @@
 			            <div class="lockscreen-item">
 			                <div class="lockscreen-credentials">   
 			                    <div class="input-group">
-			                        <input type="password" class="form-control" id="login_password" name="login_password" placeholder="Your Secret Phrase" autofocus />
+			                        <input type="password" class="form-control" id="login_password" name="login_password" placeholder="请输入您的密码" autofocus />
 			                        <div class="input-group-btn">
-			                            <button class="btn btn-flat" onclick="NRS.login($('#login_password').val())"><i class="fa fa-arrow-right text-muted"></i></button>
+			                            <button class="btn btn-flat" onClick="NRS.login($('#login_password').val())"><i class="fa fa-arrow-right text-muted"></i></button>
 			                        </div>
 			                    </div>
 			                </div>
 			            </div>	
 			            
 			            <div id="remember_password_container">
-			            	<input type="checkbox" name="remember_password" id="remember_password" value="1" /> <label for="remember_password">Remember password during session</label>
+			            	<input type="checkbox" name="remember_password" id="remember_password" value="1" /> <label for="remember_password">登陆期间记住密码</label>
 			            </div>
 			            
 			            <div id="registration_link">
-			            	<a href="#" style="color: #555555;" onclick="NRS.registerAccount();">Don't have an account? Click here to create one!</a>
+			            	<a href="#" style="color: #555555;" onClick="NRS.registerAccount();">没有帐号? 创建一个吧!</a>
 			            </div> 
 		            </div>
 		            
 					<div class="panel panel-default" id="welcome_panel" style="display:none;max-width:500px;">
-		                <div class="panel-heading"><span class="glyphicon glyphicon-lock"></span> Welcome to NTX</div>
+		                <div class="panel-heading"><span class="glyphicon glyphicon-lock"></span> 欢迎加入NTX</div>
 		                <div class="panel-body">
-		               		<button class="btn btn-primary" id="registration_cancel" onclick="NRS.showLoginScreen();return false;">Returning User?</button>
+		               		<button class="btn btn-primary" id="registration_cancel" onClick="NRS.showLoginScreen();return false;">你是回头客?来嘛来嘛</button>
 					   		&nbsp;&nbsp;
-					   		<button class="btn btn-success" id="registration_cancel" onclick="NRS.registerAccount();return false;">New? Create Your Account!</button>
+					   		<button class="btn btn-success" id="registration_cancel" onClick="NRS.registerAccount();return false;">新来的? 创建你的帐号吧!</button>
 		                </div>
 		            </div>  
 					
 		            <div class="panel panel-default" id="account_phrase_custom_panel" style="display:none;max-width:500px;">
-		                <div class="panel-heading"><span class="glyphicon glyphicon-lock"></span> Create Your Account</div>
+		                <div class="panel-heading"><span class="glyphicon glyphicon-lock"></span> 创建你的帐号</div>
 		                <div class="panel-body">
 							<form class="form-horizontal" role="form" method="post">
-		        				<div class="callout callout-info" style="max-width:500px;">Your secret phrase must be at least 35 characters long.</div>
+		        				<div class="callout callout-info" style="max-width:500px;">建议你的密码至少也要有35位字母与数字与符号随机混合.</div>
 		        				
-		        				<div class="callout callout-danger"><strong>Attention</strong>: Don't ever disclose your secret phrase. If you lose it you lose access to your account!</div>
+		        				<div class="callout callout-danger"><strong>强调，注意！！！</strong>: 别忘了你的密码，要是搞丢了，你帐号就进不去了!</div>
 
 			            		<div class="form-group">
-			            		    <label for="registration_password" class="col-sm-3 control-label">Secret Phrase</label>
+			            		    <label for="registration_password" class="col-sm-3 control-label">输入密码</label>
 			            		    <div class="col-sm-9"><input type="password" name="registration_password" class="form-control" id="registration_password" placeholder="" /></div>
 			            		</div>
 			                    <div class="form-group">
-			                        <label for="registration_password_repeat" class="col-sm-3 control-label">Repeat</label>
+			                        <label for="registration_password_repeat" class="col-sm-3 control-label">重复密码</label>
 			                        <div class="col-sm-9"><input type="password" name="registration_password_repeat" class="form-control" id="registration_password_repeat" placeholder="" /></div>
 			                    </div>
 			                    
-								<div style="text-align:right"><input type="submit" class="btn btn-primary btn-sm" value="Register" />&nbsp;&nbsp;<button class="btn btn-sm btn-default" id="registration_cancel" onclick="NRS.showLoginOrWelcomeScreen();return false;">Cancel</button>
+								<div style="text-align:right"><input type="submit" class="btn btn-primary btn-sm" value="Register" />&nbsp;&nbsp;<button class="btn btn-sm btn-default" id="registration_cancel" onClick="NRS.showLoginOrWelcomeScreen();return false;">取消</button>
 			                    </div>
 		                    </form>
 		                </div>
 		            </div>
 	            
 		            <div class="panel panel-default" id="account_phrase_generator_panel" style="display:none;max-width:500px">
-		            	<div class="panel-heading"><span class="glyphicon glyphicon-lock"></span> Create Your Account</div>
+		            	<div class="panel-heading"><span class="glyphicon glyphicon-lock"></span> 创建你的帐号</div>
 		                <div class="panel-body">
 		                	<div id="account_phrase_generator_loading">
-		                		<p><span class="loading_text">Loading Word List</span><span class="loading_dots"><span>.</span><span>.</span><span>.</span></span></p>
+		                		<p><span class="loading_text">正在加载单词表</span><span class="loading_dots"><span>.</span><span>.</span><span>.</span></span></p>
 		                		
 								<div style="text-align:center;margin-top:20px;margin-bottom:20px;"><img src="img/loading_indicator.gif" alt="Loading..." width="32" height="32" /></div>
 		                	</div>
@@ -1347,50 +1347,50 @@
 		                	<div id="account_phrase_generator_loaded">	        				
 		        				<div class="step_1 account_phrase_generator_steps">
 									<div id="account_phrase_generator_seeder" class="seeder">
-										<p>Move your cursor around to seed the random number generator...</p>
+										<p>请随意移动您的鼠标去促使随机器创建密码...</p>
 										<div class="progress progress-striped">
 								            <div class="progress-bar progress-bar-info" id="account_phrase_generator_seed_progress" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
-								                <span class="sr-only">0% Seeded</span>
+								                <span class="sr-only">0% 创建中</span>
 								            </div>
 										</div>
 									</div>
 									
 									<div style="text-align:right">
-										<button class="btn btn-sm btn-default" id="registration_cancel" onclick="NRS.showLoginOrWelcomeScreen();return false;">Cancel</button>
+										<button class="btn btn-sm btn-default" id="registration_cancel" onClick="NRS.showLoginOrWelcomeScreen();return false;">取消</button>
 									</div>
 		        				</div>
 		        				
 		        				<div class="step_2 account_phrase_generator_steps">
 		        					<div id="account_phrase_generator_start">
-		        						<p>Generating your secret phrase. Please wait<span class="loading_dots"><span>.</span><span>.</span><span>.</span></span></p>
+		        						<p>正在创建您的超级密码，请稍等<span class="loading_dots"><span>.</span><span>.</span><span>.</span></span></p>
 		        						
 										<div style="text-align:center;margin-top:20px;margin-bottom:20px;"><img src="img/loading_indicator.gif" alt="Loading..." width="32" height="32" /></div>
 		        					</div>
 		        					
 		        					<div id="account_phrase_generator_stop" style="display:none">
-			        					<p>Your automatically generated secret phrase is:</p>
+			        					<p>您的随机密码是:</p>
 			        					
 			        					<textarea style="width:100%;height:50px;margin-bottom:10px;" rows="2"></textarea>
 		        					
-			        					<p>Please write down or memorize these 12 words (their order and capitalization matters - always lowercase). This secret phrase is needed in order to access your Nxt account.</p>
+			        					<p>请记下这框框里面的内容，包括空格与文字大小写，这将是你NTX帐号的密码.</p>
 			        						        					
-			        					<div class="callout callout-danger"><strong>Attention</strong>: Don't ever disclose your secret phrase. If you lose it you lose access to your account!</div>
+			        					<div class="callout callout-danger"><strong>强调，注意！！！</strong>: 别忘了你的密码，要是搞丢了，你帐号就进不去了!</div>
 			        				
 										<div style="text-align:right">
-											<input type="submit" class="btn btn-primary btn-sm" value="Next" onclick="$('.step_2').hide();$('.step_3').show();return false;" />&nbsp;&nbsp;<button class="btn btn-sm btn-default" id="registration_cancel" onclick="NRS.showLoginOrWelcomeScreen();return false;">Cancel</button>
+											<input type="submit" class="btn btn-primary btn-sm" value="Next" onClick="$('.step_2').hide();$('.step_3').show();return false;" />&nbsp;&nbsp;<button class="btn btn-sm btn-default" id="registration_cancel" onClick="NRS.showLoginOrWelcomeScreen();return false;">取消</button>
 										</div>
 		        					</div>
 		        				</div>
 		        				
 		        				<div class="step_3 account_phrase_generator_steps">
-		        					<p>Your secret phrase is very important! In order to be sure that you have saved it, please write your secret phrase below:</p>
+		        					<p>您的密码是非常重要的，为确保您已保存密码，请在下方输入密码:</p>
 		        					
-		        					<div class="callout callout-danger" style="display:none">You have not typed the secret phrase correctly, please try again!</div>
+		        					<div class="callout callout-danger" style="display:none">密码输入不正确，请重试!</div>
 
 		        					<textarea style="width:100%;height:50px;margin-bottom:10px;" rows="2"></textarea>
 		        					
 		        					<div style="text-align:right">
-										<input type="submit" class="btn btn-primary btn-sm" value="Next" onclick="NRS.verifyGeneratedPassphrase();return false;" />&nbsp;&nbsp;<button class="btn btn-sm btn-default" id="registration_cancel" onclick="NRS.showLoginOrWelcomeScreen();return false;">Cancel</button>
+										<input type="submit" class="btn btn-primary btn-sm" value="Next" onClick="NRS.verifyGeneratedPassphrase();return false;" />&nbsp;&nbsp;<button class="btn btn-sm btn-default" id="registration_cancel" onClick="NRS.showLoginOrWelcomeScreen();return false;">取消</button>
 									</div>
 		        				</div>
 		                	</div>
@@ -1398,7 +1398,7 @@
 		            </div>  
 	            
 		            <div id="custom_passphrase_link" style="margin-top:30px;text-align:center;display:none;">
-			    		<a href="#" style="color: #555555;" onclick="NRS.registerUserDefinedAccount();">Want to choose your own secret phrase? Click here.</a>
+			    		<a href="#" style="color: #555555;" onClick="NRS.registerUserDefinedAccount();">想输入您自己的密码? 点击这里吧.</a>
 					</div>
 				</td>
 				</tr>
@@ -1410,14 +1410,14 @@
 		    	<div class="modal-content">
 		      		<div class="modal-header">
 		      			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-		        		<h4 class="modal-title">Lease Your Balance</h4>
+		        		<h4 class="modal-title">出租你的余额</h4>
 		      		</div>
 					<div class="modal-body">			
 						<form role="form">
-							<div class="callout callout-danger never_hide" id="lease_balance_message"><strong>Remember</strong>: Once submitted the lease cannot be cancelled.</div>
+							<div class="callout callout-danger never_hide" id="lease_balance_message"><strong>请记住</strong>: 一旦提交租用将无法取消.</div>
 							<div class="callout callout-danger error_message" style="display:none"></div>
 							<div class="form-group">
-								<label for="lease_balance_recipient">RECIPIENT</label>
+								<label for="lease_balance_recipient">接收者</label>
 								<div class="input-group">
 								    <input type="text" class="form-control" name="recipient" id="lease_balance_recipient" placeholder="Recipient Account" autofocus tabindex="1" />
 								    <span class="input-group-btn btn-group recipient_selector">
@@ -1427,35 +1427,35 @@
 							</div>
 							<div class="row">
 								<div class="col-xs-4 col-sm-4 col-md-4">
-									<label for="lease_balance_period">PERIOD <i class="fa fa-question-circle show_popover" style="color:#4CAA6E" data-content="The number of blocks the lease will last." data-container="body"></i></label>
+									<label for="lease_balance_period">周期 <i class="fa fa-question-circle show_popover" style="color:#4CAA6E" data-content="The number of blocks the lease will last." data-container="body"></i></label>
 									<input type="number" name="period" id="lease_balance_period" class="form-control" step="any" min="1440" max="32767" placeholder="Period" data-default="1440" value="1440" tabindex="2">
 								</div>
 								<div class="col-xs-4 col-sm-4 col-md-4">
 									<div class="form-group">
-										<label for="lease_balance_fee">FEE</label>
+										<label for="lease_balance_fee">费用</label>
 										<input type="number" name="feeNXT" id="lease_balance_fee" class="form-control" step="any" min="1" placeholder="Fee" data-default="1" value="1" tabindex="4">
 									</div>
 								</div>
 								<div class="col-xs-4 col-sm-4 col-md-4">
 									<div class="form-group">
-										<label for="lease_balance_deadline">DEADLINE (HOURS)</label>
+										<label for="lease_balance_deadline">期限 (小时)</label>
 										<input type="number" name="deadline" id="lease_balance_deadline" class="form-control" placeholder="Deadline" min="1" data-default="24" value="1" tabindex="4">
 									</div>
 								</div>
 							</div>
 							<div class="form-group secret_phrase">
-								<label for="lease_balance_password">SECRET PHRASE</label>
+								<label for="lease_balance_password">密码</label>
 								<input type="password" name="secretPhrase" id="lease_balance_password" class="form-control" placeholder="" tabindex="5">
 							</div>
 						</form>
 						<div class="callout account_info" style="display:none;margin-bottom: 0;"></div>
 					</div>
 		      		<div class="modal-footer" style="margin-top:0;">
-		      			<input type="hidden" name="success_message" value="Your balance will be leased out in 1440 blocks." />
+		      			<input type="hidden" name="success_message" value="您的余额将在1440块后被租出." />
 		      			<input type="hidden" name="request_type" value="leaseBalance" />
 		      			<input type="hidden" name="converted_account_id" value="" />
-				        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-				        <button type="button" class="btn btn-primary" data-loading-text="Submitting...">Lease Balance</button>
+				        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+				        <button type="button" class="btn btn-primary" data-loading-text="提交中...">租用余额</button>
 		      		</div>
 		    	</div>
 			</div>
@@ -1466,25 +1466,25 @@
 		    	<div class="modal-content">
 		      		<div class="modal-header">
 		      			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-		        		<h4 class="modal-title">Confirm Forging Stop<span class="show_logout"> &amp; Logout</span></h4>
+		        		<h4 class="modal-title">确认停止锻造<span class="show_logout"> &amp; 退出</span></h4>
 		      		</div>
 		      		<div class="modal-body">			
 						<form role="form">
-							<p class="show_secret_phrase">If you are sure you want to stop forging, type your secret phrase to confirm.</p>
-							<p class="hide_secret_phrase" style="display:none">If you are sure you want to stop forging, click the button below to confirm.</p>
-							<div class="callout callout-danger remote_warning" style="display:none"><strong>Warning</strong>: Your secret phrase will be sent to the server!</div>
+							<p class="show_secret_phrase">如果您确定要停止锻造，请输入密码并确认.</p>
+							<p class="hide_secret_phrase" style="display:none">如果您确定要停止锻造，请点击按钮确认.</p>
+							<div class="callout callout-danger remote_warning" style="display:none"><strong>注意</strong>: 您的密码将会发送到服务器!</div>
 							<div class="callout callout-danger error_message" style="display:none"></div>
 							<div class="form-group secret_phrase">
-								<label for="stop_forging_password">SECRET PHRASE</label>
+								<label for="stop_forging_password">密码</label>
 								<input type="password" name="secretPhrase" id="stop_forging_password" class="form-control" placeholder="" tabindex="1">
 							</div>
 						</form>
 		      		</div>
 			      	<div class="modal-footer" style="margin-top:0;">
 			      		<input type="hidden" name="request_type" value="stopForging" />
-			      		<input type="hidden" name="success_message" value="Forging has been stopped." />
-				        <button type="button" class="btn btn-default" data-dismiss="modal">Continue Forging</button>
-				        <button type="button" class="btn btn-primary" id="stop_forging_button" data-loading-text="Submitting...">Stop Forging <span class="show_logout">and Logout</span></button>
+			      		<input type="hidden" name="success_message" value="锻造已停止." />
+				        <button type="button" class="btn btn-default" data-dismiss="modal">继续锻造</button>
+				        <button type="button" class="btn btn-primary" id="stop_forging_button" data-loading-text="Submitting...">停止锻造 <span class="show_logout">并退出</span></button>
 			      	</div>
 		    	</div>
 			</div>
@@ -1495,25 +1495,25 @@
 		    	<div class="modal-content">
 		      		<div class="modal-header">
 		      			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-		        		<h4 class="modal-title">Confirm Forging Start</h4>
+		        		<h4 class="modal-title">确认锻造开始</h4>
 		      		</div>
 		      		<div class="modal-body">			
 						<form role="form">
-							<p class="show_secret_phrase">If you want to start forging, type your secret phrase to confirm.</p>
-							<p class="hide_secret_phrase" style="display:none">If you you want to start forging, click the button below to confirm.</p>
-							<div class="callout callout-danger remote_warning" style="display:none"><strong>Warning</strong>: Your secret phrase will be sent to the server!</div>
+							<p class="show_secret_phrase">如果您确定要开始锻造，请输入密码并确认.</p>
+							<p class="hide_secret_phrase" style="display:none">如果您确定要开始锻造，请点击按钮确认.</p>
+							<div class="callout callout-danger remote_warning" style="display:none"><strong>注意</strong>: 您的密码将会发送到服务器!</div>
 							<div class="callout callout-danger error_message" style="display:none"></div>
 							<div class="form-group secret_phrase">
-								<label for="start_forging_password">SECRET PHRASE</label>
+								<label for="start_forging_password">密码</label>
 								<input type="password" name="secretPhrase" id="start_forging_password" class="form-control" placeholder="" tabindex="1">
 							</div>
 						</form>
 		      		</div>
 			      	<div class="modal-footer" style="margin-top:0;">
 			      		<input type="hidden" name="request_type" value="startForging" />
-			      		<input type="hidden" name="success_message" value="Forging has been started." />
-				        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-				        <button type="button" class="btn btn-primary" id="start_forging_button" data-loading-text="Submitting...">Start Forging</button>
+			      		<input type="hidden" name="success_message" value="锻造已开始." />
+				        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+				        <button type="button" class="btn btn-primary" id="start_forging_button" data-loading-text="Submitting...">开始锻造</button>
 			      	</div>
 		    	</div>
 			</div>
@@ -1525,29 +1525,29 @@
 		    	<div class="modal-content">
 		      		<div class="modal-header">
 		      			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-		        		<h4 class="modal-title">Confirm Order Cancellation</h4>
+		        		<h4 class="modal-title">确认取消订单</h4>
 		      		</div>
 		      		<div class="modal-body">			
 						<form role="form">
 							<div class="callout callout-danger error_message" style="display:none"></div>
-							<p>If you are sure you want to cancel your order, type your secret phrase to confirm.
+							<p>如果您确定要取消订单，请输入密码并确认.
 							<input type="hidden" name="order" id="cancel_order_order" value="" />
 							<div class="row">
 								<div class="col-xs-6 col-sm-6 col-md-6">
 									<div class="form-group">
-										<label for="cancel_order_fee">FEE</label>
+										<label for="cancel_order_fee">费用</label>
 										<input type="number" name="feeNXT" id="cancel_order_fee" class="form-control" step="any" min="1" placeholder="Fee" data-default="1" value="1" tabindex="2">
 									</div>
 								</div>
 								<div class="col-xs-6 col-sm-6 col-md-6">
 									<div class="form-group">
-										<label for="cancel_order_deadline">DEADLINE (HOURS)</label>
+										<label for="cancel_order_deadline">期限 (小时)</label>
 										<input type="number" name="deadline" id="cancel_order_deadline" class="form-control" placeholder="Deadline" min="1" data-default="24" value="24" tabindex="3">
 									</div>
 								</div>
 							</div>
 							<div class="form-group secret_phrase">
-								<label for="cancel_order_password">SECRET PHRASE</label>
+								<label for="cancel_order_password">密码</label>
 								<input type="password" name="secretPhrase" id="cancel_order_password" class="form-control" placeholder="" tabindex="1">
 							</div>
 						</form>
@@ -1555,10 +1555,10 @@
 			      	<div class="modal-footer" style="margin-top:0;">
 			      		<input type="hidden" name="cancel_order_type"  id="cancel_order_type" />
 			      		<input type="hidden" name="request_type" value="cancelOrder" />
-			      		<input type="hidden" name="success_message" value="The __ order has been cancelled." />
-						<input type="hidden" name="error_message" value="An unknown error occured! The order may or may not have been cancelled." />			      		
-				        <button type="button" class="btn btn-default" data-dismiss="modal">No, Do Not Cancel</button>
-				        <button type="button" class="btn btn-primary" id="cancel_order_button" data-loading-text="Submitting...">Cancel My Order</button>
+			      		<input type="hidden" name="success_message" value="订单已被取消." />
+						<input type="hidden" name="error_message" value="发生未知错误，无法确定订单是否取消成功." />			      		
+				        <button type="button" class="btn btn-default" data-dismiss="modal">不，我不取消</button>
+				        <button type="button" class="btn btn-primary" id="cancel_order_button" data-loading-text="提交中...">取消我的订单</button>
 			      	</div>
 		    	</div>
 			</div>
@@ -1569,13 +1569,13 @@
 		    	<div class="modal-content">
 		      		<div class="modal-header">
 		      			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-		        		<h4 class="modal-title">Confirm <span class="asset_order_modal_type"></span> Order</h4>
+		        		<h4 class="modal-title">确认<span class="asset_order_modal_type"></span>订单</h4>
 		      		</div>
 		      		<div class="modal-body">			
 						<form role="form">
 							<div class="callout callout-danger error_message" style="display:none"></div>
 							<div class="form-group">
-								<label>ORDER DESCRIPTION</label>
+								<label>订单说明</label>
 								<p id="asset_order_description"></p>
 								<input type="hidden" name="asset" id="asset_order_asset" value="" />
 								<input type="hidden" name="quantityQNT" id="asset_order_quantity" value="" />
@@ -1584,15 +1584,15 @@
 								<input type="hidden" name="deadline" id="asset_order_deadline" data-default="24" value="24" />
 							</div>
 							<div class="form-group">
-								<label>TOTAL <i id="asset_order_total_tooltip" class="fa fa-question-circle" style="color:#4CAA6E" data-toggle="popover" data-placement="right" data-content=""></i></label>
+								<label>总计 <i id="asset_order_total_tooltip" class="fa fa-question-circle" style="color:#4CAA6E" data-toggle="popover" data-placement="right" data-content=""></i></label>
 								<p id="asset_order_total"></p>
 							</div>
 							<div class="form-group">
-								<label>FEE</label>
+								<label>费用</label>
 								<p id="asset_order_fee_paid"></p>
 							</div>
 							<div class="form-group secret_phrase">
-								<label for="asset_order_password">SECRET PHRASE</label>
+								<label for="asset_order_password">密码</label>
 								<input type="password" name="secretPhrase" id="asset_order_password" class="form-control" placeholder="" tabindex="1">
 							</div>
 						</form>
@@ -1600,10 +1600,10 @@
 			      	<div class="modal-footer" style="margin-top:0;">
 			      		<input type="hidden" name="asset_order_type"  id="asset_order_type" />
 			      		<input type="hidden" name="request_type" value="orderAsset" />
-			      		<input type="hidden" name="success_message" value="The __ order has been submitted." />
-			      		<input type="hidden" name="error_message" value="An unknown error occured! The order may or may not have gone through." />
-				        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-				        <button type="button" class="btn btn-primary" data-loading-text="Submitting..." id="asset_order_modal_button"></button>
+			      		<input type="hidden" name="success_message" value="订单 __ 已被提交." />
+			      		<input type="hidden" name="error_message" value="发生未知错误! 无法确定订单是否成功." />
+				        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+				        <button type="button" class="btn btn-primary" data-loading-text="正在提交..." id="asset_order_modal_button"></button>
 			      	</div>
 		    	</div>
 			</div>
@@ -1614,19 +1614,19 @@
 		    	<div class="modal-content">
 		      		<div class="modal-header">
 		        		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-		        		<h4 class="modal-title">Transfer Asset</h4>
+		        		<h4 class="modal-title">资产转让</h4>
 		      		</div>
 			      	<div class="modal-body">			
 						<form role="form">
 							<div class="callout callout-danger error_message" style="display:none"></div>
 							<div class="form-group">
-								<label>ASSET</label>
+								<label>资产</label>
 								<p><span id="transfer_asset_name"></span><span id="transfer_asset_available" style="font-style:italic"></span></p>
 								<input type="hidden" name="asset" id="transfer_asset_asset" value="" />
 								<input type="hidden" name="decimals" id="transfer_asset_decimals" value="" />
 							</div>
 							<div class="form-group">
-								<label for="transfer_asset_recipient">RECIPIENT</label>
+								<label for="transfer_asset_recipient">接收者</label>
 								<div class="input-group">
 								    <input type="text" class="form-control" name="recipient" id="transfer_asset_recipient" placeholder="Recipient Account" autofocus tabindex="1" />
 								    <span class="input-group-btn btn-group recipient_selector">
@@ -1635,31 +1635,31 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="transfer_asset_comment">COMMENT</label>
+								<label for="transfer_asset_comment">留言</label>
 								<textarea class="form-control" id="transfer_asset_comment" name="comment" rows="3" tabindex="2" placeholder="Optional"></textarea>
 							</div>
 							<div class="row">
 								<div class="col-xs-6 col-sm-6 col-md-6">
 									<div class="form-group">
-										<label for="transfer_asset_quantity">QUANTITY</label>
+										<label for="transfer_asset_quantity">数量</label>
 						                <input type="number" name="quantity" id="transfer_asset_quantity" class="form-control" step="any" min="0" placeholder="Quantity" tabindex="3">
 									</div>
 								</div>
 								<div class="col-xs-3 col-sm-3 col-md-3">
 									<div class="form-group">
-										<label for="transfer_asset_fee">FEE</label>
+										<label for="transfer_asset_fee">费用</label>
 										<input type="number" name="feeNXT" id="transfer_asset_fee" class="form-control" step="any" min="1" placeholder="Fee" data-default="1" value="1" tabindex="4">
 									</div>
 								</div>
 								<div class="col-xs-3 col-sm-3 col-md-3">
 									<div class="form-group">
-										<label for="transfer_asset_deadline">DEADLINE (HOURS)</label>
+										<label for="transfer_asset_deadline">期限 (小时)</label>
 										<input type="number" name="deadline" id="transfer_asset_deadline" class="form-control" placeholder="Deadline" min="1" data-default="24" value="1" tabindex="5">
 									</div>
 								</div>
 							</div>
 							<div class="form-group secret_phrase">
-								<label for="transfer_asset_password">SECRET PHRASE</label>
+								<label for="transfer_asset_password">密码</label>
 								<input type="password" name="secretPhrase" id="transfer_asset_password" class="form-control" placeholder="" tabindex="6">
 							</div>
 						</form>
@@ -1667,11 +1667,11 @@
 					</div>
 					<div class="modal-footer" style="margin-top:0;">
 						<input type="hidden" name="request_type" value="transferAsset" />
-						<input type="hidden" name="success_message" value="The asset has been transferred!" />
-						<input type="hidden" name="error_message" value="An unknown error occured! Asset may or may not be transferred." />
+						<input type="hidden" name="success_message" value="资产转让成功!" />
+						<input type="hidden" name="error_message" value="发生未知错误! 无法确定资产是否正确转让." />
 						<input type="hidden" name="converted_account_id" value="" />
-				     	<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-				        <button type="button" class="btn btn-primary" data-loading-text="Submitting...">Transfer Asset</button>
+				     	<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+				        <button type="button" class="btn btn-primary" data-loading-text="提交中...">转让资产</button>
 					</div>
 		    	</div>
 			</div>
@@ -1682,23 +1682,23 @@
 		    	<div class="modal-content">
 		      		<div class="modal-header">
 		      			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-		        		<h4 class="modal-title">Add Asset</h4>
+		        		<h4 class="modal-title">添加资产</h4>
 		      		</div>
 			      	<div class="modal-body">			
 						<form role="form">
 							<div class="callout callout-danger error_message" style="display:none"></div>
 							<div class="form-group">
-								<label for="add_asset_bookmark_id">ASSET OR ACCOUNT ID</label> <i class="fa fa-question-circle show_popover" style="color:#4CAA6E" data-content="Find the ID on the issuer's website or announcement page." data-container="body"></i></label>
+								<label for="add_asset_bookmark_id">资产或者帐户ID</label> <i class="fa fa-question-circle show_popover" style="color:#4CAA6E" data-content="Find the ID on the issuer's website or announcement page." data-container="body"></i></label>
 								<input type="text" class="form-control" name="id" id="add_asset_bookmark_id" placeholder="ID" autofocus tabindex="1" />
 							</div>
 						</form>
 			    	</div>
 					<div class="modal-footer" style="margin-top:0;">
 						<input type="hidden" name="request_type" value="addAssetBookmark" />
-						<input type="hidden" name="success_message" value="The asset has been added!" />
-						<input type="hidden" name="error_message" value="An unknown error occured!" />
-				    	<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-				        <button type="button" class="btn btn-primary" data-loading-text="Submitting...">Add Asset</button>
+						<input type="hidden" name="success_message" value="该资产已被添加!" />
+						<input type="hidden" name="error_message" value="发生未知错误!" />
+				    	<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+				        <button type="button" class="btn btn-primary" data-loading-text="提交中...">添加资产</button>
 				    </div>
 				</div>
 			</div>
@@ -1709,26 +1709,26 @@
 		    	<div class="modal-content">
 		      		<div class="modal-header">
 		      			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-		        		<h4 class="modal-title">Add Contact</h4>
+		        		<h4 class="modal-title">添加联系人</h4>
 		      		</div>
 			      	<div class="modal-body">			
 						<form role="form">
-							<div class="callout callout-danger never_hide"><strong>Remember</strong>: Contacts are stored locally, not on the blockchain</div>
+							<div class="callout callout-danger never_hide"><strong>请记住</strong>: 联系人只在本地，是不会上传的块链上的</div>
 							<div class="callout callout-danger error_message" style="display:none"></div>
 							<div class="form-group">
-								<label for="add_contact_name">NAME</label>
+								<label for="add_contact_name">姓名</label>
 								<input type="text" class="form-control" name="name" id="add_contact_name" placeholder="Contact Name" autofocus tabindex="1" />
 							</div>
 							<div class="form-group">
-								<label for="add_contact_account_id">ACCOUNT ID</label>
+								<label for="add_contact_account_id">帐户ID</label>
 								<input type="text" class="form-control" name="account_id" id="add_contact_account_id" placeholder="NTX Account ID" tabindex="2" />
 							</div>
 							<div class="form-group">
-								<label for="add_contact_email">EMAIL ADDRESS</label>
+								<label for="add_contact_email">邮件地址</label>
 								<input type="text" class="form-control" name="email" id="add_contact_email" placeholder="contact@email.com" tabindex="3" />
 							</div>
 							<div class="form-group">
-								<label for="add_contact_description">DESCRIPTION</label>
+								<label for="add_contact_description">描述</label>
 								<textarea class="form-control" id="add_contact_description" name="description" rows="3" tabindex="4" placeholder="Optional"></textarea>
 							</div>
 						</form>
@@ -1736,11 +1736,11 @@
 			    	</div>
 					<div class="modal-footer" style="margin-top:0;">
 						<input type="hidden" name="request_type" value="addContact" />
-						<input type="hidden" name="success_message" value="The contact has been created!" />
-						<input type="hidden" name="error_message" value="An unknown error occured!" />
+						<input type="hidden" name="success_message" value="联系人添加成功!" />
+						<input type="hidden" name="error_message" value="发生未知错误!" />
 						<input type="hidden" name="converted_account_id" value="" />
-				    	<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-				        <button type="button" class="btn btn-primary" data-loading-text="Submitting...">Add Contact</button>
+				    	<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+				        <button type="button" class="btn btn-primary" data-loading-text="提交中...">添加联系人</button>
 				    </div>
 				</div>
 			</div>
@@ -1751,26 +1751,26 @@
 		    	<div class="modal-content">
 		      		<div class="modal-header">
 		      			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-		        		<h4 class="modal-title">Update Contact</h4>
+		        		<h4 class="modal-title">更新联系人</h4>
 		      		</div>
 			      	<div class="modal-body">			
 						<form role="form">
 							<div class="callout callout-danger error_message" style="display:none"></div>
 							<div class="form-group">
-								<label for="update_contact_name">NAME</label>
+								<label for="update_contact_name">姓名</label>
 								<input type="text" class="form-control" name="name" id="update_contact_name" placeholder="Contact Name" autofocus tabindex="1" />
 							</div>
 							<div class="form-group">
-								<label for="update_contact_account_id">ACCOUNT ID</label>
+								<label for="update_contact_account_id">帐户ID</label>
 								<input type="text" class="form-control" name="account_id" id="update_contact_account_id" placeholder="NTX Account ID" tabindex="2" />
 							</div>
 							<div class="form-group">
-								<label for="update_contact_email">EMAIL ADDRESS</label>
+								<label for="update_contact_email">邮件地址</label>
 								<input type="text" class="form-control" name="email" id="update_contact_email" placeholder="contact@email.com"
 								        tabindex="3" />
 							</div>
 							<div class="form-group">
-								<label for="update_contact_description">DESCRIPTION</label>
+								<label for="update_contact_description">描述</label>
 								<textarea class="form-control" id="update_contact_description" name="description" rows="3" tabindex="4" placeholder="Optional"></textarea>
 							</div>
 						</form>
@@ -1779,11 +1779,11 @@
 					<div class="modal-footer" style="margin-top:0;">
 						<input type="hidden" name="contact_id" id="update_contact_id" value="" />
 						<input type="hidden" name="request_type" value="updateContact" />
-						<input type="hidden" name="success_message" value="The contact has been updated successfully!" />
-						<input type="hidden" name="error_message" value="An unknown error occured!" />
+						<input type="hidden" name="success_message" value="联系人信息更新成功!" />
+						<input type="hidden" name="error_message" value="发生未知错误!" />
 						<input type="hidden" name="converted_account_id" value="" />
-				    	<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-				        <button type="button" class="btn btn-primary" data-loading-text="Submitting...">Update Contact</button>
+				    	<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+				        <button type="button" class="btn btn-primary" data-loading-text="Submitting...">更新联系人</button>
 				    </div>
 				</div>
 			</div>
@@ -1794,22 +1794,22 @@
 		    	<div class="modal-content">
 		      		<div class="modal-header">
 		      			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-		        		<h4 class="modal-title">Delete Contact</h4>
+		        		<h4 class="modal-title">删除联系人</h4>
 		      		</div>
 			      	<div class="modal-body">			
 						<form role="form">
-							<div class="callout callout-danger">Are you sure you want to delete this contact?</div>
-							<p><strong>Name</strong>: <span id="delete_contact_name"></span></p>
+							<div class="callout callout-danger">您确定要删除该联系人?</div>
+							<p><strong>姓名</strong>: <span id="delete_contact_name"></span></p>
 						</form>
 			    	</div>
 					<div class="modal-footer" style="margin-top:0;">
 						<input type="hidden" name="contact_id" id="delete_contact_id" value="" />
 						<input type="hidden" name="account_id" id="delete_contact_account_id" value="" />
 						<input type="hidden" name="request_type" value="deleteContact" />
-						<input type="hidden" name="success_message" value="The contact has been deleted successfully!" />
-						<input type="hidden" name="error_message" value="An unknown error occured!" />
-				    	<button type="button" class="btn btn-default" data-dismiss="modal">No, Do Not Delete</button>
-				        <button type="button" class="btn btn-primary" data-loading-text="Submitting...">Yes, Delete Contact</button>
+						<input type="hidden" name="success_message" value="联系人删除成功!" />
+						<input type="hidden" name="error_message" value="发生未知错误!" />
+				    	<button type="button" class="btn btn-default" data-dismiss="modal">不，不删除了</button>
+				        <button type="button" class="btn btn-primary" data-loading-text="Submitting...">是的,删了它</button>
 				    </div>
 				</div>
 			</div>
@@ -1820,31 +1820,30 @@
 		    	<div class="modal-content">
 		      		<div class="modal-header">
 		      			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-		        		<h4 class="modal-title">Issue Asset</h4>
+		        		<h4 class="modal-title">授权资产</h4>
 		      		</div>
 			      	<div class="modal-body">			
 						<form role="form">
-							<div class="callout callout-danger never_hide"><strong>Warning</strong>: Once submitted, you will not be able to change this information again, ever. Make sure it is correct.</div>
+							<div class="callout callout-danger never_hide"><strong>提示</strong>: 一旦提交，将无法变更，请确保信息的准确性.</div>
 							<div class="callout callout-danger error_message" style="display:none"></div>
 							<div class="form-group">
-								<label for="issue_asset_name">ASSET NAME <i class="fa fa-question-circle show_popover" data-content="The asset name is non-unique. Should be between 3 and 10 characters long." data-container="body" style="color:#4CAA6E" ></i></label>
-								<input type="text" class="form-control" name="name" id="issue_asset_name" placeholder="Asset Name" autofocus tabindex="1" />
+								<label for="issue_asset_name">资产名称 <i class="fa fa-question-circle show_popover" data-content="资产名称应该在3-10个字符." data-container="body" style="color:#4CAA6E" ></i></label>
+								<input type="text" class="form-control" name="name" id="issue_asset_name" placeholder="资产名称(只支持英文字符)" autofocus tabindex="1" />
 							</div>
 							<div class="form-group">
-								<label for="issue_asset_description">DESCRIPTION</label>
+								<label for="issue_asset_description">描述</label>
 								<textarea class="form-control" id="issue_asset_description" name="description" rows="3" tabindex="3"></textarea>
 							</div>
 							<div class="row">
 								<div class="col-xs-6 col-sm-6 col-md-6">
 									<div class="form-group">
-										<label for="issue_asset_quantity">QUANTITY</label>
-						                <input type="number" name="quantity" id="issue_asset_quantity" class="form-control" min="1" placeholder="Quantity" tabindex="4">
+										<label for="issue_asset_quantity">数量</label>
+						                <input type="number" name="quantity" id="issue_asset_quantity" class="form-control" min="1" placeholder="请填写数量" tabindex="4">
 									</div>
 								</div>
 								<div class="col-xs-6 col-sm-6 col-md-6">
 									<div class="form-group">
-										<label for="issue_asset_decimals">DECIMALS <i class="fa fa-question-circle show_popover" data-content="The maximum allowed number of digits after the asset
-quantity decimal point." data-container="body" style="color:#4CAA6E" ></i></label>
+										<label for="issue_asset_decimals">小数位数 <i class="fa fa-question-circle show_popover" data-content="数字资产所允许的最大小数位数." data-container="body" style="color:#4CAA6E" ></i></label>
 						                <input type="number" name="decimals" id="issue_asset_decimals" class="form-control" min="0" max="8" placeholder="Decimals" data-default="0" value="0" tabindex="5">
 									</div>
 								</div>
@@ -1852,30 +1851,30 @@ quantity decimal point." data-container="body" style="color:#4CAA6E" ></i></labe
 							<div class="row">
 								<div class="col-xs-6 col-sm-6 col-md-6">
 									<div class="form-group">
-										<label for="issue_asset_fee">FEE <i class="fa fa-exclamation-circle show_popover" data-content="The minimum fee to issue an asset is 1,000 Nxt" data-container="body" style="color:red"></i></label>
+										<label for="issue_asset_fee">费用 <i class="fa fa-exclamation-circle show_popover" data-content="授权资产的最小费用为1,000 NTX" data-container="body" style="color:red"></i></label>
 																				
 										<input type="number" name="feeNXT" id="issue_asset_fee" class="form-control" placeholder="Fee" step="any" min="1000" data-default="1000" value="1000" tabindex="6">
 									</div>
 								</div>
 								<div class="col-xs-6 col-sm-6 col-md-6">
 									<div class="form-group">
-										<label for="issue_asset_deadline">DEADLINE (HOURS)</label>
+										<label for="issue_asset_deadline">期限 (小时)</label>
 										<input type="number" name="deadline" id="issue_asset_deadline" class="form-control" placeholder="Deadline" min="1" data-default="24" value="24" tabindex="7">
 									</div>
 								</div>
 							</div>
 							<div class="form-group secret_phrase">
-								<label for="issue_asset_password">SECRET PHRASE</label>
+								<label for="issue_asset_password">密码</label>
 								<input type="password" name="secretPhrase" id="issue_asset_password" class="form-control" placeholder="" tabindex="8">
 							</div>
 						</form>
 			    	</div>
 					<div class="modal-footer" style="margin-top:0;">
 						<input type="hidden" name="request_type" value="issueAsset" />
-						<input type="hidden" name="success_message" value="The asset has been created and will be available soon." />
-						<input type="hidden" name="error_message" value="An unknown error occured! Asset may or may not be created." />
-				    	<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-				        <button type="button" class="btn btn-primary" data-loading-text="Submitting...">Issue Asset</button>
+						<input type="hidden" name="success_message" value="资产已创建，即将上线." />
+						<input type="hidden" name="error_message" value="发生未知错误! 无法确定资产是否已创建." />
+				    	<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+				        <button type="button" class="btn btn-primary" data-loading-text="提交中...">授权资产</button>
 				    </div>
 				</div>
 			</div>
@@ -1886,21 +1885,21 @@ quantity decimal point." data-container="body" style="color:#4CAA6E" ></i></labe
 		    	<div class="modal-content">
 		      		<div class="modal-header">
 		      			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-		        		<h4 class="modal-title">Create Poll</h4>
+		        		<h4 class="modal-title">创建投票</h4>
 		      		</div>
 			      	<div class="modal-body">			
 						<form role="form">
 							<div class="callout callout-danger error_message" style="display:none"></div>
 							<div class="form-group">
-								<label for="create_poll_name">NAME</label>
+								<label for="create_poll_name">名称</label>
 								<input type="text" class="form-control" name="name" id="create_poll_name" placeholder="Poll Name" autofocus tabindex="1" />
 							</div>
 							<div class="form-group">
-								<label for="create_poll_description">DESCRIPTION</label>
+								<label for="create_poll_description">描述</label>
 								<textarea class="form-control" id="create_poll_description" name="description" rows="3" tabindex="2"></textarea>
 							</div>
 							<div class="form-group" id="create_poll_answers">
-								<label>ANSWERS</label>
+								<label>投票选项</label>
 								 <div class="form-group">
 									<div class="input-group">
 										<input type="text" class="form-control create_poll_answers" name="create_poll_answers[]" placeholder="Answer" tabindex="3" />
@@ -1920,19 +1919,19 @@ quantity decimal point." data-container="body" style="color:#4CAA6E" ></i></labe
 							</div>
 							
 							<div class="form-group">
-								<a href="#" class="btn btn-primary" id="create_poll_answers_add"><i class="fa fa-plus"></i> Add answer</a>
+								<a href="#" class="btn btn-primary" id="create_poll_answers_add"><i class="fa fa-plus"></i> 添加选项</a>
 							</div>
 																	
 							<div class="row">
 								<div class="col-xs-6 col-sm-6 col-md-6">
 									<div class="form-group">
-										<label for="create_poll_min_options">MINIMUM NR OF CHOICES</label>
+										<label for="create_poll_min_options">投票最少选择几项</label>
 										<input type="number" name="minNumberOfOptions" id="create_poll_min_options" min="1" class="form-control" placeholder="" data-default="1" value="1" tabindex="4">
 									</div>
 								</div>
 								<div class="col-xs-6 col-sm-6 col-md-6">
 									<div class="form-group">
-										<label for="create_poll_max_options">MAXIMUM NR OF CHOICES</label>
+										<label for="create_poll_max_options">投票最多选择几项</label>
 										<input type="number" name="maxNumberOfOptions" id="create_poll_max_options" min="1" class="form-control" placeholder="" data-default="1" value="1" tabindex="5">
 									</div>
 								</div>
@@ -1941,31 +1940,31 @@ quantity decimal point." data-container="body" style="color:#4CAA6E" ></i></labe
 							<div class="row">
 								<div class="col-xs-6 col-sm-6 col-md-6">
 									<div class="form-group">
-										<label for="create_poll_fee">FEE</label>
+										<label for="create_poll_fee">费用</label>
 										<input type="number" name="feeNXT" id="create_poll_fee" class="form-control" step="any" min="1" placeholder="Fee" data-default="1" value="1" tabindex="3">
 									</div>
 								</div>
 								<div class="col-xs-6 col-sm-6 col-md-6">
 									<div class="form-group">
-										<label for="create_poll_deadline">DEADLINE (HOURS)</label>
+										<label for="create_poll_deadline">期限 (小时)</label>
 										<input type="number" name="deadline" id="create_poll_deadline" class="form-control" placeholder="Deadline" min="1" data-default="24" value="24" tabindex="4">
 									</div>
 								</div>
 							</div>
 	
 							<div class="form-group secret_phrase">
-								<label for="create_poll_password">SECRET PHRASE</label>
+								<label for="create_poll_password">密码</label>
 								<input type="password" name="secretPhrase" id="create_poll_password" class="form-control" placeholder="" tabindex="8">
 							</div>
 						</form>
 			    	</div>
 					<div class="modal-footer" style="margin-top:0;">
 						<input type="hidden" name="request_type" value="createPoll" />
-						<input type="hidden" name="success_message" value="The poll has been created!" />
-						<input type="hidden" name="error_message" value="An unknown error occured! Poll may or may not be created." />
-						<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+						<input type="hidden" name="success_message" value="创建成功!" />
+						<input type="hidden" name="error_message" value="发生未知错误!无法确定是否创建成功." />
+						<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
 						&nbsp;&nbsp;
-						<button type="button" class="btn btn-primary" data-loading-text="Submitting...">Create Poll</button>
+						<button type="button" class="btn btn-primary" data-loading-text="提交中...">创建投票</button>
 				    </div>
 				</div>
 			</div>
@@ -1978,21 +1977,21 @@ quantity decimal point." data-container="body" style="color:#4CAA6E" ></i></labe
 		    	<div class="modal-content">
 		      		<div class="modal-header">
 		      			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-		        		<h4 class="modal-title">Cast Vote</h4>
+		        		<h4 class="modal-title">投票</h4>
 		      		</div>
 			      	<div class="modal-body">			
 						<form role="form">
 							<div class="callout callout-danger error_message" style="display:none"></div>
 							<div class="form-group">
-								<label for="cast_vote_poll_name">NAME</label>
+								<label for="cast_vote_poll_name">标题</label>
 								<input type="text" class="form-control" name="name" id="cast_vote_poll_name" placeholder="Poll Name" autofocus tabindex="1" />
 							</div>
 							<div class="form-group">
-								<label for="cast_vote_poll_description">DESCRIPTION</label>
+								<label for="cast_vote_poll_description">描述</label>
 								<textarea class="form-control" id="cast_vote_poll_description" name="description" rows="3" tabindex="2"></textarea>
 							</div>
 							<div class="form-group" id="cast_vote_answers">
-								<label>ANSWERS</label>
+								<label>选项</label>
 								 <div class="form-group">
 									<div class="input-group">
 										<input type="text" class="form-control cast_vote_answers" name="cast_vote_answers[]" placeholder="Answer" tabindex="3" />
@@ -2012,18 +2011,18 @@ quantity decimal point." data-container="body" style="color:#4CAA6E" ></i></labe
 							</div>
 	
 							<div class="form-group secret_phrase">
-								<label for="cast_vote_password">SECRET PHRASE</label>
+								<label for="cast_vote_password">密码</label>
 								<input type="password" name="secretPhrase" id="cast_vote_password" class="form-control" placeholder="" tabindex="8">
 							</div>
 						</form>
 			    	</div>
 					<div class="modal-footer" style="margin-top:0;">
 						<input type="hidden" name="request_type" value="castVote" />
-						<input type="hidden" name="success_message" value="Your vote has been cast!" />
-						<input type="hidden" name="error_message" value="An unknown error occured! Vote may or may not be cast." />
-						<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+						<input type="hidden" name="success_message" value="投票成功!" />
+						<input type="hidden" name="error_message" value="发生未知错误! 无法确认投票是否成功." />
+						<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
 						&nbsp;&nbsp;
-						<button type="button" class="btn btn-primary" data-loading-text="Submitting...">Cast Vote</button>
+						<button type="button" class="btn btn-primary" data-loading-text="提交中...">投票</button>
 				    </div>
 				</div>
 			</div>
@@ -2034,15 +2033,15 @@ quantity decimal point." data-container="body" style="color:#4CAA6E" ></i></labe
 		    	<div class="modal-content">
 		      		<div class="modal-header">
 		        		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-		        		<h4 class="modal-title">Send NTX</h4>
+		        		<h4 class="modal-title">发送NTX</h4>
 		      		</div>
 			      	<div class="modal-body">			
 						<form role="form">
 							<div class="callout callout-danger error_message" style="display:none"></div>
 							<div class="form-group">
-								<label for="send_money_recipient">RECIPIENT</label>
+								<label for="send_money_recipient">接收人</label>
 								<div class="input-group">
-								    <input type="text" class="form-control" name="recipient" id="send_money_recipient" placeholder="Recipient Account" autofocus tabindex="1" />
+								    <input type="text" class="form-control" name="recipient" id="send_money_recipient" placeholder="接收人帐户" autofocus tabindex="1" />
 								    <span class="input-group-btn btn-group recipient_selector">
 								    	<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span></button>														<ul class="dropdown-menu scrollable-menu" role="menu" style="right:0;left:auto;"></ul>
 								    </span>
@@ -2051,36 +2050,36 @@ quantity decimal point." data-container="body" style="color:#4CAA6E" ></i></labe
 							<div class="row">
 								<div class="col-xs-6 col-sm-6 col-md-6">
 									<div class="form-group">
-										<label for="send_money_amount">AMOUNT</label>
-						                <input type="text" name="amountNXT" id="send_money_amount" step="any" min="0" class="form-control" placeholder="Amount" tabindex="2">
+										<label for="send_money_amount">金额</label>
+						                <input type="text" name="amountNXT" id="send_money_amount" step="any" min="0" class="form-control" placeholder="请输入金额" tabindex="2">
 									</div>
 								</div>
 								<div class="col-xs-3 col-sm-3 col-md-3">
 									<div class="form-group">
-										<label for="send_money_fee">FEE</label>
+										<label for="send_money_fee">费用</label>
 										<input type="number" name="feeNXT" id="send_money_fee" class="form-control" step="any" min="1" placeholder="Fee" data-default="1" value="1" tabindex="3">
 									</div>
 								</div>
 								<div class="col-xs-3 col-sm-3 col-md-3">
 									<div class="form-group">
-										<label for="send_money_deadline">DEADLINE (HOURS)</label>
-										<input type="number" name="deadline" id="send_money_deadline" class="form-control" placeholder="Deadline" min="1" data-default="24" value="24" tabindex="4">
+										<label for="send_money_deadline">期限 (小时)</label>
+										<input type="number" name="deadline" id="send_money_deadline" class="form-control" placeholder="输入期限" min="1" data-default="24" value="24" tabindex="4">
 									</div>
 								</div>
 							</div>
 							<div class="form-group secret_phrase">
-								<label for="send_money_password">SECRET PHRASE</label>
+								<label for="send_money_password">密码</label>
 								<input type="password" name="secretPhrase" id="send_money_password" class="form-control" placeholder="" tabindex="5">
 							</div>
 						</form>
 						<div class="callout account_info" style="display:none;margin-bottom: 0;"></div>
 					</div>
 		      		<div class="modal-footer" style="margin-top:0;">
-		      			<input type="hidden" name="failure_message" value="An unknown error occured! NTX may or may not be sent." />
+		      			<input type="hidden" name="failure_message" value="发生未知错误! 无法确认发送是否成功." />
 		      			<input type="hidden" name="request_type" value="sendMoney" />
 		      			<input type="hidden" name="converted_account_id" value="" />
-				        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-				        <button type="button" class="btn btn-primary" data-loading-text="Submitting...">Send NTX</button>
+				        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+				        <button type="button" class="btn btn-primary" data-loading-text="提交中...">发送</button>
 		      		</div>
 		    	</div>
 		  	</div>
@@ -2091,41 +2090,41 @@ quantity decimal point." data-container="body" style="color:#4CAA6E" ></i></labe
 		   		<div class="modal-content">
 		      		<div class="modal-header">
 		        		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-		       		 	<h4 class="modal-title">Send Message</h4>
+		       		 	<h4 class="modal-title">发送信息</h4>
 		      		</div>
 			      	<div class="modal-body">			
 						<form role="form" id="send_message_form">
 							<div class="callout callout-danger error_message" style="display:none"></div>
 							<div class="form-group">
-								<label for="send_message_recipient">RECIPIENT</label>
+								<label for="send_message_recipient">接收人</label>
 								<div class="input-group">
-								    <input type="text" class="form-control" name="recipient" id="send_message_recipient" placeholder="Recipient Account" autofocus tabindex="1" />
+								    <input type="text" class="form-control" name="recipient" id="send_message_recipient" placeholder="接收人帐户" autofocus tabindex="1" />
 								    <span class="input-group-btn btn-group recipient_selector">
 								    	<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span></button>	<ul class="dropdown-menu scrollable-menu" role="menu" style="right:0;left:auto;"></ul>
 								    </span>
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="send_message_message">MESSAGE</label>
+								<label for="send_message_message">信息内容</label>
 								<textarea class="form-control" id="send_message_message" name="message" rows="4" tabindex="2"></textarea>
-								<div style="display:none"><label for="send_message_encrypt" style="font-weight:normal;"><input type="checkbox" name="encrypt" id="send_message_encrypt" /> Encrypt Message</label></div>
+								<div style="display:none"><label for="send_message_encrypt" style="font-weight:normal;"><input type="checkbox" name="encrypt" id="send_message_encrypt" /> 加密信息</label></div>
 							</div>
 							<div class="row">
 								<div class="col-xs-6 col-sm-6 col-md-6">
 									<div class="form-group">
-										<label for="send_message_fee">FEE</label>
+										<label for="send_message_fee">费用</label>
 										<input type="number" name="feeNXT" id="send_message_fee" class="form-control" step="any" min="1" placeholder="Fee" data-default="1" value="1" tabindex="3">
 									</div>
 								</div>
 								<div class="col-xs-6 col-sm-6 col-md-6">
 									<div class="form-group">
-										<label for="send_message_deadline">DEADLINE (HOURS)</label>
+										<label for="send_message_deadline">期限 (小时)</label>
 										<input type="number" name="deadline" id="send_message_deadline" class="form-control" placeholder="Deadline" min="1" data-default="24" value="24" tabindex="4">
 									</div>
 								</div>
 							</div>
 							<div class="form-group secret_phrase">
-								<label for="send_message_password">SECRET PHRASE</label>
+								<label for="send_message_password">密码</label>
 								<input type="password" name="secretPhrase" id="send_message_password" class="form-control" placeholder="" tabindex="5">
 							</div>
 						</form>
@@ -2133,10 +2132,10 @@ quantity decimal point." data-container="body" style="color:#4CAA6E" ></i></labe
 					</div>
 			       	<div class="modal-footer" style="margin-top:0;">
 			       		<input type="hidden" name="request_type" value="sendMessage" />
-			       		<input type="hidden" name="error_message" value="An unknown error occured! Message may or may not be sent." />
+			       		<input type="hidden" name="error_message" value="发生未知错误! 无法确定是否发送成功." />
 			       		<input type="hidden" name="converted_account_id" value="" />
-						<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-			     	    <button type="button" class="btn btn-primary" data-loading-text="Submitting...">Send Message</button>
+						<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+			     	    <button type="button" class="btn btn-primary" data-loading-text="Submitting...">发送信息</button>
 			      	</div>
 		    	</div>
 		  	</div>
@@ -2147,44 +2146,44 @@ quantity decimal point." data-container="body" style="color:#4CAA6E" ></i></labe
 		   		<div class="modal-content">
 		      		<div class="modal-header">
 		        		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-		       		 	<h4 class="modal-title">Set Account Info</h4>
+		       		 	<h4 class="modal-title">设置帐户信息</h4>
 		      		</div>
 			      	<div class="modal-body">			
 						<form role="form">
 							<div class="callout callout-danger error_message" style="display:none"></div>
 							<div class="form-group">
-								<label for="account_info_name">NAME</label>
-								<input type="text" class="form-control" name="name" id="account_info_name" placeholder="Your Name" tabindex="1" />
+								<label for="account_info_name">姓名</label>
+								<input type="text" class="form-control" name="name" id="account_info_name" placeholder="你的姓名" tabindex="1" />
 							</div>
 							<div class="form-group">
-								<label for="account_info_description">DESCRIPTION</label>
+								<label for="account_info_description">描述</label>
 								<textarea class="form-control" id="account_info_description" name="description" rows="4" tabindex="2"></textarea>
 							</div>
 							<div class="row">
 								<div class="col-xs-6 col-sm-6 col-md-6">
 									<div class="form-group">
-										<label for="account_info_fee">FEE</label>
+										<label for="account_info_fee">费用</label>
 										<input type="number" name="feeNXT" id="account_info_fee" class="form-control" step="any" min="1" placeholder="Fee" data-default="1" value="1" tabindex="3">
 									</div>
 								</div>
 								<div class="col-xs-6 col-sm-6 col-md-6">
 									<div class="form-group">
-										<label for="account_info_deadline">DEADLINE (HOURS)</label>
+										<label for="account_info_deadline">期限 (小时)</label>
 										<input type="number" name="deadline" id="account_info_deadline" class="form-control" placeholder="Deadline" min="1" data-default="24" value="24" tabindex="4">
 									</div>
 								</div>
 							</div>
 							<div class="form-group secret_phrase">
-								<label for="account_info_password">SECRET PHRASE</label>
+								<label for="account_info_password">密码</label>
 								<input type="password" name="secretPhrase" id="account_info_password" class="form-control" placeholder="" tabindex="5">
 							</div>
 						</form>
 					</div>
 			       	<div class="modal-footer" style="margin-top:0;">
 			       		<input type="hidden" name="request_type" value="setAccountInfo" />
-			       		<input type="hidden" name="success_message" value="Your account info has been saved successfully." />
-						<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-			     	    <button type="button" class="btn btn-primary" data-loading-text="Submitting...">Update Account Info</button>
+			       		<input type="hidden" name="success_message" value="帐户信息成功更新." />
+						<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+			     	    <button type="button" class="btn btn-primary" data-loading-text="Submitting...">更新帐户信息</button>
 			      	</div>
 		    	</div>
 		  	</div>
@@ -2195,21 +2194,21 @@ quantity decimal point." data-container="body" style="color:#4CAA6E" ></i></labe
 		    	<div class="modal-content">
 		      		<div class="modal-header">
 		        		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-		        		<h4 class="modal-title">Register Alias</h4>
+		        		<h4 class="modal-title">注册别名</h4>
 		      		</div>
 			      	<div class="modal-body">			
 						<form role="form">
 							<div class="callout callout-danger error_message" style="display:none"></div>
 							<div class="form-group">
-								<label for="register_alias_type">TYPE</label>
+								<label for="register_alias_type">类型</label>
 								<select class="form-control" name="type" id="register_alias_type">
 									<option value="uri">URI</option>
-									<option value="account">Account</option>
-									<option value="general">Other</option>
+									<option value="account">帐户</option>
+									<option value="general">其它</option>
 								</select>
 							</div>
 							<div class="form-group">
-								<label for="register_alias_alias">ALIAS</label>
+								<label for="register_alias_alias">别名</label>
 								<input type="text" class="form-control" name="aliasName" id="register_alias_alias" placeholder="Alias" tabindex="1" />
 								<p id="register_alias_alias_noneditable" style="display:none"></p>
 							</div>
@@ -2221,19 +2220,19 @@ quantity decimal point." data-container="body" style="color:#4CAA6E" ></i></labe
 							<div class="row">
 								<div class="col-xs-6 col-sm-6 col-md-6">
 									<div class="form-group">
-										<label for="register_alias_fee">FEE</label>
+										<label for="register_alias_fee">费用</label>
 										<input type="number" name="feeNXT" id="register_alias_fee" class="form-control" step="any" min="1" placeholder="Fee" data-default="1" value="1" tabindex="3">
 									</div>
 								</div>
 								<div class="col-xs-6 col-sm-6 col-md-6">
 									<div class="form-group">
-										<label for="register_alias_deadline">DEADLINE (HOURS)</label>
+										<label for="register_alias_deadline">期限 (小时)</label>
 										<input type="number" name="deadline" id="register_alias_deadline" class="form-control" placeholder="Deadline" min="1" data-default="24" value="24" tabindex="4">
 									</div>
 								</div>
 							</div>
 							<div class="form-group secret_phrase">
-								<label for="register_alias_password">SECRET PHRASE</label>
+								<label for="register_alias_password">密码</label>
 								<input type="password" name="secretPhrase" id="register_alias_password" class="form-control" placeholder="" tabindex="5">
 							</div>
 						</form>
@@ -2241,10 +2240,10 @@ quantity decimal point." data-container="body" style="color:#4CAA6E" ></i></labe
 			      	<div class="modal-footer" style="margin-top:0;">
 			      		<input type="hidden" name="register_alias_alias_update" id="register_alias_alias_update" value="0" />
 			      		<input type="hidden" name="request_type" value="setAlias" />
-			      		<input type="hidden" name="success_message" value="Your alias has been registered!" />
-			      		<input type="hidden" name="error_message" value="An unknown error occured! Alias may or may not be registered." />
-				        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-				        <button type="button" class="btn btn-primary" id="register_alias_button" data-loading-text="Submitting...">Register</button>
+			      		<input type="hidden" name="success_message" value="别名注册成功!" />
+			      		<input type="hidden" name="error_message" value="发生未知错误! 无法确定别名是否成功注册." />
+				        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+				        <button type="button" class="btn btn-primary" id="register_alias_button" data-loading-text="提交中..">注册</button>
 			    	</div>
 				</div>
 		  	</div>
@@ -2255,27 +2254,27 @@ quantity decimal point." data-container="body" style="color:#4CAA6E" ></i></labe
 		    	<div class="modal-content">
 		      		<div class="modal-header">
 		        		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-		        		<h4 class="modal-title">Generate Website Token</h4>
+		        		<h4 class="modal-title">创建网站令牌</h4>
 		      		</div>
 			      	<div class="modal-body">			
 						<form role="form">
-							<div class="callout callout-danger remote_warning" style="display:none"><strong>Warning</strong>: Your secret phrase will be sent to the server!</div>
+							<div class="callout callout-danger remote_warning" style="display:none"><strong>提示</strong>: 您的密码被发送到服务器上!</div>
 							<div class="callout callout-danger error_message" style="display:none"></div>
 							<div class="callout callout-info" id="generate_token_token" style="display:none;"></div>
 							<div class="form-group">
-								<label for="generate_token_website">WEBSITE</label>
+								<label for="generate_token_website">网址</label>
 								<input type="text" class="form-control" name="website" id="generate_token_website" placeholder="Website URL" tabindex="1" value="http://" />
 							</div>
 							<div class="form-group secret_phrase">
-								<label for="generate_token_password">SECRET PHRASE</label>
+								<label for="generate_token_password">密码</label>
 								<input type="password" name="secretPhrase" id="generate_token_password" class="form-control" placeholder="" tabindex="5">
 							</div>
 						</form>
 					</div>
 			      	<div class="modal-footer" style="margin-top:0;">
 			      		<input type="hidden" name="request_type" value="generateToken" />
-				        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-				        <button type="button" class="btn btn-primary" id="register_alias_button" data-loading-text="Submitting...">Generate</button>
+				        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+				        <button type="button" class="btn btn-primary" id="register_alias_button" data-loading-text="提交中...">创建</button>
 			    	</div>
 				</div>
 		  	</div>
@@ -2286,22 +2285,22 @@ quantity decimal point." data-container="body" style="color:#4CAA6E" ></i></labe
 		    	<div class="modal-content">
 		      		<div class="modal-header">
 		        		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-		        		<h4 class="modal-title">Block <strong><span id="block_info_modal_block"></span></strong> Info</h4>
+		        		<h4 class="modal-title">数据块 <strong><span id="block_info_modal_block"></span></strong> 信息</h4>
 		     		</div>
 			      	<div class="modal-body">	
 			      		<div class="tabbable">
 							<ul class="nav nav-pills nav-justified" style="margin-bottom:10px">
-								<li class="active"><a href="#block_info_transactions_tab" data-toggle="tab" id="block_info_transactions_tab_link">Transactions</a></li>
-								<li><a href="#block_info_details_tab" data-toggle="tab">Block Details</a></li>
+								<li class="active"><a href="#block_info_transactions_tab" data-toggle="tab" id="block_info_transactions_tab_link">交易</a></li>
+								<li><a href="#block_info_details_tab" data-toggle="tab">数据块信息</a></li>
 							</ul>
 							<div class="tab-content">
 							    <div class="tab-pane active" id="block_info_transactions_tab" style="max-height:350px;overflow:auto;">
 									<table class="table table-striped" id="block_info_transactions_table" style="margin-bottom:0">
 										<thead>
 									    <tr>
-									        <th>Date</th>
-									        <th>Amount</th>
-									        <th>Fee</th>
+									        <th>日期</th>
+									        <th>金额</th>
+									        <th>费用</th>
 									        <th>To</th>
 									        <th>From</th>
 									    </tr>
@@ -2310,7 +2309,7 @@ quantity decimal point." data-container="body" style="color:#4CAA6E" ></i></labe
 									    	
 									    </tbody>
 									</table>
-									<div id="block_info_transactions_none" style="display:none;">No transactions in this block.</div>
+									<div id="block_info_transactions_none" style="display:none;">本数据块无交易信息.</div>
 							    </div>
 							    <div class="tab-pane" id="block_info_details_tab" style="max-height:350px;overflow:auto;">
 									<table class="table table-striped" id="block_info_details_table" style="margin-bottom:0">
@@ -2323,7 +2322,7 @@ quantity decimal point." data-container="body" style="color:#4CAA6E" ></i></labe
 			      		</div>
 					</div>
 			      	<div class="modal-footer" style="margin-top:0;">
-						<button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+						<button type="button" class="btn btn-primary" data-dismiss="modal">关闭</button>
 			     	</div>
 				</div>
 			</div>
@@ -2334,13 +2333,13 @@ quantity decimal point." data-container="body" style="color:#4CAA6E" ></i></labe
 		    	<div class="modal-content">
 		      		<div class="modal-header">
 		        		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-		        		<h4 class="modal-title">Transaction <strong><span id="transaction_info_modal_transaction"></span></strong> Info</h4>
+		        		<h4 class="modal-title">交易 <strong><span id="transaction_info_modal_transaction"></span></strong> 信息</h4>
 		     		</div>
 			      	<div class="modal-body">
 			      		<div class="tabbable">
 							<ul class="nav nav-pills nav-justified" style="margin-bottom:10px">
-								<li class="active"><a href="#transaction_info_tab" data-toggle="tab" id="transaction_info_tab_link">Info</a></li>
-								<li><a href="#transaction_info_details_tab" data-toggle="tab">Transaction Details</a></li>
+								<li class="active"><a href="#transaction_info_tab" data-toggle="tab" id="transaction_info_tab_link">交易信息</a></li>
+								<li><a href="#transaction_info_details_tab" data-toggle="tab">其它</a></li>
 							</ul>
 							<div class="tab-content">
 							    <div class="tab-pane active" id="transaction_info_tab">
@@ -2365,7 +2364,7 @@ quantity decimal point." data-container="body" style="color:#4CAA6E" ></i></labe
 			      		</div>
 					</div>
 			      	<div class="modal-footer" style="margin-top:0;">
-						<button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+						<button type="button" class="btn btn-primary" data-dismiss="modal">关闭</button>
 			     	</div>
 				</div>
 			</div>
@@ -2376,7 +2375,7 @@ quantity decimal point." data-container="body" style="color:#4CAA6E" ></i></labe
 		    	<div class="modal-content">
 		      		<div class="modal-header">
 		        		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-		        		<h4 class="modal-title">Alias <strong><span id="alias_info_modal_alias"></span></strong></h4>
+		        		<h4 class="modal-title">别名 <strong><span id="alias_info_modal_alias"></span></strong></h4>
 		     		</div>
 			      	<div class="modal-body">
 			      		<table class="table table-striped" id="alias_info_table" style="margin-bottom: 0;">
@@ -2386,7 +2385,7 @@ quantity decimal point." data-container="body" style="color:#4CAA6E" ></i></labe
 			      		</table>
 					</div>
 			      	<div class="modal-footer" style="margin-top:0;">
-						<button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+						<button type="button" class="btn btn-primary" data-dismiss="modal">关闭</button>
 			     	</div>
 				</div>
 			</div>
@@ -2397,30 +2396,30 @@ quantity decimal point." data-container="body" style="color:#4CAA6E" ></i></labe
 		    	<div class="modal-content">
 		      		<div class="modal-header">
 		        		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-		        		<h4 class="modal-title">Account <strong><span id="user_info_modal_account"></span></strong> Info</h4>
+		        		<h4 class="modal-title">帐户 <strong><span id="user_info_modal_account"></span></strong> 信息</h4>
 		     		</div>
 			      	<div class="modal-body">	
 				     	<div class="callout callout-info">
-				     		The account <span id="user_info_modal_account_name_container">named <span id="user_info_modal_account_name" style="font-weight:bold"></span></span> has a balance of <strong><span id="user_info_modal_account_balance"></span></strong>.
+				     		该帐户 <span id="user_info_modal_account_name_container">叫做 <span id="user_info_modal_account_name" style="font-weight:bold"></span></span> 它的帐户余额为 <strong><span id="user_info_modal_account_balance"></span></strong>.
 				     	</div>
 				     	 	
 						<ul class="nav nav-pills nav-justified" style="margin-bottom:10px">
-							<li class="active" id="user_info_transactions" data-tab="transactions"><a href="#">Transactions</a></li>
-							<li id="user_info_assets" data-tab="assets"><a href="#">Assets</a></li>
-							<li id="user_info_aliases" data-tab="aliases"><a href="#">Aliases</a></li>
-							<li id="user_info_description" data-tab="description"><a href="#">Description</a></li>
-							<li id="user_info_actions" data-tab="actions"><a href="#">Actions</a></li>
+							<li class="active" id="user_info_transactions" data-tab="transactions"><a href="#">交易</a></li>
+							<li id="user_info_assets" data-tab="assets"><a href="#">资产</a></li>
+							<li id="user_info_aliases" data-tab="aliases"><a href="#">别名</a></li>
+							<li id="user_info_description" data-tab="description"><a href="#">描述</a></li>
+							<li id="user_info_actions" data-tab="actions"><a href="#">操作</a></li>
 						</ul>
 
 						<div class="data-container data-loading user_info_modal_content" id="user_info_modal_transactions" style="display:none;max-height:350px;overflow:auto;">
 							<table class="table table-striped" id="user_info_modal_transactions_table">
 								<thead>
 							    <tr>
-							        <th>Date</th>
-							        <th>Type</th>
-							        <th colspan="2">Amount</th>
-							        <th>Fee</th>
-							        <th>Account</th>
+							        <th>日期</th>
+							        <th>类型</th>
+							        <th colspan="2">金额</th>
+							        <th>费用</th>
+							        <th>帐户</th>
 							    </tr>
 							    </thead>
 							    <tbody>
@@ -2428,14 +2427,14 @@ quantity decimal point." data-container="body" style="color:#4CAA6E" ></i></labe
 							    </tbody>
 							</table>
 							<div class="data-loading-container"><img src="img/loading_indicator.gif" alt="Loading..." width="32" height="32" /></div>
-							<div class="data-empty-container" style="padding-top:10px">This user has no transactions.</div>
+							<div class="data-empty-container" style="padding-top:10px">该用户无交易记录.</div>
 						</div>
 						
 						<div class="data-container data-loading user_info_modal_content" id="user_info_modal_aliases" style="display:none;max-height:350px;overflow:auto;">
 							<table class="table table-striped" id="user_info_modal_aliases_table">
 								<thead>
 							    <tr>
-							        <th>Alias</th>
+							        <th>别名</th>
 							        <th>URI</th>
 							    </tr>
 							    </thead>
@@ -2444,17 +2443,17 @@ quantity decimal point." data-container="body" style="color:#4CAA6E" ></i></labe
 							    </tbody>
 							</table>
 							<div class="data-loading-container"><img src="img/loading_indicator.gif" alt="Loading..." width="32" height="32" /></div>
-							<div class="data-empty-container" style="padding-top:10px">This user has no aliases.</div>
+							<div class="data-empty-container" style="padding-top:10px">该用户无别名.</div>
 						</div>
 						
 						<div class="data-container data-loading user_info_modal_content" id="user_info_modal_assets" style="display:none;max-height:350px;overflow:auto;">
 							<table class="table table-striped" id="user_info_modal_assets_table">
 								<thead>
 							    <tr>
-							        <th>Asset</th>
-							        <th>Quantity</th>
-							        <th>Total Available</th>
-							        <th>Percentage</th>
+							        <th>资产</th>
+							        <th>数量</th>
+							        <th>已上线资产</th>
+							        <th>百分比</th>
 							    </tr>
 							    </thead>
 							    <tbody>
@@ -2462,7 +2461,7 @@ quantity decimal point." data-container="body" style="color:#4CAA6E" ></i></labe
 							    </tbody>
 							</table>
 							<div class="data-loading-container"><img src="img/loading_indicator.gif" alt="Loading..." width="32" height="32" /></div>
-							<div class="data-empty-container" style="padding-top:10px">This user has no assets.</div>
+							<div class="data-empty-container" style="padding-top:10px">该用户没有资产.</div>
 						</div>
 						
 						<div class="user_info_modal_content data-never-loading" id="user_info_modal_description" style="display:none;"></div>
@@ -2470,16 +2469,16 @@ quantity decimal point." data-container="body" style="color:#4CAA6E" ></i></labe
 						<div class="user_info_modal_content data-never-loading" id="user_info_modal_actions" style="display:none;">
 							<div class="row">
 								<div class="col-xs-6 col-md-6" style="margin-left:auto;margin-right:auto;float:none;">
-									<button type="button" class="btn btn-default btn-lg btn-block" data-toggle="modal" data-target="#send_money_modal" data-account="">Send NTX</button>
-									<button type="button" class="btn btn-default btn-lg btn-block" data-toggle="modal" data-target="#send_message_modal" data-account="">Send a Message</button>
-									<button type="button" id="user_info_modal_add_as_contact" class="btn btn-default btn-lg btn-block" data-toggle="modal" data-target="#add_contact_modal" data-account="">Add as Contact</button>
+									<button type="button" class="btn btn-default btn-lg btn-block" data-toggle="modal" data-target="#send_money_modal" data-account="">发送NTX</button>
+									<button type="button" class="btn btn-default btn-lg btn-block" data-toggle="modal" data-target="#send_message_modal" data-account="">发送信息</button>
+									<button type="button" id="user_info_modal_add_as_contact" class="btn btn-default btn-lg btn-block" data-toggle="modal" data-target="#add_contact_modal" data-account="">添加为联系人</button>
 								</div>
 							</div>
 						</div>
 
 					</div>
 			      	<div class="modal-footer" style="margin-top:0;">
-						<button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+						<button type="button" class="btn btn-primary" data-dismiss="modal">关闭</button>
 			     	</div>
 				</div>
 			</div>
@@ -2491,35 +2490,35 @@ quantity decimal point." data-container="body" style="color:#4CAA6E" ></i></labe
 			    <div class="modal-content">
 			     	<div class="modal-header">
 			        	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-			        	<h4 class="modal-title">NRS Info</h4>
+			        	<h4 class="modal-title">NRS 信息</h4>
 			      	</div>
 			      	<div class="modal-body">	
 			      		<ul class="nav nav-pills nav-justified" style="margin-bottom:10px">
-							<li class="active" id="nrs_modal_state_nav" data-tab="state"><a href="#">NRS State</a></li>
-							<li data-tab="update"><a href="#">NRS Update</a></li>
+							<li class="active" id="nrs_modal_state_nav" data-tab="state"><a href="#">NRS 状态</a></li>
+							<li data-tab="update"><a href="#">NRS 更新</a></li>
 						</ul>
 							
 						<div id="nrs_modal_update" class="nrs_modal_content" style="display:none">
 							<div id="nrs_update_explanation" class="nrs_message">
-								<span id="nrs_update_explanation_blockchain_sync">The blockchain is still downloading, check again after it's up to date.</span>
-								<span id="nrs_update_explanation_testnet">NRS cannot be updated whilst connected to the testnet.</span>
-								<span id="nrs_update_explanation_up_to_date">You have the latest release already. There is no need to update.</span>
-								<span id="nrs_update_explanation_new_release">A new NRS release is available. It is recommended that you update.<br /><br /><button type="button" class="btn btn-success ignore" onclick="NRS.downloadClientUpdate('release')">Download NRS <span class="nrs_new_version_nr"></span></button></span>
-								<span id="nrs_update_explanation_new_beta">A new experimental release is available. It is not recommended that you install this unless you know what you're doing.<br /><br /><button type="button" class="btn btn-success btn-xs ignore" onclick="NRS.downloadClientUpdate('beta')">Download NRS <span class="nrs_beta_version_nr"></span></button></span>
-								<span id="nrs_update_explanation_new_choice">Both a general and experimental release are available. It is not recommended that you install the experimental release unless you know what you're doing.
+								<span id="nrs_update_explanation_blockchain_sync">块链正在下载中，请下载完后再试一次.</span>
+								<span id="nrs_update_explanation_testnet">您现在连接的是测试网，NRS无法更新.</span>
+								<span id="nrs_update_explanation_up_to_date">您已是最新版本，无需再更新.</span>
+								<span id="nrs_update_explanation_new_release">新版本的NRS已开放下载，强烈推荐您下载最新版.<br /><br /><button type="button" class="btn btn-success ignore" onClick="NRS.downloadClientUpdate('release')">下载 NRS <span class="nrs_new_version_nr"></span></button></span>
+								<span id="nrs_update_explanation_new_beta">新的测试版NRS已开放下载，但不建议您下载安装，除非您清楚的知道该如何使用测试版.<br /><br /><button type="button" class="btn btn-success btn-xs ignore" onClick="NRS.downloadClientUpdate('beta')">下载 NRS <span class="nrs_beta_version_nr"></span></button></span>
+								<span id="nrs_update_explanation_new_choice">新的正式版NRS和测试版NRS均已开放下载，但不建议您下载安装，除非您清楚的知道该如何使用测试版.
 								<br /><br />
-								<button type="button" class="btn btn-success ignore" onclick="NRS.downloadClientUpdate('release')">Download NRS <span class="nrs_new_version_nr"></span> - General Release</button>
-								<button type="button" class="btn btn-default ignore" onclick="NRS.downloadClientUpdate('beta')">Download NRS <span class="nrs_beta_version_nr"></span> - Experimental Release</button>
+								<button type="button" class="btn btn-success ignore" onClick="NRS.downloadClientUpdate('release')">下载 NRS <span class="nrs_new_version_nr"></span> - 正式版</button>
+								<button type="button" class="btn btn-default ignore" onClick="NRS.downloadClientUpdate('beta')">下载 NRS <span class="nrs_beta_version_nr"></span> - 测试版</button>
 								</span>
 							</div>
 							    
-							<div id="nrs_update_drop_zone">Drop client update (zip file) here when downloaded or click to select</div>
+							<div id="nrs_update_drop_zone">下载文件到本地，然后点此打开并解压</div>
 							<div id="nrs_update_result"></div>
 							<div id="nrs_update_hashes" style="display:none;padding-top:10px;">
 								<table style="width:100%">
-								    <tr><td style="background-color:#efefef;font-weight:bold;">Version:</td><td><span id="nrs_update_hash_version"></span></td></tr>
-								    <tr><td style="background-color:#efefef;font-weight:bold;">Downloaded hash:</td><td><span id="nrs_update_hash_download"></span></td></tr>
-								    <tr><td style="background-color:#efefef;font-weight:bold;">Official hash:</td><td><span id="nrs_update_hash_official"></span></td></tr>
+								    <tr><td style="background-color:#efefef;font-weight:bold;">版本:</td><td><span id="nrs_update_hash_version"></span></td></tr>
+								    <tr><td style="background-color:#efefef;font-weight:bold;">下载包的hash:</td><td><span id="nrs_update_hash_download"></span></td></tr>
+								    <tr><td style="background-color:#efefef;font-weight:bold;">官方包的hash:</td><td><span id="nrs_update_hash_official"></span></td></tr>
 								</table>
 							</div>
 							
@@ -2588,7 +2587,7 @@ quantity decimal point." data-container="body" style="color:#4CAA6E" ></i></labe
 						</div>
 					</div>
 					<div class="modal-footer" style="margin-top:0;">
-			        	<button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+			        	<button type="button" class="btn btn-primary" data-dismiss="modal">关闭</button>
 			      	</div>
 				</div>
 			</div>
@@ -2603,8 +2602,8 @@ quantity decimal point." data-container="body" style="color:#4CAA6E" ></i></labe
 			      	</div>
 			      	<div class="modal-body">	
 			      		<ul class="nav nav-pills nav-justified" style="margin-bottom:10px">
-							<li class="active" id="account_details_balance_nav" data-tab="balance"><a href="#">Account Details</a></li>
-							<li data-tab="leasing"><a href="#">Account Leasing</a></li>
+							<li class="active" id="account_details_balance_nav" data-tab="balance"><a href="#">帐户明细</a></li>
+							<li data-tab="leasing"><a href="#">帐户租用</a></li>
 						</ul>
 
 						<div id="account_details_modal_balance" class="account_details_modal_content" style="display:none">
@@ -2613,25 +2612,25 @@ quantity decimal point." data-container="body" style="color:#4CAA6E" ></i></labe
 							<table class="table table-striped" id="account_balance_table" style="margin-bottom:0;table-layout:fixed;">
 							    <tbody>
 							    	<tr>
-							    		<td style="font-weight: bold;width:180px;">Account ID:</td><td><span id="account_balance_account_id"></span></td>
+							    		<td style="font-weight: bold;width:180px;">帐户ID:</td><td><span id="account_balance_account_id"></span></td>
 							    	</tr>
 							    	<tr>
-							    		<td style="font-weight: bold">New Address Format:</td><td><span id="account_balance_account_rs"></span></td>
+							    		<td style="font-weight: bold">新地址格式:</td><td><span id="account_balance_account_rs"></span></td>
 							    	</tr>
 							    	<tr>
-							    		<td style="font-weight: bold">Balance:</td><td><span id="account_balance_balance"></span></td>
+							    		<td style="font-weight: bold">余额:</td><td><span id="account_balance_balance"></span></td>
 							    	</tr>
 							    	<tr>
-							    		<td style="font-weight: bold">Unconfirmed Balance:</td><td><span id="account_balance_unconfirmed_balance"></span></td>
+							    		<td style="font-weight: bold">未确认余额:</td><td><span id="account_balance_unconfirmed_balance"></span></td>
 							    	</tr>
 							    	<tr>
-							    		<td style="font-weight: bold">Guaranteed Balance:</td><td><span id="account_balance_guaranteed_balance"></span></td>
+							    		<td style="font-weight: bold">担保中的余额:</td><td><span id="account_balance_guaranteed_balance"></span></td>
 							    	</tr>
 							    	<tr>
-							    		<td style="font-weight: bold">Effective Balance:</td><td><span id="account_balance_effective_balance"></span></td>
+							    		<td style="font-weight: bold">有效余额:</td><td><span id="account_balance_effective_balance"></span></td>
 							    	</tr>
 							    	<tr>
-							    		<td style="font-weight: bold">Public Key:</td><td><span id="account_balance_public_key" style="word-break:break-all;word-wrap: break-word;"></span></td>
+							    		<td style="font-weight: bold">公钥:</td><td><span id="account_balance_public_key" style="word-break:break-all;word-wrap: break-word;"></span></td>
 							    	</tr>
 							    </tbody>
 						 	</table>
@@ -2643,7 +2642,7 @@ quantity decimal point." data-container="body" style="color:#4CAA6E" ></i></labe
 								<table class="table table-striped" id="account_lessor_table" style="margin-bottom:0">
 									<thead>
 								    <tr>
-								        <th>Lessor</th>
+								        <th>出租人</th>
 								    </tr>
 								    </thead>
 								    <tbody>
@@ -2651,11 +2650,11 @@ quantity decimal point." data-container="body" style="color:#4CAA6E" ></i></labe
 								    </tbody>
 								</table>
 							</div>
-							<div style="padding-top:10px"><a href="#" data-toggle="modal" data-target="#lease_balance_modal">Lease your balance to another account</a></div>
+							<div style="padding-top:10px"><a href="#" data-toggle="modal" data-target="#lease_balance_modal">出租你的余额给其它帐户</a></div>
 						</div>
 					</div>
 					<div class="modal-footer" style="margin-top:0;">
-			        	<button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+			        	<button type="button" class="btn btn-primary" data-dismiss="modal">关闭</button>
 			      	</div>
 				</div>
 			</div>
@@ -2666,28 +2665,28 @@ quantity decimal point." data-container="body" style="color:#4CAA6E" ></i></labe
 		    	<div class="modal-content">
 		      		<div class="modal-header">
 		      			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-		        		<h4 class="modal-title">Change Group Name</h4>
+		        		<h4 class="modal-title">更改分组名称</h4>
 		      		</div>
 		      		<div class="modal-body">			
 						<form role="form">
 							<div class="callout callout-danger error_message" style="display:none"></div>
-							<p>Type a new group name.</p>
+							<p>输入新的分组名称.</p>
 							<div class="form-group">
-								<label>OLD GROUP NAME</label>
+								<label>旧组名</label>
 								<p id="asset_exchange_change_group_name_old_display"></p>
 								<input type="hidden" name="old_group_name" id="asset_exchange_change_group_name_old" value="" />
 							</div>
 							<div class="form-group">
-								<label for="asset_exchange_change_group_name_new">NEW GROUP_NAME</label>
+								<label for="asset_exchange_change_group_name_new">新组名</label>
 								<input type="text" class="form-control" name="new_group_name" id="asset_exchange_change_group_name_new" placeholder="New group name" />
 							</div>
 						</form>
 		      		</div>
 			      	<div class="modal-footer" style="margin-top:0;">
 			      		<input type="hidden" name="request_type" value="assetExchangeChangeGroupName" />
-			      		<input type="hidden" name="success_message" value="Group name has been changed successfully." />
-				        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-				        <button type="button" class="btn btn-primary" id="asset_exchange_change_group_name_submit" data-loading-text="Submitting...">Change Group Name</button>
+			      		<input type="hidden" name="success_message" value="分组名称更改成功." />
+				        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+				        <button type="button" class="btn btn-primary" id="asset_exchange_change_group_name_submit" data-loading-text="提交中...">更改分组名称</button>
 			      	</div>
 		    	</div>
 			</div>
@@ -2698,19 +2697,19 @@ quantity decimal point." data-container="body" style="color:#4CAA6E" ></i></labe
 		    	<div class="modal-content">
 		      		<div class="modal-header">
 		      			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-		        		<h4 class="modal-title">Group Asset</h4>
+		        		<h4 class="modal-title">资产分组</h4>
 		      		</div>
 		      		<div class="modal-body">			
 						<form role="form">
 							<div class="callout callout-danger error_message" style="display:none"></div>
-							<p>Choose a group for this asset.</p>
+							<p> 为该资产选择一个组.</p>
 							<div class="form-group">
-								<label>ASSET</label>
+								<label>资产</label>
 								<p id="asset_exchange_group_title"></p>
 								<input type="hidden" name="asset_exchange_group_asset" id="asset_exchange_group_asset" value="" />
 							</div>
 							<div class="form-group">
-								<label for="asset_exchange_group_group">GROUP</label>
+								<label for="asset_exchange_group_group">分组</label>
 								<select name="asset_exchange_group_group" id="asset_exchange_group_group" class="form-control">
 								</select>
 							</div>
@@ -2722,9 +2721,9 @@ quantity decimal point." data-container="body" style="color:#4CAA6E" ></i></labe
 		      		</div>
 			      	<div class="modal-footer" style="margin-top:0;">
 			      		<input type="hidden" name="request_type" value="assetExchangeGroup" />
-			      		<input type="hidden" name="success_message" value="Asset has been added to group." />
-				        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-				        <button type="button" class="btn btn-primary" id="asset_exchange_group_submit" data-loading-text="Submitting...">Add to Group</button>
+			      		<input type="hidden" name="success_message" value="资产已被添加到该分组." />
+				        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+				        <button type="button" class="btn btn-primary" id="asset_exchange_group_submit" data-loading-text="提交中...">添加到分组</button>
 			      	</div>
 		    	</div>
 			</div>
@@ -2732,45 +2731,45 @@ quantity decimal point." data-container="body" style="color:#4CAA6E" ></i></labe
 
 		<div id="asset_exchange_sidebar_context" class="context_menu dropdown clearfix">
 		    <ul class="dropdown-menu" data-container="body" role="menu" style="display:block;position:static;margin-bottom:5px;">
-		        <li><a tabindex="-1" href="#" data-option="add_to_group">Add to group</a></li>
-		       	<li><a tabindex="-1" href="#" data-option="remove_from_group" data-class="list-group-item-grouped">Remove from group</a></li>
-		        <li><a tabindex="-1" href="#" data-option="remove_from_bookmarks" data-class="not_owns_asset">Remove from bookmarks</a></li>
+		        <li><a tabindex="-1" href="#" data-option="add_to_group">添加到分组</a></li>
+		       	<li><a tabindex="-1" href="#" data-option="remove_from_group" data-class="list-group-item-grouped">从组里移除</a></li>
+		        <li><a tabindex="-1" href="#" data-option="remove_from_bookmarks" data-class="not_owns_asset">从书签移除</a></li>
 		    </ul>
 		</div>
 		
 		<div id="asset_exchange_sidebar_group_context" class="context_menu dropdown clearfix">
 		    <ul class="dropdown-menu" data-container="body" role="menu" style="display:block;position:static;margin-bottom:5px;">
-		        <li><a tabindex="-1" href="#" data-option="change_group_name">Change Group Name</a></li>
+		        <li><a tabindex="-1" href="#" data-option="change_group_name">更改组名</a></li>
 		    </ul>
 		</div>
 
 		<div id="messages_sidebar_context" class="context_menu dropdown clearfix">
 		    <ul class="dropdown-menu" data-container="body" role="menu" style="display:block;position:static;margin-bottom:5px;">
-		    	<li><a tabindex="-1" href="#" data-option="account_info">Account Info</a></li>
-		        <li><a tabindex="-1" href="#" data-option="add_contact">Add Contact</a></li>
-				<li><a tabindex="-1" href="#" data-option="send_nxt">Send Nxt</a></li>
+		    	<li><a tabindex="-1" href="#" data-option="account_info">帐户信息</a></li>
+		        <li><a tabindex="-1" href="#" data-option="add_contact">添加联系人</a></li>
+				<li><a tabindex="-1" href="#" data-option="send_nxt">发送NTX</a></li>
 		    </ul>
 		</div>
 		
 		<div id="messages_sidebar_update_context" class="context_menu dropdown clearfix">
 		    <ul class="dropdown-menu" data-container="body" role="menu" style="display:block;position:static;margin-bottom:5px;">
-		    	<li><a tabindex="-1" href="#" data-option="account_info">Account Info</a></li>
-		        <li><a tabindex="-1" href="#" data-option="update_contact">Update Contact</a></li>
-				<li><a tabindex="-1" href="#" data-option="send_nxt">Send Nxt</a></li>
+		    	<li><a tabindex="-1" href="#" data-option="account_info">帐户信息</a></li>
+		        <li><a tabindex="-1" href="#" data-option="update_contact">更新联系人</a></li>
+				<li><a tabindex="-1" href="#" data-option="send_nxt">发送NTX</a></li>
 		    </ul>
 		</div>
 		
 		<div id="downloading_blockchain">
-			Downloading blockchain<span class="loading_dots"><span>.</span><span>.</span><span>.</span></span>
+			块链下载中<span class="loading_dots"><span>.</span><span>.</span><span>.</span></span>
 			<div class="progress progress-striped sm active" style="margin-bottom:5px;margin-top:5px;">
 	            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
-	                <span class="sr-only">0% Complete</span>
+	                <span class="sr-only">已完成0%</span>
 	            </div>
 	        </div>
 		</div>
 		
 		<div id="show_console">
-			<a href="#" onclick="NRS.showConsole();return false;" style="color:black;"><i class="fa fa-terminal" style="font-weight:bold"></i></a>
+			<a href="#" onClick="NRS.showConsole();return false;" style="color:black;"><i class="fa fa-terminal" style="font-weight:bold"></i></a>
 		</div>
 				
 		<!--[if lte IE 9]>

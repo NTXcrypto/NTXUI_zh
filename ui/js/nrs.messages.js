@@ -1,4 +1,4 @@
-var NRS = (function(NRS, $, undefined) {
+﻿var NRS = (function(NRS, $, undefined) {
 	NRS.messages = {};
 
 	NRS.pages.messages = function(callback) {
@@ -327,7 +327,7 @@ var NRS = (function(NRS, $, undefined) {
 				"account": $("#send_message_recipient").val()
 			}, function(response) {
 				if (!response.publicKey) {
-					error = "Could not find public key for recipient, which is necessary for sending encrypted messages.";
+					error = "该接收者缺少公钥，这样是无法发送加密信息给他的.";
 					return;
 				}
 
@@ -374,7 +374,7 @@ var NRS = (function(NRS, $, undefined) {
 
 		if (!NRS.rememberPassword) {
 			if ($("#inline_message_password").val() == "") {
-				$.growl("Secret phrase is a required field.", {
+				$.growl("密码是必填项.", {
 					"type": "danger"
 				});
 				return;
@@ -383,7 +383,7 @@ var NRS = (function(NRS, $, undefined) {
 			var accountId = NRS.generateAccountId(data.secretPhrase);
 
 			if (accountId != NRS.account) {
-				$.growl("Incorrect secret phrase.", {
+				$.growl("无效的密码.", {
 					"type": "danger"
 				});
 				return;
@@ -393,7 +393,7 @@ var NRS = (function(NRS, $, undefined) {
 		var message = $.trim($("#inline_message_text").val());
 
 		if (!message) {
-			$.growl("Message is a required field.", {
+			$.growl("消息内容是必填项.", {
 				"type": "danger"
 			});
 			return;
@@ -411,7 +411,7 @@ var NRS = (function(NRS, $, undefined) {
 				"account": $("#inline_message_recipient").val()
 			}, function(response) {
 				if (!response.publicKey) {
-					$.growl("Could not find public key for recipient, which is necessary for sending encrypted messages.", {
+					$.growl("该接收者缺少公钥，这样是无法发送加密信息给他的.", {
 						"type": "danger"
 					});
 				}
@@ -447,7 +447,7 @@ var NRS = (function(NRS, $, undefined) {
 
 				//leave password alone until user moves to another page.
 			} else {
-				$.growl("An unknown error occured. Your message may or may not have been sent.", {
+				$.growl("发生未知错误，无法确认信息是否发送成功.", {
 					type: "danger"
 				});
 			}
@@ -459,11 +459,11 @@ var NRS = (function(NRS, $, undefined) {
 		data.message = data._extra.message;
 
 		if (!(data["_extra"] && data["_extra"].convertedAccount)) {
-			$.growl("Your message has been sent! <a href='#' data-account='" + NRS.getAccountFormatted(data, "recipient") + "' data-toggle='modal' data-target='#add_contact_modal' style='text-decoration:underline'>Add recipient to contacts?</a>", {
+			$.growl("您的消息已发送! <a href='#' data-account='" + NRS.getAccountFormatted(data, "recipient") + "' data-toggle='modal' data-target='#add_contact_modal' style='text-decoration:underline'>是否添加接收者为联系人?</a>", {
 				"type": "success"
 			});
 		} else {
-			$.growl("Your message has been sent!", {
+			$.growl("信息发送成功!", {
 				"type": "success"
 			});
 		}

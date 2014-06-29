@@ -1,6 +1,6 @@
-var NRS = (function(NRS, $, undefined) {
+﻿var NRS = (function(NRS, $, undefined) {
 	NRS.forms.errorMessages.startForging = {
-		"5": "You cannot forge. Either your balance is 0 or your account is too new (you must wait a day or so)."
+		"5": "您无法锻造，主要是您余额是0，而且帐号太新了(至少要超过一天的时间)."
 	};
 
 	NRS.forms.startForgingComplete = function(response, data) {
@@ -45,24 +45,24 @@ var NRS = (function(NRS, $, undefined) {
 		e.preventDefault();
 
 		if (NRS.downloadingBlockchain) {
-			$.growl("The blockchain is busy downloading, you cannot forge during this time. Please try again when the blockchain is fully synced.", {
+			$.growl("块链正在下载中，此时您无法锻造，请在块链下载完成后再试一次.", {
 				"type": "danger"
 			});
 		} else if (NRS.state.isScanning) {
-			$.growl("The blockchain is currently being rescanned, you cannot forge during this time. Please try again in a minute.", {
+			$.growl("块链正在重新扫描，这段时间内您无法锻造，请一分钟后再试.", {
 				"type": "danger"
 			});
 		} else if (!NRS.accountInfo.publicKey) {
-			$.growl("You cannot forge because your account has no public key. Please make an outgoing transaction first.", {
+			$.growl("因为您的帐号没有公钥，所以无法锻造，请先发送第一笔交易.", {
 				"type": "danger"
 			});
 		} else if (NRS.accountInfo.effectiveBalanceNXT == 0) {
 			if (NRS.lastBlockHeight >= NRS.accountInfo.currentLeasingHeightFrom && NRS.lastBlockHeight <= NRS.accountInfo.currentLeasingHeightTo) {
-				$.growl("Your effective balance is leased out, you cannot forge at the moment.", {
+				$.growl("您的有效余额已出租，租用期内您暂时无法锻造.", {
 					"type": "danger"
 				});
 			} else {
-				$.growl("Your effective balance is zero, you cannot forge.", {
+				$.growl("您的有效余额是0，无法进行锻造.", {
 					"type": "danger"
 				});
 			}

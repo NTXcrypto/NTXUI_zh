@@ -1,4 +1,4 @@
-var NRS = (function(NRS, $, undefined) {
+﻿var NRS = (function(NRS, $, undefined) {
 	NRS.pages.aliases = function() {
 		NRS.pageLoading();
 
@@ -56,7 +56,7 @@ var NRS = (function(NRS, $, undefined) {
 				for (var i = 0; i < alias_count; i++) {
 					var alias = aliases[i];
 
-					rows += "<tr" + (alias.tentative ? " class='tentative'" : "") + " data-alias='" + String(alias.aliasName).toLowerCase().escapeHTML() + "'><td class='alias'>" + String(alias.aliasName).escapeHTML() + (alias.tentative ? " -  <strong>Pending</strong>" : "") + "</td><td>" + (alias.aliasURI.indexOf("http") === 0 ? "<a href='" + String(alias.aliasURI).escapeHTML() + "' target='_blank'>" + String(alias.aliasURI).escapeHTML() + "</a>" : String(alias.aliasURI).escapeHTML()) + "</td><td><a href='#' data-toggle='modal' data-alias='" + String(alias.aliasName).escapeHTML() + "' data-target='#register_alias_modal'>Edit</a></td></tr>";
+					rows += "<tr" + (alias.tentative ? " class='tentative'" : "") + " data-alias='" + String(alias.aliasName).toLowerCase().escapeHTML() + "'><td class='alias'>" + String(alias.aliasName).escapeHTML() + (alias.tentative ? " -  <strong>Pending</strong>" : "") + "</td><td>" + (alias.aliasURI.indexOf("http") === 0 ? "<a href='" + String(alias.aliasURI).escapeHTML() + "' target='_blank'>" + String(alias.aliasURI).escapeHTML() + "</a>" : String(alias.aliasURI).escapeHTML()) + "</td><td><a href='#' data-toggle='modal' data-alias='" + String(alias.aliasName).escapeHTML() + "' data-target='#register_alias_modal'>编辑</a></td></tr>";
 					if (!alias.aliasURI) {
 						empty_alias_count++;
 					} else if (alias.aliasURI.indexOf("http") === 0) {
@@ -148,7 +148,7 @@ var NRS = (function(NRS, $, undefined) {
 		if ($("#register_alias_alias_update").val() == 1) {
 			return {
 				"data": data,
-				"successMessage": "Alias updated successfully"
+				"successMessage": "别名成功更新"
 			};
 		} else {
 			return {
@@ -190,7 +190,7 @@ var NRS = (function(NRS, $, undefined) {
 			} else {
 				$("#register_alias_uri").val("");
 			}
-			$("#register_alias_help").html("The alias will reference the account number entered and can be used to send NTX to, messages, etc..").show();
+			$("#register_alias_help").html("别名将和您输入的帐号绑定，且可用收接收NTX，或者消息..").show();
 		} else {
 			$("#register_alias_uri_label").html("Data");
 			$("#register_alias_uri").prop("placeholder", "Data");
@@ -199,7 +199,7 @@ var NRS = (function(NRS, $, undefined) {
 			} else {
 				$("#register_alias_uri").val("");
 			}
-			$("#register_alias_help").html("The alias can contain any data you want.").show();
+			$("#register_alias_help").html("别名可以包含您要想的任何字符.").show();
 		}
 	}
 
@@ -220,7 +220,7 @@ var NRS = (function(NRS, $, undefined) {
 
 			if ($row.length) {
 				$row.addClass("tentative");
-				$row.find("td.alias").html(data.alias.escapeHTML() + " - <strong>Pending</strong>");
+				$row.find("td.alias").html(data.alias.escapeHTML() + " - <strong>处理中</strong>");
 
 				if (data.uri && data.uri.indexOf("http") === 0) {
 					$row.find("td.uri").html("<a href='" + String(data.uri).escapeHTML() + "' target='_blank'>" + String(data.uri).escapeHTML() + "</a>");
@@ -230,7 +230,7 @@ var NRS = (function(NRS, $, undefined) {
 			} else {
 				var $rows = $table.find("tr");
 
-				var rowToAdd = "<tr class='tentative' data-alias='" + String(data.alias).toLowerCase().escapeHTML() + "'><td class='alias'>" + data.alias.escapeHTML() + " -  <strong>Pending</strong></td><td class='uri'>" + (data.uri && data.uri.indexOf("http") === 0 ? "<a href='" + String(data.uri).escapeHTML() + "' target='_blank'>" + data.uri.escapeHTML() + "</a>" : String(data.uri).escapeHTML()) + "</td><td>Edit</td></tr>";
+				var rowToAdd = "<tr class='tentative' data-alias='" + String(data.alias).toLowerCase().escapeHTML() + "'><td class='alias'>" + data.alias.escapeHTML() + " -  <strong>处理中</strong></td><td class='uri'>" + (data.uri && data.uri.indexOf("http") === 0 ? "<a href='" + String(data.uri).escapeHTML() + "' target='_blank'>" + data.uri.escapeHTML() + "</a>" : String(data.uri).escapeHTML()) + "</td><td>编辑</td></tr>";
 
 				var rowAdded = false;
 

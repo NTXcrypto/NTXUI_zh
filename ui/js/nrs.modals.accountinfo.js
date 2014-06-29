@@ -1,4 +1,4 @@
-var NRS = (function(NRS, $, undefined) {
+﻿var NRS = (function(NRS, $, undefined) {
 	$("#account_info_modal").on("show.bs.modal", function(e) {
 		$("#account_info_name").val(NRS.accountInfo.name);
 		$("#account_info_description").val(NRS.accountInfo.description);
@@ -9,7 +9,7 @@ var NRS = (function(NRS, $, undefined) {
 		if (name) {
 			$("#account_name").html(name.escapeHTML());
 		} else {
-			$("#account_name").html("No name set");
+			$("#account_name").html("未设置姓名");
 		}
 	}
 

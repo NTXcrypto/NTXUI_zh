@@ -1,4 +1,4 @@
-var NRS = (function(NRS, $, undefined) {
+﻿var NRS = (function(NRS, $, undefined) {
 	$("#generate_token_modal").on("show.bs.modal", function(e) {
 		$("#generate_token_website").val("http://");
 		$("#generate_token_token").html("").hide();
@@ -9,7 +9,7 @@ var NRS = (function(NRS, $, undefined) {
 
 		if (!url || url == "http://") {
 			return {
-				"error": "Website is a required field."
+				"error": "网址是必填项."
 			};
 			$("#generate_token_token").html("").hide();
 		} else {
@@ -23,7 +23,7 @@ var NRS = (function(NRS, $, undefined) {
 		if (response.token) {
 			$("#generate_token_token").html("The generated token for <strong>" + data.website.escapeHTML() + "</strong> is: <br /><br /><textarea style='width:100%' rows='3'>" + response.token.escapeHTML() + "</textarea>").show();
 		} else {
-			$.growl("Could not generate token.", {
+			$.growl("无法创建令牌.", {
 				"type": "danger"
 			});
 			$("#generate_token_modal").modal("hide");

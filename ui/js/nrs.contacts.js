@@ -1,4 +1,4 @@
-var NRS = (function(NRS, $, undefined) {
+﻿var NRS = (function(NRS, $, undefined) {
 	NRS.loadContacts = function() {
 		NRS.contacts = {};
 
@@ -48,7 +48,7 @@ var NRS = (function(NRS, $, undefined) {
 						contactDescription = "-";
 					}
 
-					rows += "<tr><td><a href='#' data-toggle='modal' data-target='#update_contact_modal' data-contact='" + String(contact.id).escapeHTML() + "'>" + contact.name.escapeHTML() + "</a></td><td><a href='#' data-user='" + NRS.getAccountFormatted(contact, "account") + "' class='user_info'>" + NRS.getAccountFormatted(contact, "account") + "</a></td><td>" + (contact.email ? contact.email.escapeHTML() : "-") + "</td><td>" + contactDescription.escapeHTML() + "</td><td style='white-space:nowrap'><a class='btn btn-xs btn-default' href='#' data-toggle='modal' data-target='#send_money_modal' data-contact='" + String(contact.name).escapeHTML() + "'>Send NTX</a> <a class='btn btn-xs btn-default' href='#' data-toggle='modal' data-target='#send_message_modal' data-contact='" + String(contact.name).escapeHTML() + "'>Message</a> <a class='btn btn-xs btn-default' href='#' data-toggle='modal' data-target='#delete_contact_modal' data-contact='" + String(contact.id).escapeHTML() + "'>Delete</a></td></tr>";
+					rows += "<tr><td><a href='#' data-toggle='modal' data-target='#update_contact_modal' data-contact='" + String(contact.id).escapeHTML() + "'>" + contact.name.escapeHTML() + "</a></td><td><a href='#' data-user='" + NRS.getAccountFormatted(contact, "account") + "' class='user_info'>" + NRS.getAccountFormatted(contact, "account") + "</a></td><td>" + (contact.email ? contact.email.escapeHTML() : "-") + "</td><td>" + contactDescription.escapeHTML() + "</td><td style='white-space:nowrap'><a class='btn btn-xs btn-default' href='#' data-toggle='modal' data-target='#send_money_modal' data-contact='" + String(contact.name).escapeHTML() + "'>发送NTX</a> <a class='btn btn-xs btn-default' href='#' data-toggle='modal' data-target='#send_message_modal' data-contact='" + String(contact.name).escapeHTML() + "'>短消息</a> <a class='btn btn-xs btn-default' href='#' data-toggle='modal' data-target='#delete_contact_modal' data-contact='" + String(contact.id).escapeHTML() + "'>删除</a></td></tr>";
 				});
 
 				$("#contacts_table tbody").empty().append(rows);
@@ -71,23 +71,23 @@ var NRS = (function(NRS, $, undefined) {
 
 		if (!data.name) {
 			return {
-				"error": "Contact name is a required field."
+				"error": "联系人姓名是必填项."
 			};
 		} else if (!data.account_id) {
 			return {
-				"error": "Account ID is a required field."
+				"error": "帐户ID是必填项."
 			};
 		}
 
 		if (/^\d+$/.test(data.name) || /^NTX\-/i.test(data.name)) {
 			return {
-				"error": "Contact name must contain alphabetic characters."
+				"error": "联系人姓名必须包含字母."
 			};
 		}
 
 		if (data.email && !/@/.test(data.email)) {
 			return {
-				"error": "Email address is incorrect."
+				"error": "邮件地址有误."
 			};
 		}
 
@@ -97,7 +97,7 @@ var NRS = (function(NRS, $, undefined) {
 				data.account_id = convertedAccountId;
 			} else {
 				return {
-					"error": "Invalid account ID."
+					"error": "无效的帐户ID."
 				};
 			}
 		}
@@ -111,7 +111,7 @@ var NRS = (function(NRS, $, undefined) {
 				data.account = address.account_id();
 			} else {
 				return {
-					"error": "Invalid account ID."
+					"error": "无效的帐户ID."
 				};
 			}
 		} else {
@@ -121,7 +121,7 @@ var NRS = (function(NRS, $, undefined) {
 				data.account_rs = address.toString();
 			} else {
 				return {
-					"error": "Invalid account ID."
+					"error": "无效的帐户ID."
 				};
 			}
 		}
@@ -132,7 +132,7 @@ var NRS = (function(NRS, $, undefined) {
 			if (!response.errorCode) {
 				if (response.account != data.account || response.accountRS != data.account_rs) {
 					return {
-						"error": "Invalid account ID."
+						"error": "无效的帐户ID."
 					};
 				}
 			}
@@ -147,9 +147,9 @@ var NRS = (function(NRS, $, undefined) {
 		}], function(error, contacts) {
 			if (contacts.length) {
 				if (contacts[0].name == data.name) {
-					$modal.find(".error_message").html("A contact with this name already exists.").show();
+					$modal.find(".error_message").html("该姓名的联系人已存在.").show();
 				} else {
-					$modal.find(".error_message").html("A contact with this account ID already exists.").show();
+					$modal.find(".error_message").html("该帐户ID的联系人已存在.").show();
 				}
 				$btn.button("reset");
 				$modal.modal("unlock");
@@ -173,7 +173,7 @@ var NRS = (function(NRS, $, undefined) {
 						$btn.button("reset");
 						$modal.modal("unlock");
 						$modal.modal("hide");
-						$.growl("Contact added successfully.", {
+						$.growl("联系人添加成功.", {
 							"type": "success"
 						});
 
@@ -245,11 +245,11 @@ var NRS = (function(NRS, $, undefined) {
 
 		if (!data.name) {
 			return {
-				"error": "Contact name is a required field."
+				"error": "联系人姓名是必填项."
 			};
 		} else if (!data.account_id) {
 			return {
-				"error": "Account ID is a required field."
+				"error": "帐户ID是必填项."
 			};
 		}
 
@@ -259,7 +259,7 @@ var NRS = (function(NRS, $, undefined) {
 				data.account_id = convertedAccountId;
 			} else {
 				return {
-					"error": "Invalid account ID."
+					"error": "无效的帐户ID."
 				};
 			}
 		}
@@ -268,7 +268,7 @@ var NRS = (function(NRS, $, undefined) {
 
 		if (!contactId) {
 			return {
-				"error": "Invalid contact."
+				"error": "无效的联系人."
 			};
 		}
 
@@ -281,7 +281,7 @@ var NRS = (function(NRS, $, undefined) {
 				data.account_id = address.account_id();
 			} else {
 				return {
-					"error": "Invalid account ID."
+					"error": "无效的帐户ID."
 				};
 			}
 		} else {
@@ -291,7 +291,7 @@ var NRS = (function(NRS, $, undefined) {
 				data.account_rs = address.toString();
 			} else {
 				return {
-					"error": "Invalid account ID."
+					"error": "无效的帐户ID."
 				};
 			}
 		}
@@ -302,7 +302,7 @@ var NRS = (function(NRS, $, undefined) {
 			if (!response.errorCode) {
 				if (response.account != data.account_id || response.accountRS != data.account_rs) {
 					return {
-						"error": "Invalid account ID."
+						"error": "无效的帐户ID."
 					};
 				}
 			}
@@ -343,7 +343,7 @@ var NRS = (function(NRS, $, undefined) {
 						$btn.button("reset");
 						$modal.modal("unlock");
 						$modal.modal("hide");
-						$.growl("Contact updated successfully.", {
+						$.growl("联系人更新成功.", {
 							"type": "success"
 						});
 
@@ -387,7 +387,7 @@ var NRS = (function(NRS, $, undefined) {
 			delete NRS.contacts[$("#delete_contact_account_id").val()];
 
 			setTimeout(function() {
-				$.growl("Contact deleted successfully.", {
+				$.growl("联系人删除成功.", {
 					"type": "success"
 				});
 

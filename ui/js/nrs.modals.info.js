@@ -1,4 +1,4 @@
-var NRS = (function(NRS, $, undefined) {
+﻿var NRS = (function(NRS, $, undefined) {
 	$("#nrs_modal").on("show.bs.modal", function(e) {
 		if (NRS.fetchingModalData) {
 			return;

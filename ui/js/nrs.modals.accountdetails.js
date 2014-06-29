@@ -1,4 +1,4 @@
-var NRS = (function(NRS, $, undefined) {
+﻿var NRS = (function(NRS, $, undefined) {
 	$("#account_details_modal").on("show.bs.modal", function(e) {
 		$("#account_details_modal_balance").show();
 
@@ -6,7 +6,7 @@ var NRS = (function(NRS, $, undefined) {
 			$("#account_balance_table").hide();
 
 			if (NRS.accountInfo.errorCode == 5) {
-				$("#account_balance_warning").html("Your account is brand new. You should fund it with some coins. Your account ID is <strong>" + NRS.account + "</strong>").show();
+				$("#account_balance_warning").html("您的帐户是全新的，建议您存入一些NTX，您的帐户ID是：<strong>" + NRS.account + "</strong>").show();
 			} else {
 				$("#account_balance_warning").html(NRS.accountInfo.errorDescription.escapeHTML()).show();
 			}
@@ -24,7 +24,7 @@ var NRS = (function(NRS, $, undefined) {
 
 			if (!NRS.accountInfo.publicKey) {
 				$("#account_balance_public_key").html("/");
-				$("#account_balance_warning").html("Your account does not have a public key! This means it's not as protected as other accounts. You must make an outgoing transaction to fix this issue. (<a href='#' data-toggle='modal' data-target='#send_message_modal'>send a message</a>, <a href='#' data-toggle='modal' data-target='#register_alias_modal'>buy an alias</a>, <a href='#' data-toggle='modal' data-target='#send_money_modal'>send NTX</a>, ...)").show();
+				$("#account_balance_warning").html("您的帐号没有公钥哦! 酱紫的话就不能像其它帐号一样受保护了. 您只要发送一笔款项，或者发送一条信息到其它帐户，或者购买一个别名就可以解决这问题了哦. (<a href='#' data-toggle='modal' data-target='#send_message_modal'>发送消息</a>, <a href='#' data-toggle='modal' data-target='#register_alias_modal'>购买别名</a>, <a href='#' data-toggle='modal' data-target='#send_money_modal'>发送NTX</a>, ...)").show();
 			}
 		}
 	});

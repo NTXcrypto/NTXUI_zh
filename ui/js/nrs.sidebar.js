@@ -1,4 +1,4 @@
-var NRS = (function(NRS, $, undefined) {
+﻿var NRS = (function(NRS, $, undefined) {
 	$(".sidebar_context").on("contextmenu", "a", function(e) {
 		e.preventDefault();
 

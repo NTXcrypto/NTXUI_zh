@@ -1,4 +1,4 @@
-var NRS = (function(NRS, $, undefined) {
+﻿var NRS = (function(NRS, $, undefined) {
 	NRS.newlyCreatedAccount = false;
 
 	NRS.allowLoginViaEnter = function() {
@@ -51,7 +51,7 @@ var NRS = (function(NRS, $, undefined) {
 		var $loaded = $("#account_phrase_generator_loaded");
 
 		if (window.crypto || window.msCrypto) {
-			$loading.find("span.loading_text").html("Generating your secret phrase. Please wait");
+			$loading.find("span.loading_text").html("正在创建您的超级密码，请稍等.");
 		}
 
 		$loading.show();
@@ -67,7 +67,7 @@ var NRS = (function(NRS, $, undefined) {
 
 				PassPhraseGenerator.generatePassPhrase("#account_phrase_generator_panel");
 			}).fail(function(jqxhr, settings, exception) {
-				alert("Could not load word list...");
+				alert("无法加载词库...");
 			});
 		} else {
 			$loading.hide();
@@ -85,7 +85,7 @@ var NRS = (function(NRS, $, undefined) {
 		} else {
 			NRS.newlyCreatedAccount = true;
 			NRS.login(password, function() {
-				$.growl("Secret phrase confirmed successfully, you are now logged in.", {
+				$.growl("密码确认成功，您现已成功登陆.", {
 					"type": "success"
 				});
 			});
@@ -104,11 +104,11 @@ var NRS = (function(NRS, $, undefined) {
 		var error = "";
 
 		if (password.length < 35) {
-			error = "Secret phrase must be at least 35 characters long.";
+			error = "密码必须至少有35个字符.";
 		} else if (password.length < 50 && (!password.match(/[A-Z]/) || !password.match(/[0-9]/))) {
-			error = "Since your secret phrase is less than 50 characters long, it must contain numbers and uppercase letters.";
+			error = "如果您的密码少于50个字符，那就必须要包含数字和大小写字母的组合.";
 		} else if (password != repeat) {
-			error = "Secret phrases do not match.";
+			error = "密码不符.";
 		}
 
 		if (error) {
@@ -116,7 +116,7 @@ var NRS = (function(NRS, $, undefined) {
 		} else {
 			$("#registration_password, #registration_password_repeat").val("");
 			NRS.login(password, function() {
-				$.growl("Secret phrase confirmed successfully, you are now logged in.", {
+				$.growl("密码确认成功，您现已成功登陆.", {
 					"type": "success"
 				});
 			});
@@ -127,7 +127,7 @@ var NRS = (function(NRS, $, undefined) {
 		$("#login_password, #registration_password, #registration_password_repeat").val("");
 
 		if (!password.length) {
-			$.growl("You must enter your secret phrase. If you don't have one, click the registration button below.", {
+			$.growl("您必须输入你的密码，如果你没有密码，点击以下的注册按钮.", {
 				"type": "danger",
 				"offset": 10
 			});
@@ -163,7 +163,7 @@ var NRS = (function(NRS, $, undefined) {
 				if (nxtAddress.set(NRS.account)) {
 					NRS.accountRS = nxtAddress.toString();
 				} else {
-					$.growl("Could not generate Reed Solomon address.", {
+					$.growl("无法创建帐户地址.", {
 						"type": "danger"
 					});
 				}
@@ -172,7 +172,7 @@ var NRS = (function(NRS, $, undefined) {
 					"account": NRS.account
 				}, function(response) {
 					if (response && response.publicKey && response.publicKey != NRS.generatePublicKey(password)) {
-						$.growl("This account is already taken. Please choose another pass phrase.", {
+						$.growl("该帐户已被使用，请重新选择.", {
 							"type": "danger",
 							"offset": 10
 						});
@@ -183,7 +183,7 @@ var NRS = (function(NRS, $, undefined) {
 						NRS.rememberPassword = true;
 						$("#remember_password").prop("checked", false);
 						sessionStorage.setItem("secret", password);
-						$.growl("Remember to log out at the end of your session so as to clear the password from memory.", {
+						$.growl("请记得退出登陆以清除本机密码.", {
 							"type": "danger"
 						});
 						$(".secret_phrase, .show_secret_phrase").hide();
@@ -199,13 +199,13 @@ var NRS = (function(NRS, $, undefined) {
 					var passwordNotice = "";
 
 					if (password.length < 35) {
-						passwordNotice = "Your secret phrase is less than 35 characters long. This is not secure.";
+						passwordNotice = "您的密码少于35个字符，这是很不安全的.";
 					} else if (password.length < 50 && (!password.match(/[A-Z]/) || !password.match(/[0-9]/))) {
-						passwordNotice = "Your secret phrase does not contain numbers and uppercase letters. This is not secure.";
+						passwordNotice = "您的密码不包含数字和大小写字母，这是很不安全的.";
 					}
 
 					if (passwordNotice) {
-						$.growl("<strong>Warning</strong>: " + passwordNotice, {
+						$.growl("<strong>注意</strong>: " + passwordNotice, {
 							"type": "danger"
 						});
 					}
@@ -220,7 +220,7 @@ var NRS = (function(NRS, $, undefined) {
 						//forging requires password to be sent to the server, so we don't do it automatically if not localhost
 						if (!NRS.accountInfo.publicKey || NRS.accountInfo.effectiveBalanceNXT == 0 || !NRS.isLocalHost || NRS.downloadingBlockchain || NRS.isLeased) {
 							$("#forging_indicator").removeClass("forging");
-							$("#forging_indicator span").html("Not Forging");
+							$("#forging_indicator span").html("未锻造");
 							$("#forging_indicator").show();
 							NRS.isForging = false;
 						} else if (NRS.isLocalHost) {
@@ -229,11 +229,11 @@ var NRS = (function(NRS, $, undefined) {
 							}, function(response) {
 								if ("deadline" in response) {
 									$("#forging_indicator").addClass("forging");
-									$("#forging_indicator span").html("Forging");
+									$("#forging_indicator span").html("锻造中");
 									NRS.isForging = true;
 								} else {
 									$("#forging_indicator").removeClass("forging");
-									$("#forging_indicator span").html("Not Forging");
+									$("#forging_indicator span").html("未锻造");
 									NRS.isForging = false;
 								}
 								$("#forging_indicator").show();
@@ -246,7 +246,7 @@ var NRS = (function(NRS, $, undefined) {
 					NRS.unlock();
 
 					if (NRS.isOutdated) {
-						$.growl("A new NRS release is available. It is recommended that you update.", {
+						$.growl("NRS已有更新版本，请升级.", {
 							"type": "danger"
 						});
 					}

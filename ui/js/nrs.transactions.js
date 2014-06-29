@@ -1,4 +1,4 @@
-var NRS = (function(NRS, $, undefined) {
+﻿var NRS = (function(NRS, $, undefined) {
 	NRS.lastTransactionsTimestamp = 0;
 	NRS.lastTransactions = "";
 
@@ -468,77 +468,77 @@ var NRS = (function(NRS, $, undefined) {
 			transactionType = "Ordinary payment";
 		} else if (transaction.type == 1) {
 			switch (transaction.subtype) {
-				case 0:
-					transactionType = "Arbitrary message";
-					break;
-				case 1:
-					transactionType = "Alias assignment";
-					break;
-				case 2:
-					transactionType = "Poll creation";
-					break;
-				case 3:
-					transactionType = "Vote casting";
-					break;
-				case 4:
-					transactionType = "Hub Announcement";
-					break;
-				case 5:
-					transactionType = "Account Info";
-					break;
+				                        case 0:
+											transactionType = "发送消息";
+											break;
+										case 1:
+											transactionType = "注册别名";
+											break;
+										case 2:
+											transactionType = "创建投票";
+											break;
+										case 3:
+											transactionType = "投票";
+											break;
+										case 4:
+											transactionType = "发布公告";
+											break;
+										case 5:
+											transactionType = "帐户信息";
+											break;
 			}
 		} else if (transaction.type == 2) {
 			switch (transaction.subtype) {
-				case 0:
-					transactionType = "Asset issuance";
-					break;
-				case 1:
-					transactionType = "Asset transfer";
-					break;
-				case 2:
-					transactionType = "Ask order placement";
-					break;
-				case 3:
-					transactionType = "Bid order placement";
-					break;
-				case 4:
-					transactionType = "Ask order cancellation";
-					break;
-				case 5:
-					transactionType = "Bid order cancellation";
-					break;
+				                       case 0:
+											transactionType = "发行资产";
+											break;
+										case 1:
+											transactionType = "转让资产";
+											break;
+										case 2:
+											transactionType = "添加卖单";
+											break;
+										case 3:
+											transactionType = "添加买单";
+											break;
+										case 4:
+											transactionType = "取消卖单";
+											break;
+										case 5:
+											transactionType = "取消买单";
+											break;
 			}
 		} else if (transaction.type == 3) {
 			switch (transaction.subtype) {
 				case 0:
-					transactionType = "Digital Goods Listing";
-					break;
-				case 1:
-					transactionType = "Digital Goods Delisting";
-					break;
-				case 2:
-					transactionType = "Digtal Goods Price Change";
-					break;
-				case 3:
-					transactionType = "Digital Goods Quantity Change";
-					break;
-				case 4:
-					transactionType = "Digital Goods Purchase";
-					break;
-				case 5:
-					transactionType = "Digital Goods Delivery";
-					break;
-				case 6:
-					transactionType = "Digital Goods Feedback";
-					break;
-				case 7:
-					transactionType = "Digital Goods Refund";
-					break;
+											transactionType = "上线数字资产";
+											break;
+										case 1:
+											transactionType = "下线数字资产";
+											break;
+										case 2:
+											transactionType = "更改数字资产价格";
+											break;
+										case 3:
+											transactionType = "更改数字资产数量";
+											break;
+										case 4:
+											transactionType = "购买数字资产";
+											break;
+										case 5:
+											transactionType = "交付数字资产";
+											break;
+										case 6:
+											transactionType = "数字资产反馈";
+											break;
+										case 7:
+											transactionType = "退回数字资产";
+											break;
 			}
 		} else if (transaction.type == 4) {
 			switch (transaction.subtype) {
 				case 0:
-					transactionType = "Balance Leasing";
+					transactionType = "余额租用";
 					break;
 			}
 		}

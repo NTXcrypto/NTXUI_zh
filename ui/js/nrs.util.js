@@ -1,4 +1,4 @@
-var NRS = (function(NRS, $, undefined) {
+﻿var NRS = (function(NRS, $, undefined) {
 	var LOCALE_DATE_FORMATS = {
 		"ar-SA": "dd/MM/yy",
 		"bg-BG": "dd.M.yyyy",
@@ -381,7 +381,7 @@ var NRS = (function(NRS, $, undefined) {
 
 			return parts[0] + "." + fraction;
 		} else {
-			throw "Incorrect input";
+			throw "输入有误";
 		}
 	}
 
@@ -479,7 +479,7 @@ var NRS = (function(NRS, $, undefined) {
 		} else if (parts.length == 2) {
 			var fraction = parts[1];
 			if (fraction.length > decimals) {
-				throw "Fraction can only have " + decimals + " decimals max.";
+				throw "程序最多支持" + decimals + "位小数.";
 			} else if (fraction.length < decimals) {
 				for (var i = fraction.length; i < decimals; i++) {
 					fraction += "0";
@@ -487,12 +487,12 @@ var NRS = (function(NRS, $, undefined) {
 			}
 			qnt += fraction;
 		} else {
-			throw "Incorrect input";
+			throw "输入错误";
 		}
 
 		//in case there's a comma or something else in there.. at this point there should only be numbers
 		if (!/^\d+$/.test(qnt)) {
-			throw "Invalid input. Only numbers and a dot are accepted.";
+			throw "无效输入. 只允许数字和.";
 		}
 
 		//remove leading zeroes
@@ -757,7 +757,7 @@ var NRS = (function(NRS, $, undefined) {
 					"text": NRS.getClipboardText($(this).data("type"))
 				}, "*");
 
-				$.growl("Copied to the clipboard successfully.", {
+				$.growl("成功复制到剪贴板.", {
 					"type": "success"
 				});
 			});
@@ -776,7 +776,7 @@ var NRS = (function(NRS, $, undefined) {
 			}
 
 			clipboard.on("complete", function(client, args) {
-				$.growl("Copied to the clipboard successfully.", {
+				$.growl("成功复制到剪贴板.", {
 					"type": "success"
 				});
 			});
@@ -784,7 +784,7 @@ var NRS = (function(NRS, $, undefined) {
 			clipboard.on("noflash", function(client, args) {
 				$("#account_id_dropdown .dropdown-menu, #asset_id_dropdown .dropdown-menu").remove();
 				$("#account_id_dropdown, #asset_id").data("toggle", "");
-				$.growl("Your browser doesn't support flash, therefore copy to clipboard functionality will not work.", {
+				$.growl("您的浏览器不支持flash, 因此,复制到剪贴板功能将不可用.", {
 					"type": "danger"
 				});
 			});
@@ -792,7 +792,7 @@ var NRS = (function(NRS, $, undefined) {
 			clipboard.on("wrongflash", function(client, args) {
 				$("#account_id_dropdown .dropdown-menu, #asset_id_dropdown .dropdown-menu").remove();
 				$("#account_id_dropdown, #asset_id").data("toggle", "");
-				$.growl("Your browser flash version is too old. The copy to clipboard functionality needs version 10 or newer.");
+				$.growl("浏览器的flash版本太旧. 请至少升级到版本10以上以支持剪贴板操作.");
 			});
 		}
 	}

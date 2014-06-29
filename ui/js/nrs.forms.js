@@ -1,4 +1,4 @@
-var NRS = (function(NRS, $, undefined) {
+﻿var NRS = (function(NRS, $, undefined) {
 	NRS.confirmedFormWarning = false;
 
 	NRS.forms = {
@@ -43,11 +43,11 @@ var NRS = (function(NRS, $, undefined) {
 		var $form = $modal.find("form:first");
 
 		if (NRS.downloadingBlockchain) {
-			$modal.find(".error_message").html("Please wait until the blockchain has finished downloading.").show();
+			$modal.find(".error_message").html("请稍等,真到块链下载完成.").show();
 			NRS.unlockForm($modal, $btn);
 			return;
 		} else if (NRS.state.isScanning) {
-			$modal.find(".error_message").html("The blockchain is currently being rescanned. Please wait a minute and then try submitting again.").show();
+			$modal.find(".error_message").html("块链已重新扫描，请稍等一分钟再尝试提交.").show();
 			NRS.unlockForm($modal, $btn);
 			return;
 		}
@@ -64,7 +64,7 @@ var NRS = (function(NRS, $, undefined) {
 					var max = $(this).attr("max");
 
 					if (value > max) {
-						error = name.escapeHTML() + ": Maximum value is " + String(max).escapeHTML() + ".";
+						error = name.escapeHTML() + ": 最大值是 " + String(max).escapeHTML() + ".";
 					}
 				}
 
@@ -72,12 +72,12 @@ var NRS = (function(NRS, $, undefined) {
 					var min = $(this).attr("min");
 
 					if (value < min) {
-						error = name.escapeHTML() + ": Minimum value is " + String(min).escapeHTML() + ".";
+						error = name.escapeHTML() + ": 最小值是 " + String(min).escapeHTML() + ".";
 					}
 				}
 
 				if (!error) {
-					error = name.escapeHTML() + " is invalid.";
+					error = name.escapeHTML() + " 是无效的.";
 				}
 
 				$modal.find(".error_message").html(error).show();
@@ -146,7 +146,7 @@ var NRS = (function(NRS, $, undefined) {
 		}
 
 		if ("secretPhrase" in data && !data.secretPhrase.length && !NRS.rememberPassword) {
-			$modal.find(".error_message").html("Secret phrase is a required field.").show();
+			$modal.find(".error_message").html("密码是必填的.").show();
 			NRS.unlockForm($modal, $btn);
 			return;
 		}
@@ -155,7 +155,7 @@ var NRS = (function(NRS, $, undefined) {
 			if ("amountNXT" in data && NRS.settings["amount_warning"] && NRS.settings["amount_warning"] != "0") {
 				if (new BigInteger(NRS.convertToNQT(data.amountNXT)).compareTo(new BigInteger(NRS.settings["amount_warning"])) > 0) {
 					NRS.showedFormWarning = true;
-					$modal.find(".error_message").html("You amount is higher than " + NRS.formatAmount(NRS.settings["amount_warning"]) + " NTX. Are you sure you want to continue? Click the submit button again to confirm.").show();
+					$modal.find(".error_message").html("额度高于 " + NRS.formatAmount(NRS.settings["amount_warning"]) + " NTX. 您确定要继续吗? 点击提交按钮以再次确认.").show();
 					NRS.unlockForm($modal, $btn);
 					return;
 				}
@@ -164,7 +164,7 @@ var NRS = (function(NRS, $, undefined) {
 			if ("feeNXT" in data && NRS.settings["fee_warning"] && NRS.settings["fee_warning"] != "0") {
 				if (new BigInteger(NRS.convertToNQT(data.feeNXT)).compareTo(new BigInteger(NRS.settings["fee_warning"])) > 0) {
 					NRS.showedFormWarning = true;
-					$modal.find(".error_message").html("You fee is higher than " + NRS.formatAmount(NRS.settings["fee_warning"]) + " NTX. Are you sure you want to continue? Click the submit button again to confirm.").show();
+					$modal.find(".error_message").html("您的费用高于 " + NRS.formatAmount(NRS.settings["fee_warning"]) + " NTX. 您确定要继续吗? 点击提交按钮以再次确认.").show();
 					NRS.unlockForm($modal, $btn);
 					return;
 				}
@@ -178,7 +178,7 @@ var NRS = (function(NRS, $, undefined) {
 				} else if (NRS.forms.errorMessages[originalRequestType] && NRS.forms.errorMessages[originalRequestType][response.errorCode]) {
 					$modal.find(".error_message").html(NRS.forms.errorMessages[originalRequestType][response.errorCode].escapeHTML()).show();
 				} else {
-					$modal.find(".error_message").html(response.errorDescription ? response.errorDescription.escapeHTML() : "Unknown error occured.").show();
+					$modal.find(".error_message").html(response.errorDescription ? response.errorDescription.escapeHTML() : "发生未知错误.").show();
 				}
 				NRS.unlockForm($modal, $btn);
 			} else if (response.fullHash) {
@@ -233,7 +233,7 @@ var NRS = (function(NRS, $, undefined) {
 						}
 						formCompleteFunction(response, data);
 					} else {
-						errorMessage = "An unknown error occured.";
+						errorMessage = "发生未知错误.";
 					}
 				}
 

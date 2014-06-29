@@ -1,4 +1,4 @@
-var NRS = (function(NRS, $, undefined) {
+﻿var NRS = (function(NRS, $, undefined) {
 	NRS.normalVersion = {};
 	NRS.betaVersion = {};
 	NRS.isOutdated = false;
@@ -189,9 +189,9 @@ var NRS = (function(NRS, $, undefined) {
 				$("#nrs_update_drop_zone").hide();
 
 				if (e.data.sha256 == NRS.downloadedVersion.hash) {
-					$("#nrs_update_result").html("The downloaded version has been verified, the hash is correct. You may proceed with the installation.").attr("class", " ");
+					$("#nrs_update_result").html("该安装包已下载完成并通过验证，您可以安装了.").attr("class", " ");
 				} else {
-					$("#nrs_update_result").html("The downloaded version hash does not compare to the specified hash in the blockchain. DO NOT PROCEED.").attr("class", "incorrect");
+					$("#nrs_update_result").html("该安装包有误，与原安装包HASH不对应，无法进行安装.").attr("class", "incorrect");
 				}
 
 				$("#nrs_update_hash_version").html(NRS.downloadedVersion.versionNr);

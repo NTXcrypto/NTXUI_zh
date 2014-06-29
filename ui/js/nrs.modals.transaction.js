@@ -1,4 +1,4 @@
-var NRS = (function(NRS, $, undefined) {
+﻿var NRS = (function(NRS, $, undefined) {
 	$("#transactions_table, #dashboard_transactions_table").on("click", "a[data-transaction]", function(e) {
 		e.preventDefault();
 
@@ -54,11 +54,11 @@ var NRS = (function(NRS, $, undefined) {
 			switch (transaction.subtype) {
 				case 0:
 					var data = {
-						"Type": "Ordinary Payment",
-						"Amount": transaction.amountNQT,
-						"Fee": transaction.feeNQT,
-						"Recipient": NRS.getAccountTitle(transaction, "recipient"),
-						"Sender": NRS.getAccountTitle(transaction, "sender")
+						"类型": "常规交易",
+						"金额": transaction.amountNQT,
+						"费用": transaction.feeNQT,
+						"接收者": NRS.getAccountTitle(transaction, "recipient"),
+						"发送者": NRS.getAccountTitle(transaction, "sender")
 					};
 
 					$("#transaction_info_table tbody").append(NRS.createInfoTable(data));
@@ -95,7 +95,7 @@ var NRS = (function(NRS, $, undefined) {
 						try {
 							message = converters.hexStringToString(hex);
 						} catch (err) {
-							message = "Could not convert hex to string: " + hex;
+							message = "无法转换为16进制字符串: " + hex;
 						}
 					}
 
@@ -116,7 +116,7 @@ var NRS = (function(NRS, $, undefined) {
 					break;
 				case 1:
 					var data = {
-						"Type": "Alias Assignment",
+						"Type": "别名注册",
 						"Alias": transaction.attachment.alias,
 						"DataFormattedHTML": transaction.attachment.uri.autoLink()
 					};
@@ -131,7 +131,7 @@ var NRS = (function(NRS, $, undefined) {
 					break;
 				case 2:
 					var data = {
-						"Type": "Poll Creation",
+						"Type": "投票创建",
 						"Name": transaction.attachment.name,
 						"Description": transaction.attachment.description
 					};
@@ -168,7 +168,7 @@ var NRS = (function(NRS, $, undefined) {
 					break;
 				case 5:
 					var data = {
-						"Type": "Account Info",
+						"Type": "帐号信息",
 						"Name": transaction.attachment.name,
 						"Description": transaction.attachment.description
 					};
@@ -185,7 +185,7 @@ var NRS = (function(NRS, $, undefined) {
 			switch (transaction.subtype) {
 				case 0:
 					var data = {
-						"Type": "Asset Issuance",
+						"Type": "资产发行",
 						"Name": transaction.attachment.name,
 						"Quantity": [transaction.attachment.quantityQNT, transaction.attachment.decimals],
 						"Decimals": transaction.attachment.decimals,
@@ -196,7 +196,7 @@ var NRS = (function(NRS, $, undefined) {
 						data["Sender"] = NRS.getAccountTitle(transaction, "sender");
 					}
 
-					$("#transaction_info_callout").html("<a href='#' data-goto-asset='" + String(transaction.transaction).escapeHTML() + "'>Click here</a> to view this asset in the Asset Exchange.").show();
+					$("#transaction_info_callout").html("<a href='#' data-goto-asset='" + String(transaction.transaction).escapeHTML() + "'>点击这里</a> 到资产交易所查看.").show();
 
 					$("#transaction_info_table tbody").append(NRS.createInfoTable(data));
 					$("#transaction_info_table").show();

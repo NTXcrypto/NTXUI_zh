@@ -1,4 +1,4 @@
-var NRS = (function(NRS, $, undefined) {
+﻿var NRS = (function(NRS, $, undefined) {
 	NRS.multiQueue = null;
 
 	NRS.sendOutsideRequest = function(url, data, callback, async) {
@@ -22,7 +22,7 @@ var NRS = (function(NRS, $, undefined) {
 			data: data
 		}).done(function(json) {
 			if (json.errorCode && !json.errorDescription) {
-				json.errorDescription = (json.errorMessage ? json.errorMessage : "Unknown error occured.");
+				json.errorDescription = (json.errorMessage ? json.errorMessage : "发生未知错误.");
 			}
 			if (callback) {
 				callback(json, data);
@@ -101,7 +101,7 @@ var NRS = (function(NRS, $, undefined) {
 				if (callback) {
 					callback({
 						"errorCode": 1,
-						"errorDescription": "Incorrect secret phrase."
+						"errorDescription": "密码错误."
 					});
 				}
 				return;
@@ -235,10 +235,10 @@ var NRS = (function(NRS, $, undefined) {
 					if (callback) {
 						callback({
 							"errorCode": 1,
-							"errorDescription": "Could not verify signature (client side)."
+							"errorDescription": "无法确认签名(客户端)."
 						}, data);
 					} else {
-						$.growl("Could not verify signature.", {
+						$.growl("无法确认签名.", {
 							"type": "danger"
 						});
 					}
@@ -250,10 +250,10 @@ var NRS = (function(NRS, $, undefined) {
 						if (callback) {
 							callback({
 								"errorCode": 1,
-								"errorDescription": "Could not verify transaction bytes (server side)."
+								"errorDescription": "无法确认交易字节数(服务器端)."
 							}, data);
 						} else {
-							$.growl("Could not verify transaction bytes.", {
+							$.growl("无法确认交易字节数.", {
 								"type": "danger"
 							});
 						}
@@ -272,7 +272,7 @@ var NRS = (function(NRS, $, undefined) {
 				}
 			} else {
 				if (response.errorCode && !response.errorDescription) {
-					response.errorDescription = (response.errorMessage ? response.errorMessage : "Unknown error occured.");
+					response.errorDescription = (response.errorMessage ? response.errorMessage : "发生未知错误.");
 				}
 
 				if (callback) {
@@ -300,7 +300,7 @@ var NRS = (function(NRS, $, undefined) {
 				return;
 			} else if (callback) {
 				if (error == "timeout") {
-					error = "The request timed out. Warning: This does not mean the request did not go through. You should wait a couple of blocks and see if your request has been processed.";
+					error = "请求超时. 注意: 这并不意味着操作未成功,建议您等一直块出来后再看该操作是否有生效.";
 				}
 				callback({
 					"errorCode": -1,
@@ -881,7 +881,7 @@ var NRS = (function(NRS, $, undefined) {
 
 			if (callback) {
 				if (response.errorCode && !response.errorDescription) {
-					response.errorDescription = (response.errorMessage ? response.errorMessage : "Unknown error occured.");
+					response.errorDescription = (response.errorMessage ? response.errorMessage : "发生未知错误.");
 					callback(response, original_data);
 				} else if (response.error) {
 					response.errorCode = 1;
@@ -904,7 +904,7 @@ var NRS = (function(NRS, $, undefined) {
 
 			if (callback) {
 				if (error == "timeout") {
-					error = "The request timed out. Warning: This does not mean the request did not go through. You should a few blocks and see if your request has been processed before trying to submit it again.";
+					error = "请求超时. 注意: 这并不意味着操作未成功,建议您等一直块出来后再看该操作是否有生效.";
 				}
 				callback({
 					"errorCode": -1,
